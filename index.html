@@ -1,0 +1,3098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Otsego County Fire Authority</title>
+  <meta name="description" content="Official website of the Otsego County Fire Authority, governing fire protection for the City of Gaylord and the townships of Bagley, Hayes, Livingston, Dover, and Chester. Board meeting schedule, minutes, agendas, and run reports." />
+  <meta name="theme-color" content="#111111" />
+  <link rel="icon" type="image/png" href="FireAuth.png"/>
+  <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+
+  <!-- Link previews (Facebook, texts, email). Preview sites need full web addresses here, not file names. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Otsego County Fire Authority" />
+  <meta property="og:title" content="Otsego County Fire Authority" />
+  <meta property="og:description" content="Fire protection governance for Gaylord and the townships of Otsego County, Michigan. Board meetings, minutes, agendas, and run reports." />
+  <meta property="og:url" content="https://otsegocountyfiremi.gov/" />
+  <meta property="og:image" content="https://otsegocountyfiremi.gov/social-preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Otsego County Fire Authority logo over firefighters training on an aircraft fire" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://otsegocountyfiremi.gov/" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* ══════════════════════════════════════════════════════
+       OTSEGO COUNTY FIRE AUTHORITY — VINTAGE FIRE TRUCK STYLE
+       Black body · Fire red panels · Gold leaf coachlines
+    ══════════════════════════════════════════════════════ */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Header/footer: near-black apparatus body */
+      --black:      #111111;
+      --black-mid:  #1a1a1a;
+      --charcoal:   #2a2828;
+
+      /* Fire engine red — the classic panel color */
+      --red:        #b91c1c;
+      --red-dark:   #7f1d1d;
+      --red-light:  #dc2626;
+      --red-pale:   rgba(185,28,28,.15);
+
+      /* Dark page backgrounds — charcoal grayscale */
+      --bg:         #1e1e1e;   /* main page background */
+      --bg-white:   #282828;   /* card / panel background */
+      --bg-gray:    #161616;   /* deepest sections */
+
+      /* Grays */
+      --gray-100:   rgba(255,255,255,.06);
+      --gray-200:   rgba(255,255,255,.1);
+      --gray-400:   #888480;
+      --gray-600:   #555050;
+      --gray-800:   #c8c4be;
+
+      /* Text — white and light grays */
+      --text:       #f0ede8;
+      --text-mid:   #c0bdb8;
+      --text-muted: #9c9890;
+      --text-light: #ffffff;
+
+      /* Gold — trim/coachlines only */
+      --gold-1: #d4a017;
+      --gold-2: #f0c040;
+      --gold-3: #e8b02a;
+      --gold-4: #b8860b;
+      /* Burnished gold leaf — deep shadow zones, warm body, sharp catch highlight */
+      --gold-leaf: linear-gradient(135deg,
+        #2e1800 0%, #6b4200 7%, #b8860b 17%,
+        #e0a820 27%, #fff0a0 36%, #f5cc50 44%,
+        #c8900a 54%, #e8b02a 63%, #ffd060 73%,
+        #d4a017 82%, #6b4200 93%, #2e1800 100%);
+      --gold-leaf-h: linear-gradient(90deg,
+        #2e1800 0%, #6b4200 5%, #c8900a 15%,
+        #e8b02a 26%, #fff4a8 36%, #f5d060 45%,
+        #c8900a 55%, #e8b02a 66%, #ffd060 77%,
+        #d4a017 87%, #6b4200 95%, #2e1800 100%);
+
+      --radius: 4px;
+      --shadow-sm: 0 1px 4px rgba(0,0,0,.1);
+      --shadow:    0 2px 12px rgba(0,0,0,.12);
+      --shadow-lg: 0 6px 28px rgba(0,0,0,.16);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      /* subtle dot grid — adds spatial depth without competing with content */
+      background-image: radial-gradient(rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ─────────────────── GOLD LEAF LINE UTILS ─────────────────── */
+    .pinstripe {
+      height: 2px;
+      background: var(--gold-leaf-h);
+      position: relative;
+    }
+    .pinstripe::before, .pinstripe::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+      background: var(--gold-leaf-h);
+      opacity: .45;
+    }
+    .pinstripe::before { top: -4px; }
+    .pinstripe::after  { top:  6px; }
+
+    /* Gold text — used sparingly */
+    .gold-text {
+      background: var(--gold-leaf);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ─────────────────── DECORATIVE RULE ─────────────────── */
+    .ornate-rule {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 8px 0;
+    }
+    .ornate-rule::before,
+    .ornate-rule::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(212,160,23,.25) 20%,
+        rgba(212,160,23,.55) 50%,
+        rgba(212,160,23,.25) 80%,
+        transparent 100%);
+    }
+    .ornate-rule span {
+      font-size: .68rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--gold-3);
+      white-space: nowrap;
+    }
+    .ornate-rule span::before,
+    .ornate-rule span::after {
+      content: ' ✦ ';
+      font-size: .55em;
+      vertical-align: middle;
+      opacity: .75;
+    }
+
+    /* ─────────────────── HEADER ─────────────────── */
+    /* Lacquered black apparatus body — specular highlight at top, shadow pooling at base */
+    header {
+      background-color: #111111;
+      background-image:
+        linear-gradient(180deg,
+          rgba(255,255,255,.055) 0%,
+          rgba(255,255,255,.018) 18%,
+          rgba(255,255,255,0)    45%,
+          rgba(0,0,0,.18)       100%);
+      box-shadow: 0 2px 16px rgba(0,0,0,.6);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 10px 40px;
+    }
+
+    .logo-badge {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .logo-badge img { width: 58px; height: 58px; object-fit: contain; }
+
+    .header-titles { flex: 1; }
+    .header-titles .authority-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 900;
+      letter-spacing: .05em;
+      line-height: 1.1;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+    .header-titles .tagline {
+      font-family: 'IM Fell English', Georgia, serif;
+      font-style: italic;
+      font-size: .78rem;
+      color: var(--gray-400);
+      letter-spacing: .05em;
+      margin-top: 2px;
+    }
+
+    .header-right {
+      text-align: right;
+      font-family: 'Libre Baskerville', serif;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .header-right .emergency-label {
+      font-size: .62rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--gray-400);
+      line-height: 1;
+    }
+    .header-right .number {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--red-light);
+      letter-spacing: .04em;
+      line-height: 1;
+    }
+
+    /* single gold stripe under header */
+    .header-stripe {
+      height: 3px;
+      background: var(--gold-leaf-h);
+    }
+
+    /* keep these classes defined but unused now — avoids removing harmless dead code */
+    .top-coachline, .bottom-coachlines, .coachline-thick, .coachline-thin {
+    }
+
+    /* ─────────────────── NAV ─────────────────── */
+    /* Red panel strip beneath black header */
+    nav {
+      /* Lacquered red panel — catch light on the curved top, shadow at base */
+      background-color: #7f1d1d;
+      background-image:
+        linear-gradient(180deg,
+          rgba(255,255,255,.1)  0%,
+          rgba(255,255,255,.04) 20%,
+          rgba(255,255,255,0)   50%,
+          rgba(0,0,0,.25)      100%);
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      border-top: 1px solid rgba(255,255,255,.12);
+      border-bottom: 3px solid var(--gold-3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0,0,0,.6), 0 1px 0 rgba(255,255,255,.06) inset;
+    }
+    /* Shimmer overlay for the bottom gold border — trails the header-stripe by ~0.3s */
+    nav::before {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 3px;
+      pointer-events: none;
+      background-image:
+        linear-gradient(90deg, transparent 0%, rgba(255,210,80,.12) 25%, rgba(255,238,160,.55) 40%, rgba(255,252,215,.97) 50%, rgba(255,238,160,.55) 60%, rgba(255,210,80,.12) 75%, transparent 100%),
+        var(--gold-leaf-h);
+      background-size: 22% 100%, 100% 100%;
+      background-repeat: no-repeat;
+      animation: gold-shimmer 22s ease-in-out infinite;
+    }
+
+    /* ─────────────────── NAV LENS FLARE ─────────────────── */
+    .nav-lens-flare {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 4px;
+      margin-left: -2px;
+      margin-top: -2px;
+      z-index: 300;
+      pointer-events: none;
+      opacity: 0;
+      border-radius: 50%;
+      background: white;
+      box-shadow:
+        0 0 6px 4px rgba(255,255,255,.95),
+        0 0 18px 9px rgba(255,252,210,.65),
+        0 0 40px 14px rgba(255,248,160,.3),
+        -60px 0 22px rgba(255,250,200,.3),
+        -30px 0 13px rgba(255,255,240,.5),
+        -10px 0  7px rgba(255,255,255,.7),
+         60px 0 22px rgba(255,250,200,.3),
+         30px 0 13px rgba(255,255,240,.5),
+         10px 0  7px rgba(255,255,255,.7),
+        0 -22px 13px rgba(255,252,200,.3),
+        0 -11px  7px rgba(255,255,240,.5),
+        0  -4px  5px rgba(255,255,255,.6),
+        0  22px 13px rgba(255,252,200,.25),
+        0  11px  7px rgba(255,255,240,.4);
+    }
+    @keyframes lens-flare-pop {
+      0%   { opacity: 0; transform: scale(0.2); }
+      20%  { opacity: 1; transform: scale(1); }
+      55%  { opacity: .5; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0.7); }
+    }
+    nav::after {
+      content: '';
+      position: absolute;
+      bottom: -6px; left: 0; right: 0;
+      height: 1px;
+      background: var(--gold-leaf-h);
+      opacity: .4;
+    }
+    nav a {
+      font-family: 'Playfair Display', serif;
+      font-size: .78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: rgba(255,255,255,.75);
+      padding: 8px 22px;
+      position: relative;
+      transition: color .2s, background .2s;
+      border-right: 1px solid rgba(255,255,255,.1);
+    }
+    nav a:first-child { border-left: 1px solid rgba(255,255,255,.1); }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold-leaf-h);
+      transform: scaleX(0);
+      transition: transform .22s;
+    }
+    nav a:hover { color: #fff; background: rgba(0,0,0,.15); }
+    nav a.active { color: #fff; background: rgba(0,0,0,.2); }
+    nav a:hover::after,
+    nav a.active::after { transform: scaleX(1); }
+
+    /* ─────────────────── SECTIONS ─────────────────── */
+    section { display: none; }
+    section.active { display: block; }
+
+    /* ─────────────────── HERO ─────────────────── */
+    /* Dark hero — deep charcoal, white text */
+    .hero {
+      background-color: #141414;
+      background-image:
+        /* corner specular catches — top-left bright, bottom-right faint */
+        radial-gradient(ellipse 180px 120px at 10% 14%, rgba(255,255,255,.07) 0%, transparent 100%),
+        radial-gradient(ellipse 120px 80px  at 90% 86%, rgba(255,255,255,.04) 0%, transparent 100%),
+        /* red glow + depth shadow */
+        radial-gradient(ellipse 90% 55% at 50% -5%, rgba(185,28,28,.22) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 40% at 50% 100%, rgba(0,0,0,.45) 0%, transparent 70%),
+        /* 45° coach stripe */
+        repeating-linear-gradient(
+          45deg,
+          transparent 0px, transparent 22px,
+          rgba(255,255,255,.016) 22px, rgba(255,255,255,.016) 23px
+        );
+      background-attachment: scroll, scroll, scroll, scroll, fixed;
+      background-size: auto, auto, 100% 100%, 100% 100%, auto;
+      background-position: 0% 0%, 100% 100%, 50% 0%, 50% 100%, 0 0;
+      /* glass edge catches — bright top rim, faint sides */
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.11),
+        inset 0 -1px 0 rgba(0,0,0,.28),
+        inset 1px 0 rgba(255,255,255,.04),
+        inset -1px 0 rgba(255,255,255,.04);
+      padding: 22px 48px 56px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    /* Subtle red bar at top */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--red);
+      box-shadow: 0 0 18px rgba(185,28,28,.5);
+    }
+
+
+    .hero-top-rule { margin: 22px auto 36px; max-width: 460px; }
+    .hero-top-rule .ornate-rule { margin-top: 12px; }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: .04em;
+      color: #ffffff;
+      margin-bottom: 6px;
+      /* sign-painter inline letterpress — crisp offset stack + edge highlight */
+      text-shadow:
+        -1px -1px 0 rgba(255,255,255,.055),   /* top-left catch light on the stroke */
+        1px  2px 0 rgba(0,0,0,.6),
+        2px  3px 0 rgba(0,0,0,.45),
+        3px  5px 12px rgba(0,0,0,.55),
+        0    0   55px rgba(185,28,28,.1);
+    }
+
+    .hero-est {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--text-muted);
+      letter-spacing: .08em;
+      margin-bottom: 22px;
+    }
+
+    .hero-divider {
+      width: 120px;
+      margin: 0 auto 22px;
+      position: relative;
+    }
+    .hero-divider::before {
+      content: '';
+      display: block;
+      height: 2px;
+      background: var(--gold-leaf-h);
+    }
+    .hero-divider::after {
+      content: '✦  ◆  ✦';
+      display: block;
+      text-align: center;
+      font-size: .65rem;
+      margin-top: -9px;
+      color: var(--gold-3);
+      letter-spacing: .1em;
+    }
+
+    .hero-body {
+      font-family: 'IM Fell English', serif;
+      font-size: 1.08rem;
+      color: var(--text-mid);
+      max-width: 620px;
+      margin: 0 auto 32px;
+      line-height: 1.8;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* Buttons — red filled / white outline */
+    .btn-vintage {
+      display: inline-block;
+      font-family: 'Playfair Display', serif;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 11px 28px;
+      border: 2px solid rgba(255,255,255,.5);
+      color: #ffffff;
+      background: transparent;
+      cursor: pointer;
+      position: relative;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .btn-vintage::before {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .btn-vintage:hover { background: rgba(255,255,255,.1); border-color: #fff; }
+
+    .btn-vintage-filled {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+    }
+    .btn-vintage-filled::before { border-color: rgba(255,255,255,.2); }
+    .btn-vintage-filled:hover { background: var(--red-dark); border-color: var(--red-dark); color: #fff; }
+
+    /* ─────────────────── STATS BAR ─────────────────── */
+    .stats-bar {
+      background: rgba(14, 11, 11, 0.55);
+      backdrop-filter: blur(22px) saturate(1.5);
+      -webkit-backdrop-filter: blur(22px) saturate(1.5);
+      border-top: 1px solid var(--gold-3);
+      border-bottom: 1px solid var(--gold-3);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.12),
+        inset 0 -1px 0 rgba(255,255,255,.04),
+        0 8px 32px rgba(0,0,0,.55),
+        0 2px 6px rgba(0,0,0,.4);
+    }
+    .stats-bar::before, .stats-bar::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+      background: var(--gold-leaf-h);
+      opacity: .45;
+    }
+    .stats-bar::before { top: 5px; }
+    .stats-bar::after  { bottom: 5px; }
+
+    .stat-item {
+      padding: 18px 34px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,.15);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.02rem;
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1;
+      letter-spacing: -.01em;
+    }
+    .stat-label {
+      font-size: .6rem;
+      text-transform: uppercase;
+      letter-spacing: .18em;
+      color: rgba(255,255,255,.65);
+      margin-top: 3px;
+    }
+
+    /* ─────────────────── PAGE HEADER ─────────────────── */
+    /* Black with gold coachline bottom — inner pages */
+    .page-header {
+      background-color: #0e0e0e;
+      background-image:
+        linear-gradient(180deg,
+          rgba(255,255,255,.04) 0%,
+          rgba(255,255,255,0)   35%,
+          rgba(0,0,0,.2)       100%),
+        repeating-linear-gradient(
+          45deg,
+          transparent 0px, transparent 22px,
+          rgba(255,255,255,.012) 22px, rgba(255,255,255,.012) 23px
+        );
+      padding: 36px 48px 28px;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0,0,0,.45);
+    }
+    .page-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold-leaf-h);
+    }
+    .breadcrumb {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: .78rem;
+      color: var(--gray-400);
+      letter-spacing: .06em;
+      margin-bottom: 8px;
+    }
+    .page-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: .02em;
+    }
+    .page-header p {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: .92rem;
+      color: var(--gray-400);
+      margin-top: 6px;
+    }
+
+    /* ─────────────────── CONTAINER ─────────────────── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 44px 48px;
+    }
+
+    /* ─────────────────── SECTION HEADING ─────────────────── */
+    .section-heading {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .section-heading h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: .06em;
+      margin-bottom: 14px;
+      text-shadow: 1px 2px 4px rgba(0,0,0,.4);
+    }
+
+    /* ─────────────────── HERO INNER FRAME ─────────────────── */
+    .hero-frame {
+      position: absolute;
+      inset: 14px 20px;
+      border: 1px solid rgba(212,160,23,.1);
+      pointer-events: none;
+      /* corner cuts — top-left and bottom-right only for asymmetric vintage feel */
+      background-image:
+        linear-gradient(rgba(212,160,23,.35),rgba(212,160,23,.35)),
+        linear-gradient(rgba(212,160,23,.35),rgba(212,160,23,.35)),
+        linear-gradient(rgba(212,160,23,.35),rgba(212,160,23,.35)),
+        linear-gradient(rgba(212,160,23,.35),rgba(212,160,23,.35)),
+        linear-gradient(rgba(212,160,23,.35),rgba(212,160,23,.35)),
+        linear-gradient(rgba(212,160,23,.35),rgba(212,160,23,.35)),
+        linear-gradient(rgba(212,160,23,.35),rgba(212,160,23,.35)),
+        linear-gradient(rgba(212,160,23,.35),rgba(212,160,23,.35));
+      background-size:
+        20px 2px, 2px 20px,
+        20px 2px, 2px 20px,
+        20px 2px, 2px 20px,
+        20px 2px, 2px 20px;
+      background-position:
+        top 0 left 0,  top 0 left 0,
+        top 0 right 0, top 0 right 0,
+        bottom 0 left 0,  bottom 0 left 0,
+        bottom 0 right 0, bottom 0 right 0;
+      background-repeat: no-repeat;
+      background-color: transparent;
+    }
+
+    /* ─────────────────── CARDS ─────────────────── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 24px;
+    }
+
+    /* Dark cards, red top border, inner inset, four gold corner brackets */
+    .vintage-card {
+      background-color: var(--bg-white);
+      background-image:
+        linear-gradient(rgba(212,160,23,.38),rgba(212,160,23,.38)),
+        linear-gradient(rgba(212,160,23,.38),rgba(212,160,23,.38)),
+        linear-gradient(rgba(212,160,23,.38),rgba(212,160,23,.38)),
+        linear-gradient(rgba(212,160,23,.38),rgba(212,160,23,.38)),
+        linear-gradient(rgba(212,160,23,.38),rgba(212,160,23,.38)),
+        linear-gradient(rgba(212,160,23,.38),rgba(212,160,23,.38)),
+        linear-gradient(rgba(212,160,23,.38),rgba(212,160,23,.38)),
+        linear-gradient(rgba(212,160,23,.38),rgba(212,160,23,.38));
+      background-size:
+        14px 1px, 1px 14px,
+        14px 1px, 1px 14px,
+        14px 1px, 1px 14px,
+        14px 1px, 1px 14px;
+      background-position:
+        top 9px left 9px,    top 9px left 9px,
+        top 9px right 9px,   top 9px right 9px,
+        bottom 9px left 9px, bottom 9px left 9px,
+        bottom 9px right 9px,bottom 9px right 9px;
+      background-repeat: no-repeat;
+      position: relative;
+      padding: 28px 24px;
+      border-top: 4px solid var(--red);
+      border-left: 1px solid rgba(255,255,255,.08);
+      border-right: 1px solid rgba(255,255,255,.08);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      box-shadow:
+        0 2px 4px rgba(0,0,0,.3),
+        0 6px 20px rgba(0,0,0,.4),
+        0 18px 48px rgba(0,0,0,.2);
+      transition: transform .22s, box-shadow .22s;
+    }
+    .vintage-card::before {
+      content: '';
+      position: absolute;
+      inset: 8px 8px 8px 8px;
+      border: 1px solid rgba(255,255,255,.05);
+      pointer-events: none;
+    }
+    .vintage-card:hover {
+      transform: translateY(-5px);
+      box-shadow:
+        0 4px 8px rgba(0,0,0,.35),
+        0 14px 40px rgba(0,0,0,.55),
+        0 32px 64px rgba(0,0,0,.3);
+    }
+
+    .card-icon {
+      width: 42px; height: 42px;
+      margin-bottom: 14px;
+    }
+    .card-icon svg { width: 100%; height: 100%; }
+
+    .vintage-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 10px;
+      letter-spacing: .02em;
+    }
+    .vintage-card p {
+      font-family: 'IM Fell English', serif;
+      font-size: .9rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+    .card-link {
+      display: inline-block;
+      margin-top: 16px;
+      font-family: 'Playfair Display', serif;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #f87171;
+      border-bottom: 1px solid var(--red);
+      padding-bottom: 2px;
+    }
+    .card-link:hover { color: var(--red-dark); border-color: var(--red-dark); }
+
+    /* ─────────────────── ABOUT LAYOUT ─────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 330px;
+      gap: 40px;
+      align-items: start;
+    }
+    @media (max-width: 800px) { .about-grid { grid-template-columns: 1fr; } }
+
+    .about-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,.15);
+    }
+    .about-body p {
+      font-family: 'IM Fell English', serif;
+      font-size: .93rem;
+      color: var(--text-mid);
+      margin-bottom: 16px;
+      line-height: 1.8;
+    }
+
+    /* Sidebar panels — dark charcoal with black header strip */
+    .sidebar-panel {
+      background-color: var(--bg-white);
+      background-image:
+        linear-gradient(rgba(212,160,23,.28),rgba(212,160,23,.28)),
+        linear-gradient(rgba(212,160,23,.28),rgba(212,160,23,.28)),
+        linear-gradient(rgba(212,160,23,.28),rgba(212,160,23,.28)),
+        linear-gradient(rgba(212,160,23,.28),rgba(212,160,23,.28)),
+        linear-gradient(rgba(212,160,23,.28),rgba(212,160,23,.28)),
+        linear-gradient(rgba(212,160,23,.28),rgba(212,160,23,.28)),
+        linear-gradient(rgba(212,160,23,.28),rgba(212,160,23,.28)),
+        linear-gradient(rgba(212,160,23,.28),rgba(212,160,23,.28));
+      background-size:
+        12px 1px, 1px 12px, 12px 1px, 1px 12px,
+        12px 1px, 1px 12px, 12px 1px, 1px 12px;
+      background-position:
+        top 7px left 7px,    top 7px left 7px,
+        top 7px right 7px,   top 7px right 7px,
+        bottom 7px left 7px, bottom 7px left 7px,
+        bottom 7px right 7px,bottom 7px right 7px;
+      background-repeat: no-repeat;
+      border: 1px solid rgba(255,255,255,.08);
+      margin-bottom: 20px;
+      box-shadow:
+        0 2px 6px rgba(0,0,0,.35),
+        0 8px 28px rgba(0,0,0,.45),
+        0 20px 48px rgba(0,0,0,.2);
+    }
+    .sidebar-panel::before { display: none; }
+    .sidebar-panel-head {
+      background: var(--black);
+      border-bottom: 2px solid var(--red-dark);
+      padding: 10px 16px;
+    }
+    .sidebar-panel-head h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+    .sidebar-panel-body { padding: 12px 16px; }
+
+    .contact-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--gray-100);
+      font-family: 'Libre Baskerville', serif;
+      font-size: .83rem;
+    }
+    .contact-row:last-child { border-bottom: none; }
+    .contact-row svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; }
+    .contact-row strong {
+      display: block;
+      font-size: .65rem;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+    .contact-row span { color: var(--text-mid); }
+
+    /* Vintage table — dark */
+    .vintage-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Libre Baskerville', serif;
+      font-size: .85rem;
+      margin-top: 16px;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .vintage-table thead tr {
+      border-bottom: 2px solid var(--red);
+    }
+    .vintage-table th {
+      font-family: 'Playfair Display', serif;
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: #ffffff;
+      padding: 9px 12px;
+      text-align: left;
+      background: var(--black);
+    }
+    .vintage-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      color: var(--text-mid);
+    }
+    .vintage-table tr:nth-child(even) td { background: rgba(255,255,255,.03); }
+    .vintage-table tr:hover td { background: rgba(185,28,28,.12); }
+
+    /* ─────────────────── EVENTS ─────────────────── */
+    .events-list { display: flex; flex-direction: column; gap: 16px; margin-top: 24px; }
+
+    /* Dark card, red date block */
+    .event-card {
+      background: var(--bg-white);
+      border: 1px solid rgba(255,255,255,.08);
+      border-left: 4px solid var(--red);
+      display: flex;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,.35), 0 8px 28px rgba(0,0,0,.3);
+      transition: box-shadow .2s, transform .2s;
+    }
+    .event-card::before { display: none; }
+    .event-card:hover { box-shadow: var(--shadow); transform: translateX(3px); }
+
+    .event-date-block {
+      min-width: 84px;
+      background: var(--red);
+      border-right: 3px solid rgba(0,0,0,.2);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 8px;
+    }
+    .event-month {
+      font-family: 'Playfair Display', serif;
+      font-size: .65rem;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      color: rgba(255,255,255,.8);
+    }
+    .event-day {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: #ffffff;
+      line-height: 1;
+    }
+    .event-year { font-size: .65rem; color: rgba(255,255,255,.65); letter-spacing: .08em; }
+
+    .event-body { padding: 16px 22px; flex: 1; }
+    .event-badge {
+      display: inline-block;
+      font-family: 'Playfair Display', serif;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #ffffff;
+      background: var(--black);
+      padding: 2px 10px;
+      margin-bottom: 7px;
+    }
+    .event-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: .98rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+    .event-meta {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: .83rem;
+      color: var(--text-muted);
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .event-meta span { display: flex; align-items: center; gap: 5px; }
+    .event-meta svg { width: 13px; height: 13px; }
+
+    .event-time-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: .83rem;
+      color: rgba(255,255,255,.72);
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.14);
+      padding: 3px 10px 3px 7px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background .15s, border-color .15s, color .15s;
+    }
+    .event-time-btn svg {
+      width: 12px; height: 12px;
+      fill: rgba(255,255,255,.4);
+      flex-shrink: 0;
+      transition: fill .15s;
+    }
+    .event-time-btn:hover {
+      background: rgba(255,255,255,.1);
+      border-color: rgba(255,255,255,.28);
+      color: #ffffff;
+    }
+    .event-time-btn:hover svg { fill: rgba(255,255,255,.75); }
+
+    .event-location-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: .83rem;
+      color: rgba(255,255,255,.72);
+      background: rgba(185,28,28,.14);
+      border: 1px solid rgba(185,28,28,.38);
+      padding: 3px 10px 3px 7px;
+      text-decoration: none;
+      transition: background .15s, border-color .15s, color .15s;
+    }
+    .event-location-btn svg {
+      width: 12px; height: 12px;
+      fill: rgba(185,28,28,.85);
+      flex-shrink: 0;
+      transition: fill .15s;
+    }
+    .event-location-btn:hover {
+      background: rgba(185,28,28,.28);
+      border-color: rgba(185,28,28,.7);
+      color: #fca5a5;
+    }
+    .event-location-btn:hover svg { fill: #fca5a5; }
+
+    /* ─────────────────── DOCUMENTS ─────────────────── */
+    .doc-controls {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+      background: var(--bg-white);
+      border: 1px solid rgba(255,255,255,.08);
+      border-top: 3px solid var(--red);
+      padding: 14px 18px;
+      margin-bottom: 20px;
+    }
+    .doc-controls label {
+      font-family: 'Playfair Display', serif;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .doc-controls select,
+    .doc-controls input {
+      font-family: 'Libre Baskerville', serif;
+      font-size: .83rem;
+      padding: 6px 10px;
+      background: var(--bg);
+      border: 1px solid rgba(255,255,255,.12);
+      color: var(--text);
+      border-radius: 0;
+    }
+    .doc-controls select:focus,
+    .doc-controls input:focus { outline: 2px solid var(--red); }
+
+    .doc-table-wrap {
+      background: var(--bg-white);
+      border: 1px solid rgba(255,255,255,.08);
+      overflow: hidden;
+    }
+    .doc-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Libre Baskerville', serif;
+      font-size: .85rem;
+    }
+    .doc-table thead { background: #111111; border-bottom: 2px solid var(--red); }
+    .doc-table th {
+      font-family: 'Playfair Display', serif;
+      font-size: .7rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: #ffffff;
+      padding: 11px 16px;
+      text-align: left;
+    }
+    .doc-table td {
+      padding: 11px 16px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      color: var(--text-mid);
+      vertical-align: middle;
+    }
+    .doc-table tr:last-child td { border-bottom: none; }
+    .doc-table tr:nth-child(even) td { background: rgba(255,255,255,.03); }
+    .doc-table tr:hover td { background: rgba(185,28,28,.12); }
+    .doc-date-stack {
+      display: inline-grid;
+      gap: 1px;
+      min-width: 52px;
+      text-align: center;
+      line-height: 1.05;
+    }
+    .doc-date-month {
+      font-family: 'Playfair Display', serif;
+      font-size: .82rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+    .doc-date-year {
+      font-size: .72rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .doc-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 2px 9px;
+    }
+    .pill-pdf      { background: rgba(185,28,28,.25);  color: #fca5a5; border: 1px solid rgba(220,38,38,.4); }
+    .pill-pdf-muted { background: rgba(90,90,90,.15);  color: #6b7280; border: 1px solid rgba(107,114,128,.2); }
+    .pill-approved { background: rgba(22,101,52,.3);   color: #86efac; border: 1px solid rgba(134,239,172,.3); }
+    .pill-posted   { background: rgba(29,78,216,.25);  color: #93c5fd; border: 1px solid rgba(147,197,253,.3); }
+    .pill-canceled { background: rgba(90,90,90,.25);   color: #a8a29e; border: 1px solid rgba(168,162,158,.25); }
+    .pill-pending  { background: rgba(120,77,12,.3);   color: #fbbf24; border: 1px solid rgba(251,191,36,.3); }
+    .dl-btn--disabled { opacity: .35; pointer-events: none; cursor: default; }
+
+    .dl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'Playfair Display', serif;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border: 1px solid rgba(255,255,255,.2);
+      color: var(--text-mid);
+      background: transparent;
+      transition: background .15s, color .15s, border-color .15s;
+    }
+    .dl-btn:hover { background: var(--red); border-color: var(--red); color: #fff; }
+    .dl-btn svg { width: 12px; height: 12px; fill: currentColor; }
+    .action-cell-inner {
+      display: inline-grid;
+      grid-template-columns: auto auto;
+      align-items: center;
+      gap: 5px 6px;
+    }
+    .action-cell-inner > a.dl-btn:first-of-type {
+      padding: 2px 9px;
+      font-size: .68rem;
+    }
+    .action-cell-dl {
+      grid-column: 1 / -1;
+      width: 100%;
+      box-sizing: border-box;
+      justify-content: center;
+    }
+
+    /* ─────────────────── RUN REPORTS ─────────────────── */
+    .runs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    /* Dark cards with red left border */
+    .stat-card {
+      background: var(--bg-white);
+      border: 1px solid rgba(255,255,255,.08);
+      border-left: 4px solid var(--red);
+      padding: 18px 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.3);
+      position: relative;
+    }
+    .stat-card::after {
+      content: '';
+      position: absolute;
+      top: 6px; right: 6px;
+      width: 8px; height: 8px;
+      border-top: 1px solid rgba(255,255,255,.12);
+      border-right: 1px solid rgba(255,255,255,.12);
+    }
+    .sc-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--red-light);
+      line-height: 1;
+    }
+    .sc-label {
+      font-family: 'Playfair Display', serif;
+      font-size: .65rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* Chart panel — dark */
+    .chart-panel {
+      background: var(--bg-white);
+      border: 1px solid rgba(255,255,255,.08);
+      border-top: 4px solid var(--red);
+      padding: 28px;
+      margin-bottom: 36px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,.3);
+    }
+    .chart-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 22px;
+      letter-spacing: .04em;
+    }
+    .chart-mock {
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 18px;
+      height: 150px;
+      max-width: 580px;
+      margin: 0 auto 14px;
+    }
+    .bar-group { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+    .bar {
+      width: 40px;
+      border-radius: 2px 2px 0 0;
+      background: linear-gradient(180deg, rgba(185,28,28,.55) 0%, rgba(185,28,28,.2) 100%);
+      border-top: 2px solid var(--red);
+      border-left: 1px solid rgba(185,28,28,.2);
+      border-right: 1px solid rgba(185,28,28,.2);
+      transition: background .2s;
+    }
+    .bar:hover { background: linear-gradient(180deg, rgba(185,28,28,.85) 0%, rgba(185,28,28,.45) 100%); }
+    .bar-val { font-family: 'Playfair Display', serif; font-size: .68rem; color: var(--text-muted); }
+    .bar-year { font-family: 'Playfair Display', serif; font-size: .72rem; color: var(--text-muted); font-weight: 700; }
+    .bar-year.current { color: var(--red); font-weight: 900; }
+    .chart-caption {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: .8rem;
+      color: var(--text-muted);
+    }
+
+    /* ─────────────────── SUB-HEADING ─────────────────── */
+    .sub-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: .04em;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--red);
+    }
+
+    /* ─────────────────── FOOTER ─────────────────── */
+    /* Black body with gold coachlines — matches header */
+    footer {
+      background: var(--black);
+      margin-top: 60px;
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold-leaf-h);
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 44px 48px 32px;
+    }
+    @media (max-width: 700px) { .footer-inner { grid-template-columns: 1fr; } }
+    footer h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+    footer p {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: .88rem;
+      color: var(--gray-400);
+      line-height: 1.8;
+    }
+    footer ul { list-style: none; }
+    footer ul li { padding: 4px 0; }
+    footer ul li a {
+      font-family: 'Libre Baskerville', serif;
+      font-size: .83rem;
+      color: var(--gray-400);
+      transition: color .2s;
+    }
+    footer ul li a:hover { color: var(--red-light); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.08);
+      text-align: center;
+      padding: 16px 48px;
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: .8rem;
+      color: var(--gray-600);
+    }
+    .footer-bottom strong { color: var(--gray-400); }
+
+    /* ─────────────────── SOCIAL ─────────────────── */
+    .social-links {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Playfair Display', serif;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 7px 14px;
+      border: 1px solid rgba(255,255,255,.18);
+      color: var(--gray-400);
+      background: transparent;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .social-btn:hover { background: #1877f2; border-color: #1877f2; color: #fff; }
+    .social-btn svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+
+    /* Facebook icon in header */
+    .header-fb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Playfair Display', serif;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      border: 1px solid rgba(255,255,255,.15);
+      padding: 5px 12px;
+      transition: color .2s, border-color .2s, background .2s;
+    }
+    .header-fb:hover { color: #fff; background: #1877f2; border-color: #1877f2; }
+    .header-fb svg { width: 15px; height: 15px; fill: currentColor; }
+
+    /* ─────────────────── GOLD SHIMMER ─────────────────── */
+    @keyframes gold-shimmer {
+      0%   { background-position: -250% center, 0% center; }
+      65%  { background-position:  250% center, 0% center; }
+      100% { background-position:  250% center, 0% center; }
+    }
+    /* Top stripe travels faster: completes at 62% so it overtakes the bottom
+       shimmer at the spatial midpoint and finishes 0.3s sooner — equal to the delay */
+    @keyframes gold-shimmer-top {
+      0%   { background-position: -250% center, 0% center; }
+      62%  { background-position:  250% center, 0% center; }
+      100% { background-position:  250% center, 0% center; }
+    }
+    .header-stripe {
+      height: 3px;
+      background-image:
+        linear-gradient(90deg, transparent 0%, rgba(255,210,80,.12) 25%, rgba(255,238,160,.55) 40%, rgba(255,252,215,.97) 50%, rgba(255,238,160,.55) 60%, rgba(255,210,80,.12) 75%, transparent 100%),
+        var(--gold-leaf-h);
+      background-size: 22% 100%, 100% 100%;
+      background-repeat: no-repeat;
+      animation: gold-shimmer-top 22s ease-in-out infinite;
+      animation-delay: -21.7s;
+    }
+
+    /* ─────────────────── TRIPLE COACHLINE DIVIDER ─────────────────── */
+    .coachline-divider {
+      position: relative;
+      height: 3px;
+      background: var(--gold-leaf-h);
+      margin: 0;
+      z-index: 1;
+    }
+    .coachline-divider::before {
+      content: '';
+      position: absolute;
+      top: -5px; left: 0; right: 0; height: 1px;
+      background: var(--gold-leaf-h);
+      opacity: .5;
+    }
+    .coachline-divider::after {
+      content: '';
+      position: absolute;
+      bottom: -5px; left: 0; right: 0; height: 1px;
+      background: var(--gold-leaf-h);
+      opacity: .5;
+    }
+
+
+    /* ─────────────────── HERO GHOST CROSS ─────────────────── */
+    .hero-cross {
+      position: absolute !important;
+      top: 50%; left: 50%;
+      width: 560px;
+      height: 560px;
+      margin-top: -280px;
+      margin-left: -270px;
+      background: url('Crossgold.png') center / contain no-repeat;
+      opacity: 0.055;
+      pointer-events: none;
+      z-index: 1 !important;
+      will-change: transform;
+    }
+
+    /* ─────────────────── HERO VIGNETTE ─────────────────── */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 85% 75% at 50% 50%, transparent 35%, rgba(0,0,0,.48) 100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .hero > * { position: relative; z-index: 2; }
+
+
+
+    /* ─────────────────── ENGRAVED NAV LINKS ─────────────────── */
+    nav a {
+      text-shadow:
+        0 1px 0 rgba(255,255,255,.1),
+        0 -1px 1px rgba(0,0,0,.55),
+        1px 0 2px rgba(0,0,0,.3);
+    }
+    nav a:hover, nav a.active {
+      text-shadow:
+        0 1px 0 rgba(255,255,255,.2),
+        0 -1px 1px rgba(0,0,0,.4),
+        0 0 8px rgba(255,220,100,.18);
+    }
+
+    /* ─────────────────── CONDENSED ALL-CAPS LABELS ─────────────────── */
+    .stat-label {
+      font-family: 'Playfair Display', serif;
+      font-size: .6rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      color: rgba(255,255,255,.65);
+      margin-top: 5px;
+    }
+    .vintage-card h3 {
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-size: .95rem;
+    }
+
+    /* ─────────────────── RIBBON BANNER SECTION HEADINGS ─────────────────── */
+    .section-heading h3, .section-heading .ornate-rule span {
+      /* keep ornate-rule as-is; h3 gets ribbon treatment when used directly */
+    }
+    .ribbon-heading {
+      display: inline-block;
+      position: relative;
+      background: var(--red-dark);
+      background-image: linear-gradient(180deg,
+        rgba(255,255,255,.1) 0%, rgba(255,255,255,.02) 40%,
+        rgba(0,0,0,.15) 100%);
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      padding: 6px 28px 6px 22px;
+      clip-path: polygon(0 0, 100% 0, calc(100% - 12px) 50%, 100% 100%, 0 100%, 12px 50%);
+      margin-bottom: 16px;
+      text-shadow: 0 1px 2px rgba(0,0,0,.5);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.12), inset 0 -1px 0 rgba(0,0,0,.2);
+    }
+
+    /* ─────────────────── SIDE PANEL ACCENT STRIPE ─────────────────── */
+    .container {
+      position: relative;
+    }
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 44px; bottom: 44px;
+      left: 0;
+      width: 3px;
+      background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(185,28,28,.45) 15%,
+        rgba(185,28,28,.6) 50%,
+        rgba(185,28,28,.45) 85%,
+        transparent 100%);
+      pointer-events: none;
+    }
+
+    /* ─────────────────── STAT DIAL / GAUGE NUMBERS ─────────────────── */
+    .stat-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 63px;
+      height: 63px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 38% 32%, rgba(255,255,255,.10) 0%, transparent 55%),
+        radial-gradient(circle at 50% 50%, #1c1c1c 55%, #0a0a0a 100%);
+      border: 2px solid rgba(212,160,23,.5);
+      box-shadow:
+        0 0 0 4px rgba(212,160,23,.08),
+        0 0 0 5px rgba(0,0,0,.28),
+        inset 0 2px 4px rgba(0,0,0,.7),
+        inset 0 -1px 2px rgba(255,255,255,.05),
+        0 4px 12px rgba(0,0,0,.65);
+      font-size: 1.02rem;
+      letter-spacing: -.02em;
+      margin-bottom: 3px;
+    }
+
+    /* ─────────────────── SIDEBAR WOODGRAIN ─────────────────── */
+    .sidebar-panel-body {
+      background-color: #1e1710;
+      background-image:
+        repeating-linear-gradient(
+          92deg,
+          transparent 0px, transparent 3px,
+          rgba(255,255,255,.018) 3px, rgba(255,255,255,.018) 4px,
+          transparent 4px, transparent 9px,
+          rgba(0,0,0,.12) 9px, rgba(0,0,0,.12) 10px
+        ),
+        repeating-linear-gradient(
+          88deg,
+          transparent 0px, transparent 18px,
+          rgba(255,255,255,.012) 18px, rgba(255,255,255,.012) 19px
+        ),
+        linear-gradient(180deg, rgba(255,255,255,.025) 0%, transparent 40%, rgba(0,0,0,.1) 100%);
+      border-top: 1px solid rgba(255,255,255,.05);
+    }
+
+    /* ─────────────────── HAMBURGER + MOBILE NAV ─────────────────── */
+    .hamburger-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: 1px solid rgba(255,255,255,.2);
+      padding: 8px 10px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .hamburger-btn span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #ffffff;
+      transition: transform .2s, opacity .2s;
+    }
+    .hamburger-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger-btn.open span:nth-child(2) { opacity: 0; }
+    .hamburger-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 768px) {
+      /* ── HAMBURGER ── */
+      .hamburger-btn { display: flex; }
+
+      /* ── HEADER ── */
+      .header-inner { padding: 8px 16px; gap: 10px; }
+      .logo-badge { width: 46px; height: 46px; }
+      .logo-badge img { width: 42px; height: 42px; }
+      .header-titles .authority-name { font-size: .88rem; }
+      .header-titles .tagline { display: none; }
+      .header-right .emergency-label { display: none; }
+      .header-right .number { font-size: .9rem; }
+      .header-fb { display: none; }
+
+      /* ── NAV ── */
+      nav { flex-direction: column; display: none; }
+      nav.open { display: flex; }
+      nav a {
+        border-right: none;
+        border-left: none !important;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+        padding: 14px 20px;
+        text-align: left;
+        font-size: .82rem;
+      }
+
+      /* ── ORNATE RULE ── */
+      /* Reduce letter-spacing so long spans don't overflow on narrow screens */
+      .ornate-rule span { letter-spacing: .1em; font-size: .62rem; white-space: normal; }
+
+      /* ── HERO ── */
+      /* background-attachment:fixed is broken on iOS Safari — force scroll */
+      .hero {
+        padding: 14px 16px 32px;
+        background-attachment: scroll, scroll, scroll, scroll, scroll;
+      }
+      .hero-title { font-size: 1.85rem; }
+      .hero-est   { font-size: .88rem; }
+      .hero-body  { font-size: .9rem; }
+      .hero-top-rule { margin: 6px auto 24px; }
+      .hero-frame { inset: 8px 10px; }
+      .hero-cross { width: 260px; height: 260px; margin-top: -130px; margin-left: -125px; }
+      .hero-cta   { gap: 10px; }
+      .btn-vintage { padding: 11px 18px; font-size: .72rem; }
+
+      /* ── COACHLINE DIVIDERS ── */
+      .coachline-divider::before,
+      .coachline-divider::after { display: none; }
+
+      /* ── STATS BAR ── */
+      .stats-bar { flex-wrap: nowrap; }
+      .stat-item { flex: 1; padding: 12px 4px; }
+      .stat-num { width: 40px; height: 40px; font-size: .72rem; }
+      .stat-label { font-size: .48rem; letter-spacing: .1em; }
+
+      /* ── CONTAINER ── */
+      .container { padding: 24px 16px; }
+      .container::before { display: none; } /* side accent stripe looks wrong at 16px */
+
+      /* ── SECTION HEADINGS ── */
+      .ribbon-heading { font-size: .7rem; padding: 5px 20px 5px 16px; }
+
+      /* ── CARDS ── */
+      .cards-grid { grid-template-columns: 1fr; }
+
+      /* ── PAGE HEADERS ── */
+      .page-header { padding: 20px 16px 16px; }
+      .page-header h2 { font-size: 1.45rem; }
+
+      /* ── ABOUT ── */
+      .about-grid { grid-template-columns: 1fr; }
+
+      /* ── EVENTS ── */
+      .event-card { flex-direction: column; }
+      .event-date-block {
+        flex-direction: row;
+        gap: 10px;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 10px 16px;
+        min-width: unset;
+      }
+      .event-day { font-size: 1.4rem; }
+
+      /* ── DOCUMENTS ── */
+      .doc-controls { flex-wrap: wrap; gap: 8px; }
+      .doc-controls label { flex: 0 0 auto; }
+      .doc-controls select { flex: 1; min-width: 100px; }
+      .doc-controls input { min-width: 0; width: 100%; margin-left: 0 !important; }
+      .doc-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+      .doc-table th, .doc-table td { padding: 7px 8px; font-size: .75rem; }
+
+      /* Date, Status, Action columns — hug content; Document column gets the rest */
+      .doc-table td:nth-child(1),
+      .doc-table th:nth-child(1) { width: 1%; white-space: nowrap; }
+      .doc-table td:nth-child(4),
+      .doc-table th:nth-child(4),
+      .doc-table td:nth-child(5),
+      .doc-table th:nth-child(5) { width: 1%; white-space: nowrap; }
+
+      /* Status pills — keep badges, just compact */
+      .doc-pill { font-size: .58rem; padding: 1px 5px; letter-spacing: .03em; }
+
+      /* Action buttons — icon only (font-size:0 hides text, SVG width/height stays) */
+      .dl-btn { font-size: 0; padding: 5px 7px; }
+      .dl-btn svg { width: 14px; height: 14px; }
+      .action-cell-inner > a.dl-btn:first-of-type { padding: 3px 6px; font-size: 0; }
+      .action-cell-inner { gap: 3px; }
+
+      /* Hide the "Meeting" column in the minutes table — always says "Regular Board Meeting" */
+      .doc-table[data-doc-group="minutes"] th:nth-child(2),
+      .doc-table[data-doc-group="minutes"] td:nth-child(2) { display: none; }
+
+      /* Stack PDF badge + View + Download vertically */
+      .action-cell-inner { grid-template-columns: auto; gap: 4px; }
+      .action-cell-inner > a.dl-btn:first-of-type { grid-column: auto; }
+      .action-cell-dl { grid-column: auto; width: auto; justify-content: flex-start; }
+
+      /* Board members table — allow horizontal scroll if needed */
+      .vintage-table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+      /* Events — tighter body padding */
+      .event-body { padding: 12px 14px; }
+      .event-body h3 { font-size: .9rem; }
+      .event-meta { gap: 10px; font-size: .78rem; }
+
+      /* ── RUN REPORTS ── */
+      .runs-grid { grid-template-columns: repeat(2, 1fr); }
+      .chart-mock { gap: 8px; }
+      .bar { width: 26px; }
+
+      /* ── FOOTER ── */
+      .footer-inner { padding: 28px 16px; gap: 24px; grid-template-columns: 1fr; }
+      .footer-bottom { padding: 14px 16px; font-size: .75rem; }
+    }
+
+    /* ── SMALL PHONES (≤ 480px) ── */
+    @media (max-width: 480px) {
+      /* Hero CTA buttons stack full-width for easier tapping */
+      .hero-cta { flex-direction: column; align-items: stretch; }
+      .btn-vintage { text-align: center; }
+
+      /* Page header tighter */
+      .page-header p { font-size: .82rem; }
+
+      /* Breadcrumb smaller */
+      .breadcrumb { font-size: .68rem; }
+
+      /* doc-controls stack label+select as full-width pairs */
+      .doc-controls select { width: 100%; }
+    }
+
+    /* ── SMALL PHONES (≤ 400px) ── */
+    @media (max-width: 400px) {
+      .hero-title { font-size: 1.55rem; }
+      .header-titles .authority-name { font-size: .78rem; }
+      .runs-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ═══════════════════════════════════════════════
+       POP ENHANCEMENTS
+    ═══════════════════════════════════════════════ */
+
+    /* ── HERO STAGGERED ENTRANCE ── */
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero .hero-top-rule { animation: heroFadeUp 0.75s 0.10s cubic-bezier(0.16,1,0.3,1) both; }
+    .hero .hero-title    { animation: heroFadeUp 0.85s 0.30s cubic-bezier(0.16,1,0.3,1) both; }
+    .hero .hero-est      { animation: heroFadeUp 0.70s 0.52s cubic-bezier(0.16,1,0.3,1) both; }
+    .hero .hero-divider  { animation: heroFadeUp 0.60s 0.68s cubic-bezier(0.16,1,0.3,1) both; }
+    .hero .hero-body     { animation: heroFadeUp 0.70s 0.82s cubic-bezier(0.16,1,0.3,1) both; }
+    .hero .hero-cta      { animation: heroFadeUp 0.70s 1.00s cubic-bezier(0.16,1,0.3,1) both; }
+
+    /* ── DEEPER LETTERPRESS ON HERO TITLE ── */
+    .hero-title {
+      text-shadow:
+        -1px -1px 0    rgba(255,255,255,.07),
+         1px  2px 0    rgba(0,0,0,.78),
+         2px  4px 0    rgba(0,0,0,.62),
+         3px  6px 0    rgba(0,0,0,.48),
+         4px  8px 22px rgba(0,0,0,.72),
+         0    0   80px rgba(185,28,28,.20),
+         0    1px 0    rgba(255,255,255,.04);
+    }
+
+    /* ── SECTION FADE-IN ── */
+    @keyframes sectionFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    section.active { animation: sectionFadeIn 0.25s ease both; }
+
+    /* ── GOLD SHIMMER ON CARD HOVER ── */
+    @keyframes goldCardShimmer {
+      from { transform: translateX(-120%) skewX(-18deg); }
+      to   { transform: translateX(280%)  skewX(-18deg); }
+    }
+    .vintage-card { overflow: hidden; }
+    .vintage-card::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0; left: 0;
+      width: 55%;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(212,160,23,.08) 30%,
+        rgba(255,248,190,.22) 50%,
+        rgba(212,160,23,.08) 70%,
+        transparent 100%);
+      transform: translateX(-120%) skewX(-18deg);
+      pointer-events: none;
+      z-index: 10;
+    }
+    .vintage-card:hover::after {
+      animation: goldCardShimmer 0.7s ease-in-out forwards;
+    }
+
+    /* ── BAR CHART GROW ANIMATION ── */
+    .bar { transition: height 0.9s cubic-bezier(0.16,1,0.3,1); }
+
+    /* ── NEXT MEETING GOLD HIGHLIGHT ── */
+    .next-meeting {
+      border-left-color: var(--gold-3) !important;
+      box-shadow:
+        0 2px 8px rgba(0,0,0,.35),
+        0 8px 28px rgba(0,0,0,.3),
+        0 0 0 1px rgba(212,160,23,.28),
+        inset 0 0 24px rgba(212,160,23,.04) !important;
+    }
+    .next-meeting .event-date-block {
+      background:
+        linear-gradient(180deg,
+          rgba(255,255,255,.14) 0%,
+          rgba(255,255,255,.04) 20%,
+          rgba(255,255,255,0)   50%,
+          rgba(0,0,0,.22)      100%),
+        linear-gradient(180deg, var(--gold-2) 0%, var(--gold-1) 45%, var(--gold-4) 100%);
+    }
+    .next-meeting .event-month,
+    .next-meeting .event-day,
+    .next-meeting .event-year { color: #1a1000 !important; }
+    .next-pill {
+      display: inline-block;
+      font-family: 'Playfair Display', serif;
+      font-size: .58rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold-2);
+      border: 1px solid rgba(212,160,23,.45);
+      padding: 2px 10px;
+      margin-left: 8px;
+      vertical-align: middle;
+      background: rgba(212,160,23,.08);
+    }
+
+    /* ── PREVIOUS MEETING (most recent past meeting, dimmed) ── */
+    .past-meeting .event-date-block { opacity: .45; filter: grayscale(1); }
+    .past-meeting .event-body h3 { color: var(--text-mid); }
+    .past-pill {
+      display: inline-block;
+      font-family: 'Playfair Display', serif;
+      font-size: .58rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.6);
+      border: 1px solid rgba(255,255,255,.25);
+      padding: 2px 10px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .event-moved { font-weight: 400; font-size: .8rem; color: var(--gold-2); }
+
+    /* ── ACCESSIBILITY ── */
+    .tel-link, .mail-link { color: inherit; text-decoration: none; white-space: nowrap; }
+    .tel-link:hover, .mail-link:hover { color: var(--gold-2); }
+    .photo-band { overflow: hidden; }
+    /* Section headings receive focus when switching sections (for screen readers) — no visible box */
+    h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus { outline: none !important; }
+    /* Comfortable touch targets on phones */
+    @media (max-width: 768px) {
+      .dl-btn { min-height: 32px; padding-top: 6px; padding-bottom: 6px; }
+      .card-link { padding-top: 4px; padding-bottom: 4px; }
+      /* Let the stacked about column shrink to the screen so the board table scrolls instead of widening the page */
+      .about-grid { grid-template-columns: minmax(0, 1fr); }
+      .about-grid > * { min-width: 0; }
+    }
+    @media (max-width: 400px) {
+      .vintage-table th, .vintage-table td { padding-left: 7px; padding-right: 7px; }
+      .vintage-table th { letter-spacing: .06em; }
+      /* Very small screens: phone number may break after the area code, never inside the number */
+      .vintage-table .tel-link { white-space: normal; }
+      .tel-num { white-space: nowrap; }
+    }
+    @media (max-width: 340px) {
+      /* 320px phones: tighter cells so the board table fits without a sideways scroll */
+      .vintage-table th, .vintage-table td { padding-left: 5px; padding-right: 5px; }
+    }
+    /* Skip link: hidden until a keyboard user tabs to it */
+    .skip-link {
+      position: absolute;
+      left: 12px; top: -60px;
+      z-index: 1000;
+      background: var(--gold-2);
+      color: #1a1000;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      padding: 10px 16px;
+      text-decoration: none;
+      transition: top .15s;
+    }
+    .skip-link:focus { top: 12px; }
+    main#main:focus, main#main:focus-visible { outline: none !important; }
+    /* Visible focus ring for keyboard users (mouse clicks don't show it) */
+    a:focus-visible,
+    button:focus-visible,
+    select:focus-visible,
+    input:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 2px solid var(--gold-2) !important;
+      outline-offset: 3px;
+    }
+    .doc-controls input[type="search"] { -webkit-appearance: none; appearance: none; }
+    /* Respect the "reduce motion" system setting */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .nav-lens-flare { display: none !important; }
+    }
+
+
+    /* ── LIVE SEARCH EMPTY STATE ── */
+    .doc-search-empty {
+      text-align: center;
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: .88rem;
+      padding: 22px 0;
+    }
+    /* Active search indicator on the input */
+    .doc-controls input:not(:placeholder-shown) {
+      border-color: rgba(212,160,23,.5);
+      box-shadow: 0 0 0 2px rgba(212,160,23,.12);
+      outline: none;
+    }
+
+    /* ── ORNATE RULE DRAW (inner pages) ── */
+    .ornate-rule::before {
+      transform-origin: right;
+      animation: coachlineDrawMain 0.7s 0.18s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .ornate-rule::after {
+      transform-origin: left;
+      animation: coachlineDrawMain 0.7s 0.18s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    /* ── PAGE HEADER GOLD LINE DRAW ── */
+    .page-header::after {
+      transform-origin: center;
+      animation: coachlineDrawMain 0.8s 0.12s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    /* ── COACHLINE DRAW ANIMATION ── */
+    @keyframes coachlineDrawMain {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    @keyframes coachlineDrawFine {
+      from { transform: scaleX(0); opacity: 0; }
+      to   { transform: scaleX(1); opacity: .5; }
+    }
+    .coachline-divider {
+      transform-origin: center;
+      animation: coachlineDrawMain 0.9s 0.5s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .coachline-divider::before {
+      transform-origin: center;
+      animation: coachlineDrawFine 0.7s 0.76s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .coachline-divider::after {
+      transform-origin: center;
+      animation: coachlineDrawFine 0.7s 0.88s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    /* ── STAT DIAL HOVER GLOW ── */
+    .stat-num {
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    .stat-item:hover .stat-num {
+      border-color: rgba(212,160,23,.68);
+      transform: scale(1.06);
+      box-shadow:
+        0 0 0 5px rgba(212,160,23,.13),
+        0 0 0 6px rgba(0,0,0,.28),
+        0 0 22px rgba(212,160,23,.3),
+        inset 0 3px 6px rgba(0,0,0,.7),
+        inset 0 -1px 2px rgba(255,255,255,.05),
+        0 5px 16px rgba(0,0,0,.65);
+    }
+
+    /* ── MOBILE NAV SLIDE-DOWN ── */
+    @media (max-width: 768px) {
+      nav {
+        display: flex !important;
+        flex-direction: column;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.38s cubic-bezier(0.16,1,0.3,1), opacity 0.22s ease;
+      }
+      nav.open {
+        max-height: 500px;
+        opacity: 1;
+      }
+    }
+
+    /* ── FOOTER CROSS WATERMARK ── */
+    footer { overflow: hidden; }
+    footer::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 360px;
+      height: 360px;
+      background: url('Cross2.png') center / contain no-repeat;
+      opacity: 0.075;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .footer-inner,
+    .footer-bottom { position: relative; z-index: 1; }
+
+    /* ── RIBBON STAMP ── */
+    @keyframes ribbonStamp {
+      0%   { transform: scale(1.15) scaleY(1.1); opacity: 0; filter: blur(1.5px); }
+      55%  { transform: scale(0.97) scaleY(0.99); opacity: 1; filter: blur(0); }
+      78%  { transform: scale(1.01); }
+      100% { transform: scale(1); opacity: 1; filter: blur(0); }
+    }
+    .ribbon-heading {
+      animation: ribbonStamp 0.42s 0.14s cubic-bezier(0.34,1.2,0.64,1) both;
+    }
+
+    /* ─────────────────── BURN PERMIT / FIRE DANGER PANEL ─────────────────── */
+    .burn-permit-panel {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: var(--bg-white);
+      border: 1px solid rgba(255,255,255,.08);
+      border-left: 5px solid var(--bp-border, var(--gray-600));
+      padding: 18px 24px;
+      margin-bottom: 36px;
+      box-shadow: 0 2px 10px rgba(0,0,0,.3), inset 0 0 60px var(--bp-glow, transparent);
+      transition: border-color .4s, box-shadow .4s;
+      flex-wrap: wrap;
+    }
+    .bp-icon {
+      width: 38px; height: 38px;
+      flex-shrink: 0;
+      opacity: .85;
+    }
+    .bp-icon svg { width: 100%; height: 100%; }
+    .bp-content {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 28px;
+      min-width: 260px;
+    }
+    .bp-col { min-width: 0; }
+    .bp-col + .bp-col {
+      padding-left: 28px;
+      border-left: 1px solid rgba(255,255,255,.1);
+    }
+    .bp-eyebrow {
+      font-family: 'Playfair Display', serif;
+      font-size: .6rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+    .bp-status {
+      font-family: 'Playfair Display', serif;
+      font-size: .95rem;
+      font-weight: 900;
+      letter-spacing: .03em;
+      line-height: 1.1;
+      transition: color .4s;
+    }
+    .bp-status--permit { color: var(--bp-text, #ffffff); }
+    .bp-status--danger  { color: var(--bd-text, #ffffff); }
+    .bp-detail {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: .8rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+      line-height: 1.5;
+    }
+    .bp-actions {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 7px;
+      flex-shrink: 0;
+    }
+    .bp-updated {
+      font-family: 'IM Fell English', serif;
+      font-style: italic;
+      font-size: .68rem;
+      color: var(--text-muted);
+      text-align: right;
+      white-space: nowrap;
+    }
+    .bp-error { display: none; }
+    .bp-panel--error .bp-icon,
+    .bp-panel--error .bp-content,
+    .bp-panel--error .bp-actions .btn-vintage-filled { display: none; }
+    .bp-panel--error .bp-error { display: block; }
+    @media (max-width: 680px) {
+      .burn-permit-panel { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .bp-content { grid-template-columns: 1fr; gap: 12px; }
+      .bp-col + .bp-col { padding-left: 0; border-left: none; border-top: 1px solid rgba(255,255,255,.1); padding-top: 12px; }
+      .bp-actions { align-items: flex-start; }
+      .bp-updated { text-align: left; }
+    }
+
+    /* ── Photo Band ── */
+    .photo-band {
+      margin: 56px calc(-50vw + 50%);
+      width: 100vw;
+      height: 360px;
+      position: relative;
+      background: #0e0c0b center / cover no-repeat;
+      background-attachment: fixed;
+      box-shadow:
+        inset 0 2px 0 rgba(212,160,23,.45),
+        inset 0 -2px 0 rgba(212,160,23,.45),
+        inset 0 28px 64px rgba(0,0,0,.82),
+        inset 0 -28px 64px rgba(0,0,0,.82);
+    }
+    /* Vignette + edge darkening */
+    .photo-band::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to right, rgba(0,0,0,.65) 0%, rgba(0,0,0,.1) 38%, rgba(0,0,0,.1) 62%, rgba(0,0,0,.65) 100%),
+        linear-gradient(to bottom, rgba(0,0,0,.5) 0%, transparent 35%, transparent 65%, rgba(0,0,0,.5) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    /* Desaturation + sepia tone overlay — avoids filter breaking background-attachment:fixed */
+    .photo-band::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(28, 18, 10, 0.52);
+      mix-blend-mode: color;
+      z-index: 2;
+      pointer-events: none;
+    }
+    /* Corner specular orbs — glass depth effect */
+    .photo-band-orbs {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      pointer-events: none;
+      background-image:
+        radial-gradient(ellipse 260px 160px at  8% 18%, rgba(255,255,255,.09) 0%, transparent 100%),
+        radial-gradient(ellipse 180px 110px at 92% 82%, rgba(255,255,255,.05) 0%, transparent 100%),
+        radial-gradient(ellipse 140px  90px at 88% 12%, rgba(255,255,255,.04) 0%, transparent 100%),
+        radial-gradient(ellipse 100px  70px at 12% 88%, rgba(255,255,255,.03) 0%, transparent 100%);
+      animation: orbDrift 18s ease-in-out infinite alternate;
+    }
+    @keyframes orbDrift {
+      0%   { opacity: 1;    transform: translate(0px,    0px); }
+      33%  { opacity: 0.82; transform: translate(6px,   -4px); }
+      66%  { opacity: 0.95; transform: translate(-4px,   5px); }
+      100% { opacity: 0.88; transform: translate(5px,    3px); }
+    }
+    @media (max-width: 768px) {
+      .photo-band {
+        height: 220px;
+        margin: 40px calc(-50vw + 50%);
+        background-attachment: scroll; /* fixed bg doesn't work reliably on iOS */
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════ HEADER ══════════════════════ -->
+<a class="skip-link" href="#main">Skip to main content</a>
+<header>
+  <div class="header-inner">
+    <div class="logo-badge" title="Otsego County Fire Authority">
+      <img src="FireAuth.png" alt="OCFA Logo" />
+    </div>
+
+    <div class="header-titles">
+      <div class="authority-name">Otsego County Fire Authority</div>
+      <div class="tagline">Proudly Serving Otsego County, Michigan</div>
+    </div>
+
+    <div class="header-right">
+      <div>
+        <div class="emergency-label">Emergency</div>
+        <div class="number">9-1-1</div>
+      </div>
+      <a class="header-fb" href="https://www.facebook.com/profile.php?id=100064728846517" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+        Facebook
+      </a>
+    </div>
+    <button class="hamburger-btn" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="header-stripe"></div>
+
+  <nav id="site-nav" aria-label="Main">
+    <a href="#" class="active" aria-current="page" onclick="showSection('home',this);return false;">Home</a>
+    <a href="#" onclick="showSection('events',this);return false;">Events</a>
+    <a href="#" onclick="showSection('minutes',this);return false;">Minutes &amp; Agendas</a>
+    <a href="#" onclick="showSection('runs',this);return false;">Run Reports</a>
+  </nav>
+</header>
+
+
+<main id="main" tabindex="-1">
+
+<!-- ══════════════════════ HOME ══════════════════════ -->
+<section id="home" class="active">
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-frame" aria-hidden="true"></div>
+    <div class="hero-cross" aria-hidden="true"></div>
+    <div class="hero-top-rule">
+      <div class="ornate-rule"><span>Est. 2025 · Otsego County · Michigan</span></div>
+    </div>
+    <h1 class="hero-title">Otsego County<br/>Fire Authority</h1>
+    <div class="hero-est">Official Public Authority — State of Michigan</div>
+    <div class="hero-divider"></div>
+    <p class="hero-body">
+      The governing body for fire protection services across the City of Gaylord
+      and the townships of Bagley, Hayes, Livingston, Dover, and Chester —
+      committed to transparency, fiscal accountability, and the safety of every
+      community we serve.
+    </p>
+    <div class="hero-cta">
+      <a class="btn-vintage btn-vintage-filled" href="#" onclick="showSection('minutes',document.querySelectorAll('nav a')[2]);return false;">Meeting Documents</a>
+      <a class="btn-vintage" href="#" onclick="showSection('events',document.querySelectorAll('nav a')[1]);return false;">Upcoming Events</a>
+    </div>
+  </div>
+
+  <!-- Coachline divider -->
+  <div class="coachline-divider"></div>
+
+  <!-- Stats bar -->
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Member Entities</div></div>
+    <div class="stat-item"><div class="stat-num">597</div><div class="stat-label">Annual Runs</div></div>
+    <div class="stat-item"><div class="stat-num">206</div><div class="stat-label">Sq. Miles Covered</div></div>
+    <div class="stat-item"><div class="stat-num">2025</div><div class="stat-label">Est. Founded</div></div>
+  </div>
+
+  <!-- Coachline divider -->
+  <div class="coachline-divider"></div>
+
+  <div class="container">
+    <!-- Burn Permit + Fire Danger Status -->
+    <div id="burn-permit-panel" class="burn-permit-panel">
+      <div class="bp-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C9.5 5 8 7.5 8 10c0 2.2 1.8 4 4 4s4-1.8 4-4c0-1-.3-2-.8-2.8C14.5 8.5 14 10 13 10.5 13.5 8 12 2z" fill="rgba(255,154,0,.85)"/>
+          <path d="M12 13c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" fill="rgba(255,200,80,.7)"/>
+        </svg>
+      </div>
+      <div class="bp-content">
+        <div class="bp-col">
+          <div class="bp-eyebrow">Burn Permit · Michigan DNR</div>
+          <div id="bp-status" class="bp-status bp-status--permit">Loading…</div>
+          <div id="bp-detail" class="bp-detail"></div>
+        </div>
+        <div class="bp-col">
+          <div class="bp-eyebrow">Fire Danger · NWS Gaylord</div>
+          <div id="bd-status" class="bp-status bp-status--danger">Loading…</div>
+          <div id="bd-detail" class="bp-detail"></div>
+        </div>
+      </div>
+      <div class="bp-actions">
+        <a class="btn-vintage btn-vintage-filled" href="https://www2.dnr.state.mi.us/burnpermits/" target="_blank" rel="noopener">Get a Permit →</a>
+        <div id="bp-updated" class="bp-updated"></div>
+      </div>
+      <div class="bp-error" id="bp-error" style="flex:1 1 100%;margin-top:4px;">Unable to load status — <a href="https://www2.dnr.state.mi.us/burnpermits/" target="_blank" rel="noopener" style="color:#f87171;">check the DNR website directly</a>.</div>
+    </div>
+
+    <!-- Quick access -->
+    <div class="section-heading">
+      <div><span class="ribbon-heading">Quick Access</span></div>
+      <div class="ornate-rule"><span>Official Resources</span></div>
+    </div>
+    <div class="cards-grid">
+      <div class="vintage-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/>
+            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8" stroke="rgba(255,255,255,.5)" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Minutes &amp; Agendas</h3>
+        <p>Official board meeting records, approved minutes, and posted agendas for all public Authority meetings.</p>
+        <a class="card-link" href="#" onclick="showSection('minutes',document.querySelectorAll('nav a')[2]);return false;">Browse Documents →</a>
+      </div>
+
+      <div class="vintage-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="4" width="18" height="18" rx="2" stroke="rgba(255,255,255,.5)" stroke-width="1.5"/>
+            <path d="M16 2v4M8 2v4M3 10h18" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="8" cy="15" r="1" fill="rgba(255,255,255,.5)"/>
+            <circle cx="12" cy="15" r="1" fill="rgba(255,255,255,.5)"/>
+            <circle cx="16" cy="15" r="1" fill="rgba(255,255,255,.5)"/>
+          </svg>
+        </div>
+        <h3>Events &amp; Meetings</h3>
+        <p>Scheduled board meetings, public hearings, training dates, and community events across the county.</p>
+        <a class="card-link" href="#" onclick="showSection('events',document.querySelectorAll('nav a')[1]);return false;">View Calendar →</a>
+      </div>
+
+      <div class="vintage-card">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 19v-6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2zm0 0V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v10m0 0a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v14z" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Run &amp; Incident Reports</h3>
+        <p>Annual call volume statistics, incident category breakdowns, and mutual aid data by member department.</p>
+        <a class="card-link" href="#" onclick="showSection('runs',document.querySelectorAll('nav a')[3]);return false;">View Run Data →</a>
+      </div>
+    </div>
+
+    <!-- Photo Band -->
+    <div class="photo-band" id="photo-band" style="background-image: url('photo-band.jpg');">
+      <div class="photo-band-orbs"></div>
+    </div>
+
+    <!-- About -->
+    <div style="margin-top:56px;">
+      <div class="section-heading">
+        <div><span class="ribbon-heading">About the Authority</span></div>
+        <div class="ornate-rule"><span>Otsego County Fire Authority</span></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-body">
+          <h3>Our Mission</h3>
+          <p>The Otsego County Fire Authority provides coordinated fire protection and emergency services governance across the City of Gaylord and the five surrounding townships of Otsego County, Michigan. Through shared resources, joint planning, and fiscal oversight, the Authority ensures every community has access to professional, well-equipped fire and rescue services.</p>
+          <p>The Authority is governed by a board of directors representing each member entity. Regular public meetings are held to conduct the business of the Authority with full transparency and accountability to the citizens we serve.</p>
+
+          <h3 style="margin-top:28px;">Board of Directors &amp; Member Entities</h3>
+          <table class="vintage-table">
+            <thead>
+              <tr><th>Entity</th><th>Representative</th><th>Phone</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>City of Gaylord</td><td>Kim Awrey</td><td><a class="tel-link" data-tel="jijhdceaga">Phone on file</a></td></tr>
+              <tr><td>Bagley Township</td><td>Jim Szymanski</td><td><a class="tel-link" data-tel="jijhdcfjce">Phone on file</a></td></tr>
+              <tr><td>Chester Township</td><td>Bonny Miller</td><td><a class="tel-link" data-tel="jijdhaaefc">Phone on file</a></td></tr>
+              <tr><td>Dover Township</td><td>Janet Kwapis</td><td><a class="tel-link" data-tel="jijhdcbccd">Phone on file</a></td></tr>
+              <tr><td>Hayes Township</td><td>Mary Sanders</td><td><a class="tel-link" data-tel="jijhdcecag">Phone on file</a></td></tr>
+              <tr><td>Livingston Township</td><td>Norm Brecheisen</td><td><a class="tel-link" data-tel="jijhdcbejj">Phone on file</a></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div>
+          <div class="sidebar-panel">
+            <div class="sidebar-panel-head"><h4>Contact &amp; Location</h4></div>
+            <div class="sidebar-panel-body">
+              <div class="contact-row">
+                <svg viewBox="0 0 24 24" fill="#b91c1c"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <div><strong>Address</strong><span>305 East Main Street<br/>Gaylord, MI 49735</span></div>
+              </div>
+              <div class="contact-row">
+                <svg viewBox="0 0 24 24" fill="#b91c1c"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <div><strong>Fire Chief</strong><span>Todd Troxel<br/><a class="mail-link" href="mailto:chief@otsegocountyfiremi.gov">chief@otsegocountyfiremi.gov</a></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ EVENTS ══════════════════════ -->
+<section id="events">
+  <div class="page-header">
+    <div class="breadcrumb">Home · Events</div>
+    <h2>Events &amp; Meetings Calendar</h2>
+    <p>All board meetings are open to the public in accordance with Michigan's Open Meetings Act.</p>
+  </div>
+  <div class="container">
+    <div class="ornate-rule" style="margin-bottom:28px;"><span>Upcoming Meetings</span></div>
+
+    <p style="font-family:'IM Fell English',serif;font-style:italic;font-size:.85rem;color:var(--text-muted);margin-bottom:22px;">
+      Regular board meetings are held the <strong style="color:var(--text-mid);">1st Thursday of each month</strong> at 9:30 AM at <a href="https://maps.google.com/?q=305+East+Main+Street+Gaylord+MI+49735" target="_blank" rel="noopener" style="color:var(--text-mid);">City Hall, Gaylord MI</a>, unless otherwise scheduled.
+    </p>
+
+    <div class="events-list">
+      <!-- Filled in by renderMeetings() from the 1st-Thursday rule; see MEETING_CHANGES in the script. -->
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ MINUTES ══════════════════════ -->
+<section id="minutes">
+  <div class="page-header">
+    <div class="breadcrumb">Home · Minutes &amp; Agendas</div>
+    <h2>Meeting Minutes &amp; Agendas</h2>
+    <p>Official records of all Otsego County Fire Authority board meetings, posted following approval.</p>
+  </div>
+  <div class="container">
+    <div class="doc-controls">
+      <label for="doc-year">Year:</label>
+      <select id="doc-year">
+        <option>All Years</option>
+        <option>2026</option>
+        <option>2025</option>
+        <option>2024</option>
+        <option>2023</option>
+      </select>
+      <label for="doc-type" style="margin-left:16px;">Type:</label>
+      <select id="doc-type">
+        <option>All Types</option>
+        <option>Minutes</option>
+        <option>Agenda</option>
+        <option>Financials</option>
+      </select>
+      <input type="search" aria-label="Search documents" placeholder="Search documents…" style="margin-left:auto;min-width:220px;" />
+    </div>
+
+    <div class="doc-table-wrap">
+      <table class="doc-table" data-doc-group="minutes">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Meeting</th>
+            <th>Document</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Apr</strong><br>2026</td><td>Regular Board Meeting</td><td>April 2026 — Meeting Agenda</td><td><span class="doc-pill pill-pending">Pending</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Mar</strong><br>2026</td><td>Regular Board Meeting</td><td>March 2026 — Meeting Minutes</td><td><span class="doc-pill pill-canceled">Canceled</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Feb</strong><br>2026</td><td>Regular Board Meeting</td><td>February 2026 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2026-02-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Jan</strong><br>2026</td><td>Regular Board Meeting</td><td>January 2026 — Meeting Minutes</td><td><span class="doc-pill pill-canceled">Canceled</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Dec</strong><br>2025</td><td>Regular Board Meeting</td><td>December 2025 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2025-12-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Nov</strong><br>2025</td><td>Regular Board Meeting</td><td>November 2025 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2025-11-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Oct</strong><br>2025</td><td>Regular Board Meeting</td><td>October 2025 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2025-10-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Sep</strong><br>2025</td><td>Regular Board Meeting</td><td>September 2025 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2025-09-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Aug</strong><br>2025</td><td>Regular Board Meeting</td><td>August 2025 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2025-08-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Jul</strong><br>2025</td><td>Regular Board Meeting</td><td>July 2025 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2025-07-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Jun</strong><br>2025</td><td>Regular Board Meeting</td><td>June 2025 — Meeting Minutes</td><td><span class="doc-pill pill-canceled">Canceled</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>May</strong><br>2025</td><td>Regular Board Meeting</td><td>May 2025 — Meeting Minutes</td><td><span class="doc-pill pill-canceled">Canceled</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Apr</strong><br>2025</td><td>Regular Board Meeting</td><td>April 2025 — Meeting Minutes</td><td><span class="doc-pill pill-canceled">Canceled</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Mar</strong><br>2025</td><td>Regular Board Meeting</td><td>March 2025 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2025-03-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Feb</strong><br>2025</td><td>Regular Board Meeting</td><td>February 2025 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2025-02-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Jan</strong><br>2025</td><td>Regular Board Meeting</td><td>January 2025 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2025-01-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Dec</strong><br>2024</td><td>Regular Board Meeting</td><td>December 2024 — Meeting Minutes</td><td><span class="doc-pill pill-canceled">Canceled</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Nov</strong><br>2024</td><td>Regular Board Meeting</td><td>November 2024 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2024-11-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Oct</strong><br>2024</td><td>Regular Board Meeting</td><td>October 2024 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2024-10-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Sep</strong><br>2024</td><td>Regular Board Meeting</td><td>September 2024 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2024-09-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Financials -->
+    <div style="margin-top:44px;">
+      <div class="sub-heading">Financial Documents</div>
+      <div class="doc-table-wrap">
+        <table class="doc-table" data-doc-group="financials">
+          <thead>
+            <tr><th>Period</th><th>Document</th><th></th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Dec 2024</strong></td><td>Monthly Expenditures — December 2024</td><td><a class="dl-btn" href="Financials/2024-12-expenditures.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+            <tr><td><strong>FY 2024</strong></td><td>Annual Audit Report — FY 2024</td><td><a class="dl-btn" href="Financials/2024-annual-audit.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+            <tr><td><strong>FY 2025</strong></td><td>Annual Audit Report — FY 2025</td><td><a class="dl-btn" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+            <tr><td><strong>FY 2025</strong></td><td>Adopted Budget — FY 2025</td><td><a class="dl-btn" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+            <tr><td><strong>FY 2024</strong></td><td>Adopted Budget — FY 2024</td><td><a class="dl-btn" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+            <tr><td><strong>FY 2023</strong></td><td>Annual Audit Report — FY 2023</td><td><a class="dl-btn" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════ RUNS ══════════════════════ -->
+<section id="runs">
+  <div class="page-header">
+    <div class="breadcrumb">Home · Run Reports</div>
+    <h2>Run &amp; Incident Reports</h2>
+    <p>Annual call volume summaries and incident data across all member departments of the Authority.</p>
+  </div>
+  <div class="container">
+    <div class="ornate-rule" style="margin-bottom:24px;"><span>2025 Annual Summary</span></div>
+
+    <div class="runs-grid">
+      <div class="stat-card"><div class="sc-num">[###]</div><div class="sc-label">Total Calls</div></div>
+      <div class="stat-card"><div class="sc-num">[###]</div><div class="sc-label">Structure Fires</div></div>
+      <div class="stat-card"><div class="sc-num">[###]</div><div class="sc-label">Vehicle Fires</div></div>
+      <div class="stat-card"><div class="sc-num">[###]</div><div class="sc-label">MVA / Rescue</div></div>
+      <div class="stat-card"><div class="sc-num">[###]</div><div class="sc-label">Mutual Aid Given</div></div>
+      <div class="stat-card"><div class="sc-num">[###]</div><div class="sc-label">Mutual Aid Received</div></div>
+    </div>
+
+    <div class="chart-panel">
+      <div class="chart-title">Total Annual Call Volume — Five Year Trend</div>
+      <div class="chart-mock">
+        <div class="bar-group"><div class="bar-val">[###]</div><div class="bar" style="height:80px;"></div><div class="bar-year">2020</div></div>
+        <div class="bar-group"><div class="bar-val">[###]</div><div class="bar" style="height:100px;"></div><div class="bar-year">2021</div></div>
+        <div class="bar-group"><div class="bar-val">[###]</div><div class="bar" style="height:115px;"></div><div class="bar-year">2022</div></div>
+        <div class="bar-group"><div class="bar-val">[###]</div><div class="bar" style="height:108px;"></div><div class="bar-year">2023</div></div>
+        <div class="bar-group"><div class="bar-val">[###]</div><div class="bar" style="height:125px;"></div><div class="bar-year">2024</div></div>
+        <div class="bar-group"><div class="bar-val">[###]</div><div class="bar" style="height:138px;border-top-color:#dc2626;background:linear-gradient(180deg,rgba(185,28,28,.85) 0%,rgba(185,28,28,.4) 100%);"></div><div class="bar-year current">2025</div></div>
+      </div>
+      <div class="chart-caption">Chart reflects actual run data provided by member departments. Hover bars for detail. — Placeholder values shown.</div>
+    </div>
+
+    <div class="sub-heading">Annual Run Report Archive</div>
+    <div class="doc-table-wrap">
+      <table class="doc-table">
+        <thead>
+          <tr><th>Year</th><th>Document</th><th>Format</th><th></th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>2025</strong></td><td>Annual Run Report — Full Detail</td><td><a class="dl-btn" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>2024</strong></td><td>Annual Run Report — Full Detail</td><td><a class="dl-btn" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>2023</strong></td><td>Annual Run Report — Full Detail</td><td><a class="dl-btn" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>2022</strong></td><td>Annual Run Report — Full Detail</td><td><a class="dl-btn" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <h4>Otsego County Fire Authority</h4>
+      <p>The official website of the Otsego County Fire Authority — a public authority established to coordinate and govern fire protection services across the City of Gaylord and five surrounding townships of Otsego County, Michigan.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#" onclick="showSection('home',document.querySelectorAll('nav a')[0]);return false;">Home</a></li>
+        <li><a href="#" onclick="showSection('events',document.querySelectorAll('nav a')[1]);return false;">Events &amp; Meetings</a></li>
+        <li><a href="#" onclick="showSection('minutes',document.querySelectorAll('nav a')[2]);return false;">Meeting Minutes</a></li>
+        <li><a href="#" onclick="showSection('minutes',document.querySelectorAll('nav a')[2]);return false;">Financial Documents</a></li>
+        <li><a href="#" onclick="showSection('runs',document.querySelectorAll('nav a')[3]);return false;">Run Reports</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>
+        305 East Main Street<br/>
+        Gaylord, MI 49735<br/><br/>
+        <a class="tel-link" data-tel="jijhdbaejh">Phone on file</a><br/>
+        <a class="mail-link" href="mailto:info@otsegocountyfiremi.gov">info@otsegocountyfiremi.gov</a>
+      </p>
+      <p style="margin-top:16px;">In an emergency, always dial <strong style="color:#dc2626;">9-1-1</strong></p>
+      <div class="social-links">
+        <a class="social-btn" href="https://www.facebook.com/profile.php?id=100064728846517" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+          Follow us on Facebook
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 <strong>Otsego County Fire Authority</strong> &nbsp;·&nbsp; All Rights Reserved &nbsp;·&nbsp; Public Authority — State of Michigan
+  </div>
+</footer>
+
+<script>
+  // ── BOARD PHONE NUMBERS ──
+  // Stored as letters (a=0 … j=9) so the digits never appear in the page source for scrapers.
+  document.querySelectorAll('a[data-tel]').forEach(function(a) {
+    var d = a.getAttribute('data-tel').replace(/[a-j]/g, function(c) { return c.charCodeAt(0) - 97; });
+    a.href = 'tel:+1' + d;
+    a.innerHTML = '(' + d.slice(0, 3) + ') <span class="tel-num">' + d.slice(3, 6) + '-' + d.slice(6) + '</span>';
+  });
+
+  // ── SECTION SWITCHING ──
+  const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function showSection(id, clickedLink) {
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    const target = document.getElementById(id);
+    target.classList.add('active');
+    document.querySelectorAll('nav a').forEach(a => { a.classList.remove('active'); a.removeAttribute('aria-current'); });
+    if (clickedLink) { clickedLink.classList.add('active'); clickedLink.setAttribute('aria-current', 'page'); }
+    window.scrollTo({ top: 0, behavior: REDUCED_MOTION ? 'auto' : 'smooth' });
+    // Move keyboard/screen-reader focus to the new section's heading so it gets announced
+    const heading = target.querySelector('h1, h2');
+    if (heading) { heading.setAttribute('tabindex', '-1'); heading.focus({ preventScroll: true }); }
+    staggerIn(target);
+    if (id === 'runs') animateBars();
+  }
+
+  // ── NAV LENS FLARE ──
+  // Tracks the bottom border shimmer position and fires a sparkle when it crosses the active badge.
+  (function() {
+    const nav   = document.querySelector('nav');
+    const flare = document.createElement('div');
+    flare.className = 'nav-lens-flare';
+    flare.setAttribute('aria-hidden', 'true');
+    nav.appendChild(flare);
+
+    const CYCLE        = 22000;  // ms — must match CSS animation duration
+    const TRAVEL_END   = 0.65;   // fraction of cycle where shimmer stops moving
+    let   lastCycleFired = -1;
+    let   animStart      = null;
+
+    function shimmerCenter(elapsed) {
+      // Returns shimmer center as a fraction of nav width (can be < 0 or > 1 when off-screen)
+      const t = (elapsed % CYCLE) / CYCLE;
+      if (t > TRAVEL_END) return 9; // hold phase — off-screen right
+      const n     = t / TRAVEL_END;
+      const eased = n < 0.5 ? 2*n*n : 1 - Math.pow(-2*n + 2, 2) / 2;
+      // bgPos goes -250% → 250%; effective center accounting for 22% spot width:
+      //   center = bgPos/100 * (1 - 0.22) + 0.11  →  range: -1.84 to 2.06
+      return -1.84 + eased * 3.9;
+    }
+
+    function triggerFlare(cx, cy) {
+      flare.style.left      = cx + 'px';
+      flare.style.top       = cy + 'px';
+      flare.style.animation = 'none';
+      flare.offsetWidth;   // force reflow so animation restarts
+      flare.style.animation = 'lens-flare-pop 0.9s ease-out forwards';
+    }
+
+    function tick(ts) {
+      if (!animStart) animStart = ts;
+      const elapsed  = ts - animStart;
+      const cycleNum = Math.floor(elapsed / CYCLE);
+
+      if (cycleNum !== lastCycleFired) {
+        const active = nav.querySelector('a.active');
+        if (active) {
+          const navRect  = nav.getBoundingClientRect();
+          const linkRect = active.getBoundingClientRect();
+          const badgeL   = (linkRect.left  - navRect.left) / navRect.width;
+          const badgeR   = (linkRect.right - navRect.left) / navRect.width;
+          const sc       = shimmerCenter(elapsed);
+
+          if (sc >= badgeL - 0.01 && sc <= badgeR + 0.01) {
+            lastCycleFired = cycleNum;
+            // x = 25% mark of the badge; y = bottom edge of badge (on the gold underline)
+            const cx = linkRect.left - navRect.left + linkRect.width * 0.25;
+            const cy = linkRect.bottom - navRect.top;
+            triggerFlare(cx, cy);
+          }
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+  })();
+
+  document.querySelectorAll('nav a').forEach((link, i) => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      showSection(['home','events','minutes','runs'][i], this);
+      document.getElementById('navToggle').classList.remove('open');
+      document.getElementById('navToggle').setAttribute('aria-expanded', 'false');
+      document.querySelector('nav').classList.remove('open');
+    });
+  });
+
+  document.getElementById('navToggle').addEventListener('click', function() {
+    const open = this.classList.toggle('open');
+    this.setAttribute('aria-expanded', String(open));
+    document.querySelector('nav').classList.toggle('open', open);
+  });
+
+  // ── HERO PARALLAX ──
+  (function() {
+    const hero  = document.querySelector('.hero');
+    const cross = document.querySelector('.hero-cross');
+    if (!hero || REDUCED_MOTION) return;
+    window.addEventListener('scroll', function() {
+      const s = window.scrollY;
+      const drift = s * 0.55;
+      hero.style.backgroundPosition =
+        '0% ' + drift + 'px, 100% calc(100% - ' + drift + 'px), 50% 0%, 50% 100%, 0 0';
+      if (cross) cross.style.transform = 'translateY(' + (s * 0.75) + 'px)';
+    }, { passive: true });
+  })();
+
+  // ── STAT COUNTERS ──
+  function animateStats() {
+    document.querySelectorAll('.stats-bar .stat-num').forEach(function(el) {
+      var raw = el.textContent.trim();
+      var target = parseInt(raw.replace(/\D/g, ''), 10);
+      if (isNaN(target) || target === 0) return;
+      var duration = 1500;
+      var startTime = performance.now();
+      el.textContent = '0';
+      function tick(now) {
+        var t = Math.min((now - startTime) / duration, 1);
+        var eased = 1 - Math.pow(1 - t, 3);
+        el.textContent = Math.round(eased * target);
+        if (t < 1) requestAnimationFrame(tick);
+        else el.textContent = raw;
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+
+  // ── BAR CHART GROW ──
+  function initBars() {
+    document.querySelectorAll('.bar').forEach(function(bar) {
+      var h = parseFloat(bar.style.height);
+      if (!isNaN(h) && h > 0) {
+        bar.dataset.targetHeight = bar.style.height;
+        bar.style.height = '0px';
+      }
+    });
+  }
+
+  var barsAnimated = false;
+  function animateBars() {
+    if (barsAnimated) return;
+    barsAnimated = true;
+    document.querySelectorAll('.bar').forEach(function(bar, i) {
+      if (bar.dataset.targetHeight) {
+        setTimeout(function() { bar.style.height = bar.dataset.targetHeight; }, 150 + i * 110);
+      }
+    });
+  }
+
+  // ── MEETING SCHEDULE ──
+  // Regular board meetings fall on the 1st Thursday of each month. List any exceptions here,
+  // keyed by the regular date (YYYY-MM-DD):
+  //   { cancelled: true }         → meeting is left off the list
+  //   { moved: 'YYYY-MM-DD' }     → meeting is shown on the new date, marked Rescheduled
+  var MEETING_CHANGES = {
+    // '2026-11-05': { moved: '2026-11-12' },
+    // '2027-01-07': { cancelled: true },
+  };
+  var UPCOMING_MEETINGS_SHOWN = 6;
+
+  function renderMeetings() {
+    var list = document.querySelector('#events .events-list');
+    if (!list) return;
+    var MO = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    function iso(d) {
+      return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    }
+    function parseIso(s) { var p = s.split('-'); return new Date(+p[0], p[1] - 1, +p[2]); }
+
+    var today = new Date(); today.setHours(0,0,0,0);
+    var meetings = [];
+    // Start a few months back so a meeting moved later still counts, and look far enough ahead
+    for (var i = -3; i <= UPCOMING_MEETINGS_SHOWN + 6; i++) {
+      var first = new Date(today.getFullYear(), today.getMonth() + i, 1);
+      var regular = new Date(first.getFullYear(), first.getMonth(), 1 + (4 - first.getDay() + 7) % 7);
+      var change = MEETING_CHANGES[iso(regular)] || {};
+      if (change.cancelled) continue;
+      meetings.push({ date: change.moved ? parseIso(change.moved) : regular, moved: !!change.moved });
+    }
+    meetings.sort(function(a, b) { return a.date - b.date; });
+
+    var past     = meetings.filter(function(m) { return m.date < today; });
+    var upcoming = meetings.filter(function(m) { return m.date >= today; }).slice(0, UPCOMING_MEETINGS_SHOWN);
+    var shown    = past.length ? [Object.assign(past[past.length - 1], { past: true })].concat(upcoming) : upcoming;
+
+    var clockSvg = '<svg viewBox="0 0 24 24" fill="rgba(185,28,28,0.75)"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm.5 14.5H11V11h1.5v5.5zm0-7H11V8h1.5v1.5z"/></svg>';
+    var pinSvg   = '<svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>';
+
+    list.innerHTML = shown.map(function(m) {
+      var d = m.date;
+      return '<div class="event-card' + (m.past ? ' past-meeting' : '') + '">'
+        + '<div class="event-date-block"><div class="event-month">' + MO[d.getMonth()] + '</div>'
+        + '<div class="event-day">' + String(d.getDate()).padStart(2, '0') + '</div>'
+        + '<div class="event-year">' + d.getFullYear() + '</div></div>'
+        + '<div class="event-body">'
+        + '<div class="event-badge">Board Meeting</div>'
+        + (m.past ? '<span class="past-pill">Previous Meeting</span>' : '')
+        + '<h3>Regular Board of Directors Meeting' + (m.moved ? ' <em class="event-moved">(Rescheduled)</em>' : '') + '</h3>'
+        + '<div class="event-meta">'
+        + (m.past ? '<span class="event-time-plain">' + clockSvg + '9:30 AM</span>'
+                  : '<span class="event-time-cal">' + clockSvg + '9:30 AM</span>')
+        + '<a class="event-location-btn" href="https://maps.google.com/?q=305+East+Main+Street+Gaylord+MI+49735" target="_blank" rel="noopener">' + pinSvg + 'City Hall, Gaylord MI</a>'
+        + '</div></div></div>';
+    }).join('');
+  }
+
+  // ── NEXT MEETING HIGHLIGHT ──
+  function highlightNextMeeting() {
+    var M = {Jan:0,Feb:1,Mar:2,Apr:3,May:4,Jun:5,Jul:6,Aug:7,Sep:8,Oct:9,Nov:10,Dec:11};
+    var today = new Date(); today.setHours(0,0,0,0);
+    var nextCard = null, nextDate = null;
+    document.querySelectorAll('#events .event-card').forEach(function(card) {
+      var moEl = card.querySelector('.event-month');
+      var dyEl = card.querySelector('.event-day');
+      var yrEl = card.querySelector('.event-year');
+      if (!moEl || !dyEl || !yrEl) return;
+      var mo = moEl.textContent.trim();
+      var dy = parseInt(dyEl.textContent.trim(), 10);
+      var yr = parseInt(yrEl.textContent.trim(), 10);
+      if (!(mo in M) || isNaN(dy) || isNaN(yr)) return;
+      var d = new Date(yr, M[mo], dy);
+      if (d >= today && (!nextDate || d < nextDate)) { nextDate = d; nextCard = card; }
+    });
+    if (nextCard) {
+      nextCard.classList.add('next-meeting');
+      var badge = nextCard.querySelector('.event-badge');
+      if (badge) {
+        var pill = document.createElement('span');
+        pill.className = 'next-pill';
+        pill.textContent = 'Next Meeting';
+        badge.insertAdjacentElement('afterend', pill);
+      }
+    }
+  }
+
+  // ── STAGGER HELPER ──
+  function animateItems(items, baseDelay, staggerMs, ty) {
+    items.forEach(function(el, i) {
+      if (el.style.display === 'none') return;
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(' + ty + 'px)';
+      el.style.transition = '';
+      setTimeout(function() {
+        el.style.transition = 'opacity 0.38s ease, transform 0.45s cubic-bezier(0.16,1,0.3,1)';
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+      }, baseDelay + i * staggerMs);
+      setTimeout(function() {
+        el.style.transition = '';
+        el.style.opacity = '';
+        el.style.transform = '';
+      }, baseDelay + i * staggerMs + 560);
+    });
+  }
+
+  // ── CARD / EVENT / ROW STAGGER ──
+  function staggerIn(sectionEl) {
+    var cards = Array.from(sectionEl.querySelectorAll('.vintage-card, .event-card'));
+    var rows  = Array.from(sectionEl.querySelectorAll('.doc-table tbody tr:not(.doc-search-empty-row), .vintage-table tbody tr'));
+    animateItems(cards, 50, 85, 14);
+    if (rows.length) animateItems(rows, 80, 42, 8);
+  }
+
+  // ── LIVE DOCUMENT SEARCH ──
+  function initDocSearch() {
+    var section = document.getElementById('minutes');
+    if (!section) return;
+    var selects = section.querySelectorAll('.doc-controls select');
+    var yearSel  = selects[0] || null;
+    var typeSel  = selects[1] || null;
+    var searchEl = section.querySelector('.doc-controls input');
+    if (!searchEl) return;
+    var tables = Array.from(section.querySelectorAll('.doc-table'));
+
+    tables.forEach(function(table) {
+      var group = table.getAttribute('data-doc-group') || 'minutes';
+      Array.from(table.querySelectorAll('tbody tr')).forEach(function(row) {
+        var link = row.querySelector('a.dl-btn');
+        var href = link ? (link.getAttribute('href') || '').trim() : '';
+        var text = row.textContent.toLowerCase();
+        var yearMatch = row.textContent.match(/\b(20\d{2})/);
+
+        row.dataset.linked = href && href !== '#' ? 'true' : 'false';
+        row.dataset.docGroup = group;
+        row.dataset.docType = group === 'financials'
+          ? 'Financials'
+          : (text.includes('agenda') ? 'Agenda' : 'Minutes');
+        row.dataset.docYear = yearMatch ? yearMatch[1] : '';
+      });
+    });
+
+    if (yearSel) {
+      var allDocYears = [];
+      tables.forEach(function(table) {
+        Array.from(table.querySelectorAll('tbody tr')).forEach(function(row) {
+          if (row.dataset.docYear) allDocYears.push(row.dataset.docYear);
+        });
+      });
+      var years = Array.from(new Set(allDocYears)).sort(function(a, b) {
+        return Number(b) - Number(a);
+      });
+
+      yearSel.innerHTML = '';
+      var allYears = document.createElement('option');
+      allYears.textContent = 'All Years';
+      yearSel.appendChild(allYears);
+      years.forEach(function(value) {
+        var option = document.createElement('option');
+        option.textContent = value;
+        yearSel.appendChild(option);
+      });
+    }
+
+    function filterRows() {
+      var query = searchEl.value.toLowerCase().trim();
+      var year  = yearSel ? yearSel.value : 'All Years';
+      var type  = typeSel ? typeSel.value : 'All Types';
+
+      tables.forEach(function(table) {
+        var rows = Array.from(table.querySelectorAll('tbody tr:not(.doc-search-empty-row)'));
+        var anyVisible = false;
+
+        rows.forEach(function(row) {
+          var text = row.textContent.toLowerCase();
+          var ok = true;
+          if (query && !text.includes(query)) ok = false;
+          if (year !== 'All Years' && row.dataset.docYear !== year) ok = false;
+          if (type !== 'All Types') {
+            if (type === 'Financials') {
+              // Financials filter: hide non-financial rows
+              if (row.dataset.docGroup !== 'financials') ok = false;
+            } else {
+              // Minutes/Agenda filter: only narrows the minutes table; financials always stay visible
+              if (row.dataset.docGroup === 'minutes' && row.dataset.docType !== type) ok = false;
+            }
+          }
+          row.style.display = ok ? '' : 'none';
+          if (ok) anyVisible = true;
+        });
+
+        var tbody    = table.querySelector('tbody');
+        var emptyRow = tbody.querySelector('.doc-search-empty-row');
+        if (!anyVisible) {
+          if (!emptyRow) {
+            var tr = document.createElement('tr');
+            tr.className = 'doc-search-empty-row';
+            var td = document.createElement('td');
+            td.colSpan = 10;
+            td.className = 'doc-search-empty';
+            td.textContent = 'No documents match your search.';
+            tr.appendChild(td);
+            tbody.appendChild(tr);
+          }
+        } else if (emptyRow) {
+          emptyRow.remove();
+        }
+      });
+    }
+
+    searchEl.addEventListener('input', filterRows);
+    if (yearSel) yearSel.addEventListener('change', filterRows);
+    if (typeSel) typeSel.addEventListener('change', filterRows);
+    filterRows();
+  }
+
+  // ── ENHANCE ACTION CELLS (PDF badge + View + Download) ──
+  function enhanceActionCells() {
+    document.querySelectorAll('.doc-table tbody tr').forEach(function(row) {
+      var lastCell = row.querySelector('td:last-child');
+      if (!lastCell) return;
+      var viewLink = lastCell.querySelector('a.dl-btn');
+      if (!viewLink) return;
+
+      var href = (viewLink.getAttribute('href') || '').trim();
+      var hasFile = href && href !== '#';
+
+      // Swap download-arrow icon for an open/external-link icon on View button
+      var svgPath = viewLink.querySelector('path');
+      if (svgPath) {
+        svgPath.setAttribute('d', 'M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z');
+      }
+
+      // Detach viewLink before wiping the cell
+      lastCell.removeChild(viewLink);
+      lastCell.innerHTML = '';
+
+      var wrapper = document.createElement('div');
+      wrapper.className = 'action-cell-inner';
+
+      // PDF badge — washed out when no real file exists
+      var badge = document.createElement('span');
+      badge.className = 'doc-pill ' + (hasFile ? 'pill-pdf' : 'pill-pdf-muted');
+      badge.textContent = 'PDF';
+      wrapper.appendChild(badge);
+
+      wrapper.appendChild(viewLink);
+
+      // Download button — only when a real file is linked
+      if (hasFile) {
+        var dlLink = document.createElement('a');
+        dlLink.className = 'dl-btn action-cell-dl';
+        dlLink.href = href;
+        dlLink.setAttribute('download', '');
+        var svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('viewBox', '0 0 24 24');
+        var path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d', 'M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z');
+        svg.appendChild(path);
+        dlLink.appendChild(svg);
+        dlLink.appendChild(document.createTextNode('Download'));
+        wrapper.appendChild(dlLink);
+      }
+
+      lastCell.appendChild(wrapper);
+    });
+  }
+
+  // ── CALENDAR LINKS ──
+  function initCalendarLinks() {
+    var months = {Jan:1,Feb:2,Mar:3,Apr:4,May:5,Jun:6,Jul:7,Aug:8,Sep:9,Oct:10,Nov:11,Dec:12};
+    document.querySelectorAll('#events .event-card').forEach(function(card) {
+      var mo     = card.querySelector('.event-month');
+      var dy     = card.querySelector('.event-day');
+      var yr     = card.querySelector('.event-year');
+      var timeEl = card.querySelector('.event-time-cal');
+      if (!mo || !dy || !yr || !timeEl) return;
+      var m = String(months[mo.textContent.trim()]).padStart(2,'0');
+      var d = dy.textContent.trim().padStart(2,'0');
+      var y = yr.textContent.trim();
+      var start = y + m + d + 'T093000';
+      var end   = y + m + d + 'T110000';
+      var url = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
+        + '&text=OCFA+Regular+Board+Meeting'
+        + '&dates=' + start + '%2F' + end
+        + '&location=City+Hall%2C+305+East+Main+Street%2C+Gaylord%2C+MI+49735'
+        + '&details=Regular+Board+of+Directors+Meeting+%E2%80%94+Otsego+County+Fire+Authority';
+      var a = document.createElement('a');
+      a.className = 'event-time-btn';
+      a.href = url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.innerHTML = timeEl.innerHTML;
+      timeEl.parentNode.replaceChild(a, timeEl);
+    });
+  }
+
+  // ── BURN PERMIT STATUS ──
+  // Cloudflare Worker (ocfa-fire-status, in the OCFA Cloudflare account); source is worker.js.
+  var BURN_PERMIT_WORKER_URL = 'https://ocfa-fire-status.otsego-county-fire-authority.workers.dev/';
+
+  var BP_COLORS = {
+    green:  { border: '#006633', glow: 'rgba(0,102,51,.07)',    text: '#4ade80' },
+    orange: { border: '#ff9a00', glow: 'rgba(255,154,0,.08)',   text: '#fb923c' },
+    red:    { border: '#dc2626', glow: 'rgba(220,38,38,.10)',   text: '#fca5a5' },
+    yellow: { border: '#d97706', glow: 'rgba(217,119,6,.08)',   text: '#fbbf24' },
+    brown:  { border: '#b58b7c', glow: 'rgba(181,139,124,.06)', text: '#d4a890' },
+    gray:   { border: '#888480', glow: 'rgba(136,132,128,.06)', text: '#c0bdb8' },
+  };
+
+  var BP_CACHE_KEY = 'ocfa_fire_status_v2';
+  var BP_TTL_MS    = 60 * 60 * 1000; // 1 hour
+
+  function applyBurnPermit(data) {
+    var panel  = document.getElementById('burn-permit-panel');
+    var permit = data.permit || data;
+    var danger = data.danger || null;
+
+    // Border/glow: use worst-case color between permit and danger
+    var dangerColor  = danger ? danger.color : 'green';
+    var borderSource = (dangerColor !== 'green') ? dangerColor : permit.color;
+    var c = BP_COLORS[borderSource] || BP_COLORS.gray;
+    panel.style.setProperty('--bp-border', c.border);
+    panel.style.setProperty('--bp-glow',   c.glow);
+
+    // Permit column
+    var pc = BP_COLORS[permit.color] || BP_COLORS.gray;
+    panel.style.setProperty('--bp-text', pc.text);
+    document.getElementById('bp-status').textContent = permit.label;
+    document.getElementById('bp-detail').textContent = permit.detail;
+
+    // Fire danger column
+    if (danger) {
+      var dc = BP_COLORS[danger.color] || BP_COLORS.gray;
+      panel.style.setProperty('--bd-text', dc.text);
+      document.getElementById('bd-status').textContent = danger.label;
+      document.getElementById('bd-detail').textContent = danger.detail;
+    }
+
+    if (data.updated) {
+      var d = new Date(data.updated);
+      var fmt = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+              + ' · ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+      document.getElementById('bp-updated').textContent = 'Updated ' + fmt;
+    }
+  }
+
+  function initBurnPermit() {
+    var panel = document.getElementById('burn-permit-panel');
+    if (!panel) return;
+    // No Worker configured yet: show the "check the DNR website" fallback instead of a stuck "Loading…"
+    if (!BURN_PERMIT_WORKER_URL || BURN_PERMIT_WORKER_URL === 'REPLACE_WITH_YOUR_WORKER_URL') {
+      panel.classList.add('bp-panel--error');
+      return;
+    }
+
+    try {
+      var cached = JSON.parse(localStorage.getItem(BP_CACHE_KEY) || 'null');
+      if (cached && (Date.now() - cached.fetchedAt) < BP_TTL_MS) {
+        applyBurnPermit(cached);
+        return;
+      }
+    } catch(e) {}
+
+    fetch(BURN_PERMIT_WORKER_URL)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.error) throw new Error(data.message);
+        data.fetchedAt = Date.now();
+        try { localStorage.setItem(BP_CACHE_KEY, JSON.stringify(data)); } catch(e) {}
+        applyBurnPermit(data);
+      })
+      .catch(function() {
+        panel.classList.add('bp-panel--error');
+        document.getElementById('bp-status').textContent = 'Status Unavailable';
+      });
+  }
+
+  // ── INIT ──
+  initBurnPermit();
+  initBars();
+  renderMeetings();
+  highlightNextMeeting();
+  initCalendarLinks();
+  initDocSearch();
+  enhanceActionCells();
+  setTimeout(function() { staggerIn(document.getElementById('home')); }, 380);
+  setTimeout(animateStats, 180);
+
+</script>
+</body>
+</html>
