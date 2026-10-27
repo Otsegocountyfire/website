@@ -84,10 +84,35 @@
     }
     .fire-bar.is-shown { display: flex; }
     .fire-bar__dot {
+      --lamp: var(--fb-color);
       flex: none;
       width: 9px; height: 9px; border-radius: 50%;
-      background: var(--fb-color);
-      box-shadow: 0 0 0 3px color-mix(in srgb, var(--fb-color) 22%, transparent);
+      /* Lit-lamp look: bright core fading to the status color, with a soft halo */
+      background: radial-gradient(circle at 40% 35%, #ffffff 0%, color-mix(in srgb, var(--lamp) 55%, #ffffff) 30%, var(--lamp) 70%);
+      box-shadow:
+        0 0 4px 1px color-mix(in srgb, var(--lamp) 70%, transparent),
+        0 0 10px 3px color-mix(in srgb, var(--lamp) 30%, transparent);
+    }
+    /* Red flag: a true red lamp (the light red used for text reads as pink here) */
+    .fire-bar--alert .fire-bar__dot { --lamp: #ef4444; }
+    @media (prefers-reduced-motion: no-preference) {
+      .fire-bar__dot { animation: lamp-glow 2.8s ease-in-out infinite; }
+      /* Red flag: same glow, quicker beat */
+      .fire-bar--alert .fire-bar__dot { animation-duration: 1.2s; }
+      @keyframes lamp-glow {
+        0%, 100% {
+          opacity: .8;
+          box-shadow:
+            0 0 3px 1px color-mix(in srgb, var(--lamp) 55%, transparent),
+            0 0 6px 2px color-mix(in srgb, var(--lamp) 18%, transparent);
+        }
+        50% {
+          opacity: 1;
+          box-shadow:
+            0 0 6px 2px color-mix(in srgb, var(--lamp) 85%, transparent),
+            0 0 16px 6px color-mix(in srgb, var(--lamp) 40%, transparent);
+        }
+      }
     }
     /* The two statuses sit side by side and only wrap when there truly isn't room */
     /* Each status carries a "|" in front of it; the strip is shifted left and clipped, so the divider
@@ -447,6 +472,7 @@
     document.getElementById('fb-danger').style.color = phraseColor(danger.color);
     // During a Red Flag Warning the bar can't be closed
     document.getElementById('fb-close').hidden = (danger.color === 'red');
+    bar.classList.toggle('fire-bar--alert', danger.color === 'red');
     document.getElementById('fb-close').onclick = function() {
       bar.classList.remove('is-shown');
       try { localStorage.setItem(FB_HIDDEN_KEY, statusKey); } catch(e) {}
