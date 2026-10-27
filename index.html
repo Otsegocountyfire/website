@@ -89,9 +89,10 @@
       background: var(--fb-color);
       box-shadow: 0 0 0 3px color-mix(in srgb, var(--fb-color) 22%, transparent);
     }
-    .fire-bar__text { flex: 1 1 auto; min-width: 0; }
+    /* The two statuses sit side by side and only wrap when there truly isn't room */
+    .fire-bar__text { flex: 1 1 auto; min-width: 0; display: flex; flex-wrap: wrap; column-gap: 18px; row-gap: 2px; }
+    .fire-bar__part { white-space: nowrap; }
     .fire-bar__text strong { color: var(--fb-color); font-weight: 700; white-space: nowrap; }
-    .fire-bar__sep { color: rgba(255,255,255,.25); margin: 0 6px; }
     .fire-bar__link {
       flex: none;
       color: var(--gold-2);
@@ -294,8 +295,6 @@
       .rule { margin: 20px 0 16px; }
       .soon { margin-top: 26px; }
       .fire-bar { font-size: 12.5px; padding: 8px 12px; }
-      .fire-bar__sep { display: none; }
-      .fire-bar__part { display: block; }
     }
     @media (max-width: 400px) {
       .fire-bar__link { display: none; }
@@ -327,7 +326,7 @@
   <div class="fire-bar" id="fire-bar" role="status" aria-live="polite">
     <span class="fire-bar__dot" aria-hidden="true"></span>
     <span class="fire-bar__text">
-      <span class="fire-bar__part">Burn permit: <strong id="fb-permit"></strong></span><span class="fire-bar__sep" aria-hidden="true">|</span><span class="fire-bar__part">Fire danger: <strong id="fb-danger"></strong></span>
+      <strong class="fire-bar__part" id="fb-permit"></strong><strong class="fire-bar__part" id="fb-danger"></strong>
     </span>
     <a class="fire-bar__link" href="https://www2.dnr.state.mi.us/burnpermits/" target="_blank" rel="noopener">Get a permit →</a>
     <button class="fire-bar__close" id="fb-close" type="button" aria-label="Hide fire status bar">×</button>
@@ -434,9 +433,11 @@
     var c = FB_COLORS[worst] || FB_COLORS.gray;
     bar.style.setProperty('--fb-color', c.text);
     bar.style.setProperty('--fb-edge',  c.edge);
-    document.getElementById('fb-permit').textContent = permit.label || 'Unknown';
+    // Short, self-explanatory phrases (no "Burn permit:" / "Fire danger:" prefixes)
+    var PERMIT_TEXT = { 0: 'No burning', 1: 'Burning permitted', 2: 'Restricted burning', 3: 'Contact DNR' };
+    document.getElementById('fb-permit').textContent = PERMIT_TEXT[permit.status] || permit.label || 'Burn permit status unknown';
     document.getElementById('fb-permit').style.color = (FB_COLORS[permit.color] || FB_COLORS.gray).text;
-    document.getElementById('fb-danger').textContent = danger.label;
+    document.getElementById('fb-danger').textContent = danger.color === 'green' ? 'No fire weather alerts' : danger.label;
     document.getElementById('fb-danger').style.color = (FB_COLORS[danger.color] || FB_COLORS.gray).text;
     // During a Red Flag Warning the bar can't be closed
     document.getElementById('fb-close').hidden = (danger.color === 'red');
