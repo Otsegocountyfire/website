@@ -90,8 +90,12 @@
       box-shadow: 0 0 0 3px color-mix(in srgb, var(--fb-color) 22%, transparent);
     }
     /* The two statuses sit side by side and only wrap when there truly isn't room */
-    .fire-bar__text { flex: 1 1 auto; min-width: 0; display: flex; flex-wrap: wrap; column-gap: 18px; row-gap: 2px; }
-    .fire-bar__part { white-space: nowrap; }
+    /* Each status carries a "|" in front of it; the strip is shifted left and clipped, so the divider
+       shows between statuses on one line but disappears at the start of any line (first status or a wrap) */
+    .fire-bar__text { flex: 1 1 auto; min-width: 0; overflow: hidden; }
+    .fire-bar__parts { display: flex; flex-wrap: wrap; row-gap: 2px; margin-left: -25px; }
+    .fire-bar__part { white-space: nowrap; position: relative; padding-left: 25px; }
+    .fire-bar__part::before { content: '|'; position: absolute; left: 10px; color: rgba(255,255,255,.3); font-weight: 400; }
     .fire-bar__text strong { color: var(--text); font-weight: 700; white-space: nowrap; }
     .fire-bar__link {
       flex: none;
@@ -325,9 +329,9 @@
   <!-- Filled in from the ocfa-fire-status Worker; stays hidden if the status can't be loaded -->
   <div class="fire-bar" id="fire-bar" role="status" aria-live="polite">
     <span class="fire-bar__dot" aria-hidden="true"></span>
-    <span class="fire-bar__text">
+    <span class="fire-bar__text"><span class="fire-bar__parts">
       <strong class="fire-bar__part" id="fb-permit"></strong><strong class="fire-bar__part" id="fb-danger"></strong>
-    </span>
+    </span></span>
     <a class="fire-bar__link" href="https://www2.dnr.state.mi.us/burnpermits/" target="_blank" rel="noopener">Get a permit →</a>
     <button class="fire-bar__close" id="fb-close" type="button" aria-label="Hide fire status bar">×</button>
   </div>
