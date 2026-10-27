@@ -446,7 +446,7 @@
     brown:  { edge: '#b58b7c', text: '#d4a890' },
     gray:   { edge: '#888480', text: '#c0bdb8' },
   };
-  var FB_CACHE_KEY   = 'ocfa_fire_status_v3';   // v3 adds the DNR fire danger rating
+  var FB_CACHE_KEY   = 'ocfa_fire_status_v4';   // bump (with ?v= below) whenever the Worker's data changes
   var FB_HIDDEN_KEY  = 'ocfa_fire_bar_hidden';  // remembers which status the visitor closed
   var FB_TTL_MS      = 60 * 60 * 1000;
 
@@ -511,7 +511,7 @@
       var cached = JSON.parse(localStorage.getItem(FB_CACHE_KEY) || 'null');
       if (cached && (Date.now() - cached.fetchedAt) < FB_TTL_MS) { showFireBar(cached); return; }
     } catch(e) {}
-    fetch(FIRE_STATUS_URL + '?v=3')  // ?v= changes whenever the Worker's data changes, so browsers don't reuse an older saved answer
+    fetch(FIRE_STATUS_URL + '?v=4')  // ?v= changes whenever the Worker's data changes, so browsers don't reuse an older saved answer
       .then(function(r) { return r.json(); })
       .then(function(data) {
         if (data.error) throw new Error(data.message);
