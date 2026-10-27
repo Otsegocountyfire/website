@@ -1,5 +1,6 @@
 // Cloudflare Worker — OCFA Fire Status (Burn Permit + Fire Danger)
-// Fetches burn permit status from Michigan DNR and fire weather alerts from NWS in parallel.
+// Fetches burn permit status from Michigan DNR, fire weather alerts from NWS, and the daily
+// fire danger level from the DNR Lower Peninsula Morning Fire Briefing, in parallel.
 // Deploy at: https://dash.cloudflare.com → Workers & Pages → Create Worker
 // After deploying, replace BURN_PERMIT_WORKER_URL in index.html with your worker's URL.
 
@@ -10,6 +11,12 @@ const ARCGIS_URL =
 // MIZ022 = Otsego County fire weather zone (NWS Grand Rapids/Gaylord)
 const NWS_ALERTS_URL =
   'https://api.weather.gov/alerts/active?zone=MIZ022';
+
+// Daily DNR briefing (PDF). Its "FIRE DANGER AND STAFFING" section is written by the duty officer,
+// e.g. "Fire danger is Moderate." It covers the whole Lower Peninsula, not just Otsego County.
+const BRIEFING_URL = 'https://www2.dnr.state.mi.us/weather/lpmorningbriefing.pdf';
+// Highest first, so "Very High" is matched before "High"
+const DANGER_LEVELS = ['Extreme', 'Very High', 'High', 'Moderate', 'Low'];
 
 const PERMIT_MAP = {
   0: { label: 'No Permit Available',  detail: 'Open burning is not permitted at this time.',                   color: 'brown'  },
@@ -41,18 +48,77 @@ function parseDanger(alerts) {
   return { level: 'none', label: 'No Active Alerts', detail: 'No elevated fire weather alerts are in effect for Otsego County.', color: 'green' };
 }
 
+// Pull the text out of the briefing PDF: inflate each compressed stream and join its literal strings
+async function pdfText(bytes) {
+  const latin = new TextDecoder('latin1');
+  const raw = latin.decode(bytes);
+  let text = '';
+  let i = 0;
+  while ((i = raw.indexOf('stream', i)) !== -1) {
+    // Skip the "stream" inside "endstream"
+    if (raw.slice(i - 3, i) === 'end') { i += 6; continue; }
+    let s = i + 6;
+    if (raw[s] === '\r') s++;
+    if (raw[s] === '\n') s++;
+    const e = raw.indexOf('endstream', s);
+    if (e < 0) break;
+    // Drop the line break before "endstream"; DecompressionStream rejects trailing bytes
+    let end = e;
+    while (end > s && (raw[end - 1] === '\n' || raw[end - 1] === '\r')) end--;
+    try {
+      const inflated = new Blob([bytes.slice(s, end)]).stream().pipeThrough(new DecompressionStream('deflate'));
+      const content = latin.decode(await new Response(inflated).arrayBuffer());
+      text += (content.match(/\((?:\\.|[^\\)])*\)/g) || []).map(t => t.slice(1, -1)).join('') + ' ';
+    } catch (err) {
+      // Not a deflate stream (e.g. an image); skip it
+    }
+    i = e + 9;
+  }
+  return text.replace(/en-US/g, ' ').replace(/\s+/g, ' ');
+}
+
+// Today's Lower Peninsula fire danger level, or null if the briefing is missing, stale, or unclear.
+// If the sentence names more than one level ("Low to Moderate", "Moderate south, High north"), use the highest.
+async function fetchBriefingRating() {
+  const resp = await fetch(BRIEFING_URL, { cf: { cacheTtl: 1800 } });
+  if (!resp.ok) return null;
+  const text = await pdfText(new Uint8Array(await resp.arrayBuffer()));
+
+  // Only trust today's briefing (it may stop being updated outside fire season)
+  const published = text.match(/Published:\s*(\d{1,2})\/(\d{1,2})\/(\d{4})/);
+  if (!published) return null;
+  const today = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Detroit', year: 'numeric', month: 'numeric', day: 'numeric' }).format(new Date());
+  if (`${+published[1]}/${+published[2]}/${published[3]}` !== today) return null;
+
+  const section  = text.match(/FIRE DANGER AND STAFFING(.*?)(?:FIRE PLANNING|AERIAL DETECTION|BURN PERMITS|$)/i);
+  const sentence = section && section[1].match(/fire danger (?:is|will be|remains)[^.]*/i);
+  if (!sentence) return null;
+  const level = DANGER_LEVELS.find(l => new RegExp(`\\b${l}\\b`, 'i').test(sentence[0]));
+  if (!level) return null;
+
+  return {
+    level:  level,
+    date:   `${published[3]}-${published[1].padStart(2, '0')}-${published[2].padStart(2, '0')}`,
+    area:   'Lower Peninsula',
+    source: 'Michigan DNR morning fire briefing',
+  };
+}
+
 export default {
   async fetch(request, env, ctx) {
     if (request.method === 'OPTIONS') {
       return new Response(null, { headers: CORS });
     }
 
-    const cacheKey = new Request('https://ocfa-fire-status-cache/otsego-v2', request);
+    const cacheKey = new Request('https://ocfa-fire-status-cache/otsego-v3', request);
     const cache    = caches.default;
     const cached   = await cache.match(cacheKey);
     if (cached) return cached;
 
     try {
+      // The briefing is optional: if it fails, the response just has no rating
+      const ratingPromise = fetchBriefingRating().catch(() => null);
+
       const [permitResp, alertsResp] = await Promise.all([
         fetch(ARCGIS_URL),
         fetch(NWS_ALERTS_URL, { headers: { 'User-Agent': 'OtsegoCountyFireAuthority/1.0 (otsegocountyfiremi.gov)' } }),
@@ -70,11 +136,13 @@ export default {
       const permit  = PERMIT_MAP[code] ?? { label: 'Status Unavailable', detail: 'Could not determine current burn permit status.', color: 'gray' };
       const updated = attrs.PullStamp ? new Date(attrs.PullStamp).toISOString() : null;
       const danger  = parseDanger(alertsData);
+      const rating  = await ratingPromise;
 
       const body = JSON.stringify({
         county:  'OTSEGO',
         permit:  { status: code, label: permit.label, detail: permit.detail, color: permit.color },
         danger:  danger,
+        rating:  rating,
         updated: updated,
       });
 
