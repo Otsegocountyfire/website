@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Otsego County Fire Authority</title>
+  <meta name="description" content="Official website of the Otsego County Fire Authority, governing fire protection for the City of Gaylord and the townships of Bagley, Dover, Hayes, Livingston, and western Chester. Our new website is coming soon." />
+  <meta name="theme-color" content="#111111" />
+  <link rel="icon" type="image/png" href="FireAuth.png"/>
+  <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+
+  <!-- Link previews (Facebook, texts, email). Preview sites need full web addresses here, not file names. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Otsego County Fire Authority" />
+  <meta property="og:title" content="Otsego County Fire Authority" />
+  <meta property="og:description" content="Fire protection governance for Gaylord and the townships of Otsego County, Michigan. Our new website is coming soon." />
+  <meta property="og:url" content="https://otsegocountyfiremi.gov/" />
+  <meta property="og:image" content="https://otsegocountyfiremi.gov/social-preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Otsego County Fire Authority logo over firefighters training on an aircraft fire" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://otsegocountyfiremi.gov/" />
+  <link rel="preload" as="image" href="photo-band.jpg" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    /* Placeholder landing page — same palette and type as the full site (main branch). */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:      #111111;
+      --red:        #b91c1c;
+      --red-dark:   #7f1d1d;
+      --red-light:  #dc2626;
+      --text:       #f0ede8;
+      --text-mid:   #c0bdb8;
+      --text-muted: #a8a49c;
+      --gold-2:     #f0c040;
+      --gold-3:     #e8b02a;
+      --gold-title: #f2c14e;
+      /* Burnished gold leaf, as on the full site: deep shadow zones, warm body, sharp catch highlight */
+      --gold-leaf: linear-gradient(170deg,
+        #fff2b0 0%, #f5cc50 18%, #e0a820 34%,
+        #b8860b 48%, #e8b02a 58%, #ffd868 70%,
+        #d4a017 84%, #8a5a00 100%);
+      --gold-leaf-h: linear-gradient(90deg,
+        #2e1800 0%, #6b4200 5%, #c8900a 15%,
+        #e8b02a 26%, #fff4a8 36%, #f5d060 45%,
+        #c8900a 55%, #e8b02a 66%, #ffd060 77%,
+        #d4a017 87%, #6b4200 95%, #2e1800 100%);
+    }
+
+    html, body { height: 100%; }
+    body {
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Libre Baskerville', Georgia, serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--gold-2); outline-offset: 3px; border-radius: 2px; }
+
+    /* ─────────── FIRE STATUS BAR ─────────── */
+    .fire-bar {
+      --fb-color: #4ade80;
+      --fb-edge:  #006633;
+      display: none;
+      align-items: center;
+      gap: 10px 14px;
+      padding: 8px 16px;
+      background: #161616;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      box-shadow: inset 4px 0 0 var(--fb-edge);
+      font-size: 13px;
+      line-height: 1.4;
+      color: var(--text-mid);
+      position: relative;
+      z-index: 2;
+    }
+    .fire-bar.is-shown { display: flex; }
+    .fire-bar__dot {
+      flex: none;
+      width: 9px; height: 9px; border-radius: 50%;
+      background: var(--fb-color);
+      box-shadow: 0 0 0 3px color-mix(in srgb, var(--fb-color) 22%, transparent);
+    }
+    .fire-bar__text { flex: 1 1 auto; min-width: 0; }
+    .fire-bar__text strong { color: var(--fb-color); font-weight: 700; white-space: nowrap; }
+    .fire-bar__sep { color: rgba(255,255,255,.25); margin: 0 6px; }
+    .fire-bar__link {
+      flex: none;
+      color: var(--gold-2);
+      text-decoration: none;
+      white-space: nowrap;
+      font-size: 12px;
+      letter-spacing: .04em;
+    }
+    .fire-bar__link:hover { text-decoration: underline; }
+    .fire-bar__close {
+      flex: none;
+      background: none; border: 0; cursor: pointer;
+      color: var(--text-muted);
+      font-size: 20px; line-height: 1;
+      width: 28px; height: 28px;
+      display: grid; place-items: center;
+      border-radius: 50%;
+    }
+    .fire-bar__close:hover { color: var(--text); background: rgba(255,255,255,.08); }
+    .fire-bar__close[hidden] { display: none; }
+
+    /* ─────────── HERO ─────────── */
+    .hero {
+      flex: 1 0 auto;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      isolation: isolate;
+      background: var(--black) url('photo-band.jpg') no-repeat 70% 55% / cover;
+    }
+    /* Dark fade on the left so the text sits on calm ground; fire stays bright on the right */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(10,10,10,.97) 0%, rgba(10,10,10,.92) 30%, rgba(10,10,10,.55) 52%, rgba(10,10,10,.05) 75%),
+        linear-gradient(0deg, rgba(10,10,10,.55) 0%, rgba(10,10,10,0) 30%);
+    }
+    .hero__inner {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: clamp(24px, 5vh, 56px) clamp(20px, 6vw, 80px) clamp(28px, 5.5vh, 64px);
+    }
+    .hero__content { max-width: 600px; }
+
+    .badge {
+      width: clamp(84px, min(11vw, 13vh), 140px);
+      height: auto;
+      display: block;
+      margin-bottom: clamp(16px, 3vh, 28px);
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,.6));
+    }
+    h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 900;
+      font-size: clamp(38px, min(5.6vw, 7.4vh), 72px);
+      line-height: 1.06;
+      color: var(--gold-title);
+      letter-spacing: .005em;
+    }
+    /* Gold-leaf lettering with a sign-painter letterpress stack (drop-shadow works with clipped text; text-shadow would muddy it) */
+    @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+      h1 span {
+        background: var(--gold-leaf);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        /* Extend the painted area below the line so descenders (g, y) aren't clipped; the negative margin keeps the spacing */
+        padding: 0 .06em .18em 0;
+        margin-bottom: -.18em;
+        filter:
+          drop-shadow(0 -1px 0 rgba(255,244,190,.18))
+          drop-shadow(1px 2px 0 rgba(40,20,0,.85))
+          drop-shadow(2px 3px 0 rgba(0,0,0,.55))
+          drop-shadow(3px 6px 12px rgba(0,0,0,.6));
+      }
+    }
+    h1 span { display: block; }
+    .rule {
+      width: 120px; height: 3px;
+      background: linear-gradient(180deg, #e04040 0%, var(--red) 45%, var(--red-dark) 100%);
+      box-shadow: 0 2px 6px rgba(0,0,0,.6);
+      margin: clamp(16px, 3vh, 26px) 0 clamp(14px, 2.4vh, 22px);
+      border: 0;
+    }
+    /* Soft lift so the smaller text separates from the photo */
+    .subtitle, .soon, .soon-note, .info { text-shadow: 0 1px 2px rgba(0,0,0,.85), 0 0 18px rgba(0,0,0,.55); }
+    .soon { text-shadow: 1px 2px 0 rgba(0,0,0,.6), 0 0 22px rgba(0,0,0,.6); }
+    .emergency { box-shadow: 0 6px 18px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.05); }
+    .subtitle {
+      font-style: italic;
+      font-size: clamp(16px, 1.6vw, 20px);
+      color: var(--text);
+    }
+
+    .soon {
+      margin-top: clamp(20px, 3.6vh, 34px);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-weight: 700;
+      font-size: clamp(20px, 2vw, 26px);
+      color: var(--text);
+    }
+    .soon-note {
+      margin-top: 6px;
+      font-size: 15px;
+      color: var(--text-mid);
+      max-width: 58ch;
+    }
+
+    .info {
+      margin-top: clamp(18px, 3vh, 30px);
+      display: grid;
+      gap: 14px;
+      font-size: 15px;
+    }
+    @media (min-width: 761px) {
+      .info { grid-template-columns: auto auto; justify-content: start; column-gap: 40px; }
+      .info-row--wide { grid-column: 1 / -1; }
+    }
+    .info-row { display: flex; gap: 12px; align-items: flex-start; }
+    .info-row svg { flex: none; width: 18px; height: 18px; margin-top: 3px; fill: var(--red-light); }
+    .info-row .label {
+      display: block;
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 1px;
+    }
+    .info-row a { text-decoration: none; }
+    .info-row a:hover { color: var(--gold-2); }
+    .nowrap { white-space: nowrap; }
+
+    .actions {
+      margin-top: clamp(18px, 3vh, 30px);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: stretch;
+    }
+    .fb-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border: 1px solid rgba(240,192,64,.45);
+      background: rgba(17,17,17,.55);
+      border-radius: 4px;
+      font-size: 14px;
+      color: var(--text);
+      text-decoration: none;
+      box-shadow: 0 6px 18px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.05);
+      transition: border-color .2s, background .2s;
+    }
+    .fb-btn svg { width: 18px; height: 18px; flex: none; fill: #4b8ef5; }
+    .fb-btn:hover { border-color: var(--gold-2); background: rgba(40,40,40,.7); }
+    .emergency {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border: 1px solid rgba(220,38,38,.55);
+      background: rgba(127,29,29,.35);
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    .emergency strong { color: #fca5a5; font-size: 17px; letter-spacing: .04em; white-space: nowrap; }
+
+    /* ─────────── BOTTOM STRIPE (matches social preview + site header) ─────────── */
+    .stripe { flex: none; }
+    .stripe__gold { height: 3px; background: var(--gold-leaf-h); }
+    .stripe__red  { height: 10px; background: linear-gradient(180deg, var(--red) 0%, var(--red-dark) 100%); }
+
+    /* ─────────── PHONES: photo on top, text below on dark ─────────── */
+    @media (max-width: 760px) {
+      .hero {
+        flex-direction: column;
+        align-items: stretch;
+        background: var(--black);
+      }
+      .hero::before { display: none; }
+      .hero__photo {
+        display: block;
+        height: 38vh;
+        min-height: 220px;
+        max-height: 340px;
+        background: url('photo-band.jpg') no-repeat 66% 60% / cover;
+        position: relative;
+      }
+      .hero__photo::after {
+        content: '';
+        position: absolute; inset: 0;
+        background: linear-gradient(180deg, rgba(17,17,17,0) 55%, var(--black) 100%);
+      }
+      .hero__inner { padding: 0 20px 44px; margin-top: -64px; position: relative; }
+      .badge { width: 104px; margin-bottom: 20px; }
+      .rule { margin: 20px 0 16px; }
+      .soon { margin-top: 26px; }
+      .fire-bar { font-size: 12.5px; padding: 8px 12px; }
+      .fire-bar__sep { display: none; }
+      .fire-bar__part { display: block; }
+    }
+    @media (max-width: 400px) {
+      .fire-bar__link { display: none; }
+    }
+    @media (min-width: 761px) { .hero__photo { display: none; } }
+    @media (max-width: 760px) { .br-wide { display: none; } }
+    /* Short laptop screens: tighter rhythm so the page fits without scrolling */
+    @media (min-width: 761px) and (max-height: 920px) {
+      .info { row-gap: 8px; }
+      .hero__inner { padding-top: 22px; padding-bottom: 26px; }
+      .soon-note { font-size: 14px; margin-top: 2px; }
+      .emergency, .fb-btn { padding: 7px 14px; }
+      .subtitle { font-size: 16px; }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .hero__content > * { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+      .hero__content > *:nth-child(2) { animation-delay: .06s; }
+      .hero__content > *:nth-child(3) { animation-delay: .12s; }
+      .hero__content > *:nth-child(4) { animation-delay: .18s; }
+      .hero__content > *:nth-child(n+5) { animation-delay: .26s; }
+      @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Filled in from the ocfa-fire-status Worker; stays hidden if the status can't be loaded -->
+  <div class="fire-bar" id="fire-bar" role="status" aria-live="polite">
+    <span class="fire-bar__dot" aria-hidden="true"></span>
+    <span class="fire-bar__text">
+      <span class="fire-bar__part">Burn permit: <strong id="fb-permit"></strong></span><span class="fire-bar__sep" aria-hidden="true">|</span><span class="fire-bar__part">Fire danger: <strong id="fb-danger"></strong></span>
+    </span>
+    <a class="fire-bar__link" href="https://www2.dnr.state.mi.us/burnpermits/" target="_blank" rel="noopener">Get a permit →</a>
+    <button class="fire-bar__close" id="fb-close" type="button" aria-label="Hide fire status bar">×</button>
+  </div>
+
+  <main class="hero">
+    <div class="hero__photo" role="img" aria-label="Firefighters training on an aircraft fire at sunset"></div>
+    <div class="hero__inner">
+      <div class="hero__content">
+        <img class="badge" src="FireAuth.png" alt="Otsego County Fire Authority badge" width="150" height="150" />
+        <h1><span>Otsego County</span> <span>Fire Authority</span></h1>
+        <hr class="rule" />
+        <p class="subtitle">Serving the City&nbsp;of&nbsp;Gaylord and the townships&nbsp;of<br class="br-wide" /> Bagley, Dover, Hayes, Livingston &amp; western&nbsp;Chester</p>
+
+        <p class="soon">Our new online home is on the way.</p>
+        <p class="soon-note">Soon you&rsquo;ll find board meeting minutes, agendas, financial reports, and run reports here. Until then, reach us by phone or email below.</p>
+
+        <div class="info">
+          <div class="info-row info-row--wide">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 4h-1V2h-2v2H8V2H6v2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 16H5V9h14v11z"/></svg>
+            <div><span class="label">Next board meeting</span><span id="next-meeting">First Thursday of each month</span> · 9:30 AM<br/><a href="https://maps.google.com/?q=305+East+Main+Street+Gaylord+MI+49735" target="_blank" rel="noopener">City Hall, 305 E. Main St., Gaylord</a></div>
+          </div>
+          <div class="info-row">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.6a1 1 0 0 1-.25 1z"/></svg>
+            <div><span class="label">Office</span><a class="nowrap" data-tel="jijhdbaejh">Phone on file</a></div>
+          </div>
+          <div class="info-row">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <div><span class="label">Email</span><a href="mailto:info@otsegocountyfiremi.gov">info@otsegocountyfiremi.gov</a></div>
+          </div>
+        </div>
+
+        <div class="actions">
+          <p class="emergency"><span>In an emergency, always dial</span> <strong>9-1-1</strong></p>
+          <a class="fb-btn" href="https://www.facebook.com/profile.php?id=100064728846517" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+            Follow us on Facebook
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="stripe" aria-hidden="true"><div class="stripe__gold"></div><div class="stripe__red"></div></div>
+
+<script>
+  // ── PHONE NUMBER ──
+  // Stored as letters (a=0 … j=9) so the digits never appear in the page source for scrapers.
+  document.querySelectorAll('a[data-tel]').forEach(function(a) {
+    var d = a.getAttribute('data-tel').replace(/[a-j]/g, function(c) { return c.charCodeAt(0) - 97; });
+    a.href = 'tel:+1' + d;
+    a.textContent = '(' + d.slice(0, 3) + ') ' + d.slice(3, 6) + '-' + d.slice(6);
+  });
+
+  // ── NEXT BOARD MEETING ──
+  // 1st Thursday of each month. Exceptions keyed by the regular date (YYYY-MM-DD), same format as the full site:
+  //   { cancelled: true }  or  { moved: 'YYYY-MM-DD' }
+  var MEETING_CHANGES = {
+    // '2026-11-05': { moved: '2026-11-12' },
+  };
+  (function() {
+    function iso(d) { return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0'); }
+    function parseIso(s) { var p = s.split('-'); return new Date(+p[0], p[1] - 1, +p[2]); }
+    var today = new Date(); today.setHours(0,0,0,0);
+    var next = null;
+    for (var i = -1; i <= 12 && !next; i++) {
+      var first = new Date(today.getFullYear(), today.getMonth() + i, 1);
+      var regular = new Date(first.getFullYear(), first.getMonth(), 1 + (4 - first.getDay() + 7) % 7);
+      var change = MEETING_CHANGES[iso(regular)] || {};
+      if (change.cancelled) continue;
+      var date = change.moved ? parseIso(change.moved) : regular;
+      if (date >= today) next = date;
+    }
+    if (next) {
+      document.getElementById('next-meeting').textContent =
+        next.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+    }
+  })();
+
+  // ── FIRE STATUS BAR ──
+  // Cloudflare Worker (ocfa-fire-status, in the OCFA Cloudflare account); source is worker.js on main.
+  var FIRE_STATUS_URL = 'https://ocfa-fire-status.otsego-county-fire-authority.workers.dev/';
+  var FB_COLORS = {
+    green:  { edge: '#006633', text: '#4ade80' },
+    yellow: { edge: '#d97706', text: '#fbbf24' },
+    orange: { edge: '#ff9a00', text: '#fb923c' },
+    red:    { edge: '#dc2626', text: '#fca5a5' },
+    brown:  { edge: '#b58b7c', text: '#d4a890' },
+    gray:   { edge: '#888480', text: '#c0bdb8' },
+  };
+  var FB_CACHE_KEY   = 'ocfa_fire_status_v2';   // shared with the full site
+  var FB_HIDDEN_KEY  = 'ocfa_fire_bar_hidden';  // remembers which status the visitor closed
+  var FB_TTL_MS      = 60 * 60 * 1000;
+
+  function showFireBar(data) {
+    var bar = document.getElementById('fire-bar');
+    var permit = data.permit || {};
+    var danger = data.danger || { label: 'No Active Alerts', color: 'green' };
+    // A visitor who closed the bar sees it again only when the status changes
+    var statusKey = permit.label + '|' + danger.label;
+    try { if (localStorage.getItem(FB_HIDDEN_KEY) === statusKey) return; } catch(e) {}
+
+    var worst = danger.color !== 'green' ? danger.color : permit.color;
+    var c = FB_COLORS[worst] || FB_COLORS.gray;
+    bar.style.setProperty('--fb-color', c.text);
+    bar.style.setProperty('--fb-edge',  c.edge);
+    document.getElementById('fb-permit').textContent = permit.label || 'Unknown';
+    document.getElementById('fb-permit').style.color = (FB_COLORS[permit.color] || FB_COLORS.gray).text;
+    document.getElementById('fb-danger').textContent = danger.label;
+    document.getElementById('fb-danger').style.color = (FB_COLORS[danger.color] || FB_COLORS.gray).text;
+    // During a Red Flag Warning the bar can't be closed
+    document.getElementById('fb-close').hidden = (danger.color === 'red');
+    document.getElementById('fb-close').onclick = function() {
+      bar.classList.remove('is-shown');
+      try { localStorage.setItem(FB_HIDDEN_KEY, statusKey); } catch(e) {}
+    };
+    bar.classList.add('is-shown');
+  }
+
+  (function initFireBar() {
+    try {
+      var cached = JSON.parse(localStorage.getItem(FB_CACHE_KEY) || 'null');
+      if (cached && (Date.now() - cached.fetchedAt) < FB_TTL_MS) { showFireBar(cached); return; }
+    } catch(e) {}
+    fetch(FIRE_STATUS_URL)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.error) throw new Error(data.message);
+        data.fetchedAt = Date.now();
+        try { localStorage.setItem(FB_CACHE_KEY, JSON.stringify(data)); } catch(e) {}
+        showFireBar(data);
+      })
+      .catch(function() { /* leave the bar hidden; the page works without it */ });
+  })();
+</script>
+</body>
+</html>
