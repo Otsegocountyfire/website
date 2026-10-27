@@ -446,7 +446,7 @@
     brown:  { edge: '#b58b7c', text: '#d4a890' },
     gray:   { edge: '#888480', text: '#c0bdb8' },
   };
-  var FB_CACHE_KEY   = 'ocfa_fire_status_v2';   // shared with the full site
+  var FB_CACHE_KEY   = 'ocfa_fire_status_v3';   // v3 adds the DNR fire danger rating
   var FB_HIDDEN_KEY  = 'ocfa_fire_bar_hidden';  // remembers which status the visitor closed
   var FB_TTL_MS      = 60 * 60 * 1000;
 
@@ -455,7 +455,8 @@
     var permit = data.permit || {};
     var danger = data.danger || { label: 'No Active Alerts', color: 'green' };
     // A visitor who closed the bar sees it again only when the status changes
-    var statusKey = permit.label + '|' + danger.label;
+    var rating = data.rating || null;
+    var statusKey = permit.label + '|' + danger.label + '|' + (rating ? rating.level : '');
     try { if (localStorage.getItem(FB_HIDDEN_KEY) === statusKey) return; } catch(e) {}
 
     // Lamp and edge follow the burning status; only a Red Flag Warning overrides it
@@ -475,8 +476,26 @@
     // Normal-day text stays neutral; only a non-green status gets its warning color
     function phraseColor(color) { return color && color !== 'green' ? (FB_COLORS[color] || FB_COLORS.gray).text : ''; }
     document.getElementById('fb-permit').style.color = phraseColor(permit.color);
-    document.getElementById('fb-danger').textContent = danger.color === 'green' ? 'No fire weather alerts' : danger.label;
-    document.getElementById('fb-danger').style.color = phraseColor(danger.color);
+    // Second slot: an NWS fire weather alert if there is one; otherwise the DNR's daily fire danger level
+    // (colored like the roadside fire danger signs); otherwise nothing
+    var RATING_COLOR = { 'Low': '#4ade80', 'Moderate': '#60a5fa', 'High': '#facc15', 'Very High': '#fb923c', 'Extreme': '#ef4444' };
+    var dangerEl = document.getElementById('fb-danger');
+    dangerEl.textContent = '';
+    dangerEl.style.color = '';
+    dangerEl.removeAttribute('title');
+    dangerEl.hidden = false;
+    if (danger.color !== 'green') {
+      dangerEl.textContent = danger.label;
+      dangerEl.style.color = phraseColor(danger.color);
+    } else if (rating && RATING_COLOR[rating.level]) {
+      var levelEl = document.createElement('span');
+      levelEl.textContent = rating.level;
+      levelEl.style.color = RATING_COLOR[rating.level];
+      dangerEl.append('Fire danger: ', levelEl);
+      dangerEl.title = 'Today’s ' + rating.area + ' fire danger from the ' + rating.source;
+    } else {
+      dangerEl.hidden = true;
+    }
     // During a Red Flag Warning the bar can't be closed
     document.getElementById('fb-close').hidden = (danger.color === 'red');
     bar.classList.toggle('fire-bar--alert', danger.color === 'red');
