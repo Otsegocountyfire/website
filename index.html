@@ -143,6 +143,37 @@
     .fire-bar__close:hover { color: var(--text); background: rgba(255,255,255,.08); }
     .fire-bar__close[hidden] { display: none; }
 
+    /* Fire button: brings the status bar back after a visitor closes it */
+    .fire-reopen {
+      --lamp: #4ade80;
+      position: fixed;
+      top: 12px; right: 12px;
+      z-index: 5;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(17,17,17,.75);
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+      display: grid; place-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0,0,0,.5), 0 0 8px 1px color-mix(in srgb, var(--lamp) 35%, transparent);
+    }
+    .fire-reopen[hidden] { display: none; }
+    .fire-reopen:hover { border-color: var(--gold-2); }
+    .fire-reopen svg {
+      width: 20px; height: 20px;
+      fill: var(--lamp);
+      filter: drop-shadow(0 0 4px color-mix(in srgb, var(--lamp) 70%, transparent));
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .fire-reopen { animation: reopen-glow 2.8s ease-in-out infinite; }
+      @keyframes reopen-glow {
+        0%, 100% { box-shadow: 0 4px 14px rgba(0,0,0,.5), 0 0 6px 1px color-mix(in srgb, var(--lamp) 25%, transparent); }
+        50%      { box-shadow: 0 4px 14px rgba(0,0,0,.5), 0 0 14px 4px color-mix(in srgb, var(--lamp) 45%, transparent); }
+      }
+    }
+
     /* ─────────── HERO ─────────── */
     .hero {
       flex: 1 0 auto;
@@ -360,6 +391,9 @@
     <a class="fire-bar__link" href="https://www2.dnr.state.mi.us/burnpermits/" target="_blank" rel="noopener">Get a permit →</a>
     <button class="fire-bar__close" id="fb-close" type="button" aria-label="Hide fire status bar">×</button>
   </div>
+  <button class="fire-reopen" id="fb-reopen" type="button" aria-label="Show fire status" title="Show fire status" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg>
+  </button>
 
   <main class="hero">
     <div class="hero__photo" role="img" aria-label="Firefighters training on an aircraft fire at sunset"></div>
@@ -457,7 +491,6 @@
     // A visitor who closed the bar sees it again only when the status changes
     var rating = data.rating || null;
     var statusKey = permit.label + '|' + danger.label + '|' + (rating ? rating.level : '');
-    try { if (localStorage.getItem(FB_HIDDEN_KEY) === statusKey) return; } catch(e) {}
 
     // Lamp and edge follow the burning status; only a Red Flag Warning overrides it
     var BURN_COLOR = { 0: 'red', 1: 'green', 2: 'orange', 3: 'gray' };
@@ -499,11 +532,27 @@
     // During a Red Flag Warning the bar can't be closed
     document.getElementById('fb-close').hidden = (danger.color === 'red');
     bar.classList.toggle('fire-bar--alert', danger.color === 'red');
-    document.getElementById('fb-close').onclick = function() {
-      bar.classList.remove('is-shown');
+    // Closed bars stay closed until the status changes; the fire button brings one back any time
+    var closeBtn  = document.getElementById('fb-close');
+    var reopenBtn = document.getElementById('fb-reopen');
+    reopenBtn.style.setProperty('--lamp', LAMP[lampColor]);
+    function setClosed(closed) {
+      bar.classList.toggle('is-shown', !closed);
+      reopenBtn.hidden = !closed;
+    }
+    var dismissed = false;
+    try { dismissed = localStorage.getItem(FB_HIDDEN_KEY) === statusKey; } catch(e) {}
+    setClosed(dismissed && danger.color !== 'red');
+    closeBtn.onclick = function() {
       try { localStorage.setItem(FB_HIDDEN_KEY, statusKey); } catch(e) {}
+      setClosed(true);
+      reopenBtn.focus();
     };
-    bar.classList.add('is-shown');
+    reopenBtn.onclick = function() {
+      try { localStorage.removeItem(FB_HIDDEN_KEY); } catch(e) {}
+      setClosed(false);
+      (closeBtn.hidden ? bar.querySelector('.fire-bar__link') : closeBtn).focus();
+    };
   }
 
   (function initFireBar() {
