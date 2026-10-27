@@ -92,7 +92,7 @@
     /* The two statuses sit side by side and only wrap when there truly isn't room */
     .fire-bar__text { flex: 1 1 auto; min-width: 0; display: flex; flex-wrap: wrap; column-gap: 18px; row-gap: 2px; }
     .fire-bar__part { white-space: nowrap; }
-    .fire-bar__text strong { color: var(--fb-color); font-weight: 700; white-space: nowrap; }
+    .fire-bar__text strong { color: var(--text); font-weight: 700; white-space: nowrap; }
     .fire-bar__link {
       flex: none;
       color: var(--gold-2);
@@ -436,9 +436,11 @@
     // Short, self-explanatory phrases (no "Burn permit:" / "Fire danger:" prefixes)
     var PERMIT_TEXT = { 0: 'No burning', 1: 'Burning permitted', 2: 'Restricted burning', 3: 'Contact DNR' };
     document.getElementById('fb-permit').textContent = PERMIT_TEXT[permit.status] || permit.label || 'Burn permit status unknown';
-    document.getElementById('fb-permit').style.color = (FB_COLORS[permit.color] || FB_COLORS.gray).text;
+    // Normal-day text stays neutral; only a non-green status gets its warning color
+    function phraseColor(color) { return color && color !== 'green' ? (FB_COLORS[color] || FB_COLORS.gray).text : ''; }
+    document.getElementById('fb-permit').style.color = phraseColor(permit.color);
     document.getElementById('fb-danger').textContent = danger.color === 'green' ? 'No fire weather alerts' : danger.label;
-    document.getElementById('fb-danger').style.color = (FB_COLORS[danger.color] || FB_COLORS.gray).text;
+    document.getElementById('fb-danger').style.color = phraseColor(danger.color);
     // During a Red Flag Warning the bar can't be closed
     document.getElementById('fb-close').hidden = (danger.color === 'red');
     document.getElementById('fb-close').onclick = function() {
