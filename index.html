@@ -458,8 +458,15 @@
     var statusKey = permit.label + '|' + danger.label;
     try { if (localStorage.getItem(FB_HIDDEN_KEY) === statusKey) return; } catch(e) {}
 
-    var worst = danger.color !== 'green' ? danger.color : permit.color;
-    var c = FB_COLORS[worst] || FB_COLORS.gray;
+    // Lamp and edge follow the burning status; only a Red Flag Warning overrides it
+    var BURN_COLOR = { 0: 'red', 1: 'green', 2: 'orange', 3: 'gray' };
+    var burnColor = BURN_COLOR[permit.status] || 'gray';
+    permit.color = burnColor;
+    var lampColor = danger.color === 'red' ? 'red' : burnColor;
+    var c = FB_COLORS[lampColor];
+    // Lamp needs saturated colors (the light text shades read as pink/pale when glowing)
+    var LAMP = { green: '#4ade80', orange: '#fb923c', red: '#ef4444', gray: '#a8a49c' };
+    bar.querySelector('.fire-bar__dot').style.setProperty('--lamp', LAMP[lampColor]);
     bar.style.setProperty('--fb-color', c.text);
     bar.style.setProperty('--fb-edge',  c.edge);
     // Short, self-explanatory phrases (no "Burn permit:" / "Fire danger:" prefixes)
