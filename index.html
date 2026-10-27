@@ -339,10 +339,11 @@
       .hero::before { display: none; }
       .hero__photo {
         display: block;
-        height: 38vh;
-        min-height: 220px;
-        max-height: 340px;
-        background: url('photo-band.jpg') no-repeat 66% 60% / cover;
+        /* Shorter than the photo's natural 4:3 so the top (mostly sky) is trimmed and the page starts higher */
+        height: 27vh;
+        min-height: 170px;
+        max-height: 250px;
+        background: url('photo-band.jpg') no-repeat 66% 80% / cover;
         position: relative;
       }
       .hero__photo::after {
