@@ -75,12 +75,14 @@
       padding: 8px 16px;
       background: #161616;
       border-bottom: 1px solid rgba(255,255,255,.08);
-      box-shadow: inset 4px 0 0 var(--fb-edge);
+      box-shadow: inset 4px 0 0 var(--fb-edge), 0 4px 12px rgba(0,0,0,.35);
       font-size: 13px;
       line-height: 1.4;
       color: var(--text-mid);
-      position: relative;
-      z-index: 2;
+      /* Stays pinned to the top while scrolling, so reopening it from the flame shows it right there */
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
     .fire-bar.is-shown { display: flex; }
     .fire-bar__dot {
