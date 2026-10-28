@@ -394,7 +394,7 @@
     <span class="fire-bar__text"><span class="fire-bar__parts">
       <strong class="fire-bar__part" id="fb-permit"></strong><strong class="fire-bar__part" id="fb-danger"></strong>
     </span></span>
-    <a class="fire-bar__link" href="https://www2.dnr.state.mi.us/burnpermits/" target="_blank" rel="noopener">Get a permit →</a>
+    <a class="fire-bar__link" href="https://www2.dnr.state.mi.us/burnpermits/" target="_blank" rel="noopener">Get a Permit →</a>
     <button class="fire-bar__close" id="fb-close" type="button" aria-label="Hide fire status bar">×</button>
   </div>
   <button class="fire-reopen" id="fb-reopen" type="button" aria-label="Show fire status" title="Show fire status" hidden>
@@ -510,7 +510,7 @@
     bar.style.setProperty('--fb-color', c.text);
     bar.style.setProperty('--fb-edge',  c.edge);
     // Short, self-explanatory phrases (no "Burn permit:" / "Fire danger:" prefixes)
-    var PERMIT_TEXT = { 0: 'No burning', 1: 'Burning permitted', 2: 'Restricted burning', 3: 'Contact DNR' };
+    var PERMIT_TEXT = { 0: 'No Burning', 1: 'Burning Permitted', 2: 'Restricted Burning', 3: 'Contact DNR' };
     document.getElementById('fb-permit').textContent = PERMIT_TEXT[permit.status] || permit.label || 'Burn permit status unknown';
     // Normal-day text stays neutral; only a non-green status gets its warning color
     function phraseColor(color) { return color && color !== 'green' ? (FB_COLORS[color] || FB_COLORS.gray).text : ''; }
@@ -530,7 +530,7 @@
       var levelEl = document.createElement('span');
       levelEl.textContent = rating.level;
       levelEl.style.color = RATING_COLOR[rating.level];
-      dangerEl.append('Fire danger: ', levelEl);
+      dangerEl.append('Fire Danger: ', levelEl);
       dangerEl.title = 'Today’s ' + rating.area + ' fire danger from the ' + rating.source;
     } else {
       dangerEl.hidden = true;
