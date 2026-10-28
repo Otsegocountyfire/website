@@ -22,7 +22,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://otsegocountyfiremi.gov/" />
   <link rel="preload" as="image" href="photo-band.jpg" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Playfair+Display:wght@700;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     /* Placeholder landing page — same palette and type as the full site (main branch). */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -76,7 +76,9 @@
       background: #161616;
       border-bottom: 1px solid rgba(255,255,255,.08);
       box-shadow: inset 4px 0 0 var(--fb-edge), 0 4px 12px rgba(0,0,0,.35);
-      font-size: 13px;
+      font-family: 'Barlow', 'Segoe UI', Arial, sans-serif;
+      font-size: 14.5px;
+      letter-spacing: .01em;
       line-height: 1.4;
       color: var(--text-mid);
       /* Stays pinned to the top while scrolling, so reopening it from the flame shows it right there */
@@ -123,14 +125,15 @@
     .fire-bar__parts { display: flex; flex-wrap: wrap; row-gap: 2px; margin-left: -25px; }
     .fire-bar__part { white-space: nowrap; position: relative; padding-left: 25px; }
     .fire-bar__part::before { content: '|'; position: absolute; left: 10px; color: rgba(255,255,255,.3); font-weight: 400; }
-    .fire-bar__text strong { color: var(--text); font-weight: 700; white-space: nowrap; }
+    .fire-bar__text strong { color: var(--text); font-weight: 600; white-space: nowrap; }
     .fire-bar__link {
       flex: none;
       color: var(--gold-2);
       text-decoration: none;
       white-space: nowrap;
-      font-size: 12px;
-      letter-spacing: .04em;
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: .03em;
     }
     .fire-bar__link:hover { text-decoration: underline; }
     .fire-bar__close {
@@ -357,7 +360,7 @@
       .badge { width: 104px; margin-bottom: 20px; }
       .rule { margin: 20px 0 16px; }
       .soon { margin-top: 26px; }
-      .fire-bar { font-size: 12.5px; padding: 8px 12px; }
+      .fire-bar { font-size: 14px; padding: 8px 12px; }
     }
     @media (max-width: 400px) {
       .fire-bar__link { display: none; }
