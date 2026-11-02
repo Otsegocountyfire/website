@@ -1148,7 +1148,8 @@
       font-family: 'Playfair Display', serif;
       font-size: 2rem;
       font-weight: 900;
-      color: var(--red-light);
+      font-variant-numeric: lining-nums;
+      color: var(--text-light);
       line-height: 1;
     }
     .sc-label {
@@ -1160,54 +1161,274 @@
       margin-top: 6px;
     }
 
-    /* Chart panel — dark */
+    .sc-sub {
+      font-size: .78rem;
+      color: var(--text-mid);
+      margin-top: 8px;
+      line-height: 1.4;
+    }
+    .sc-delta {
+      font-size: .78rem;
+      color: var(--text-light);
+      margin-top: 4px;
+      line-height: 1.4;
+    }
+
+    /* ─────────────────── INCIDENT STATISTICS ─────────────────── */
+    #stats [hidden] { display: none !important; }
+    .is-period {
+      color: var(--text-mid);
+      font-size: .9rem;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+    .is-period strong { color: var(--text-light); }
+    .is-tag {
+      display: inline-block;
+      font-size: .7rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      border: 1px solid rgba(255,255,255,.3);
+      padding: 1px 7px;
+      margin-left: 6px;
+      vertical-align: 1px;
+    }
+    .is-notice {
+      background: var(--bg-white);
+      border: 1px solid rgba(255,255,255,.08);
+      border-left: 4px solid var(--gold-3);
+      padding: 14px 16px;
+      margin-bottom: 24px;
+      font-size: .9rem;
+      line-height: 1.6;
+      color: var(--text-mid);
+    }
+    .is-notice a, .is-about a { color: var(--gold-2); }
+
     .chart-panel {
       background: var(--bg-white);
       border: 1px solid rgba(255,255,255,.08);
       border-top: 4px solid var(--red);
-      padding: 28px;
-      margin-bottom: 36px;
-      text-align: center;
+      padding: 24px 28px;
+      margin-bottom: 28px;
       box-shadow: 0 2px 10px rgba(0,0,0,.3);
     }
     .chart-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: #ffffff;
-      margin-bottom: 22px;
-      letter-spacing: .04em;
+      letter-spacing: .02em;
+      margin-bottom: 4px;
     }
-    .chart-mock {
+    .chart-note {
+      font-size: .82rem;
+      line-height: 1.5;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    /* Monthly columns */
+    .is-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 18px;
+      font-size: .82rem;
+      color: var(--text-mid);
+      margin-bottom: 12px;
+    }
+    .is-legend span::before {
+      content: '';
+      display: inline-block;
+      width: 10px; height: 10px;
+      border-radius: 2px;
+      margin-right: 6px;
+      background: var(--swatch);
+    }
+    .is-chart {
+      position: relative;
+      height: 230px;
+      margin: 14px 0 0 30px;
+    }
+    .is-grid {
+      position: absolute;
+      left: 0; right: 0;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .is-grid span {
+      position: absolute;
+      right: 100%;
+      top: -.6em;
+      padding-right: 8px;
+      font-size: .72rem;
+      line-height: 1.2;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums lining-nums;
+    }
+    .is-cols {
+      position: absolute;
+      inset: 0;
+      display: flex;
+    }
+    .is-col {
+      flex: 1 1 0;
+      min-width: 0;
+      height: 100%;
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      gap: 18px;
-      height: 150px;
-      max-width: 580px;
-      margin: 0 auto 14px;
+      gap: 2px;
+      padding: 0 2px;
+      position: relative;
     }
-    .bar-group { display: flex; flex-direction: column; align-items: center; gap: 5px; }
-    .bar {
-      width: 40px;
-      border-radius: 2px 2px 0 0;
-      background: linear-gradient(180deg, rgba(185,28,28,.55) 0%, rgba(185,28,28,.2) 100%);
-      border-top: 2px solid var(--red);
-      border-left: 1px solid rgba(185,28,28,.2);
-      border-right: 1px solid rgba(185,28,28,.2);
-      transition: background .2s;
+    .is-col:focus { outline: none; }
+    .is-col:focus-visible { outline: 2px solid var(--gold-2); outline-offset: -2px; }
+    .is-col:hover, .is-col:focus-visible { background: rgba(255,255,255,.04); }
+    .is-bar {
+      flex: 0 1 24px;
+      min-width: 3px;
+      border-radius: 4px 4px 0 0;
+      background: var(--red-light);
+      position: relative;
     }
-    .bar:hover { background: linear-gradient(180deg, rgba(185,28,28,.85) 0%, rgba(185,28,28,.45) 100%); }
-    .bar-val { font-family: 'Playfair Display', serif; font-size: .68rem; color: var(--text-muted); }
-    .bar-year { font-family: 'Playfair Display', serif; font-size: .72rem; color: var(--text-muted); font-weight: 700; }
-    .bar-year.current { color: var(--red); font-weight: 900; }
-    .chart-caption {
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      font-size: .8rem;
+    .is-bar.prior { background: var(--gold-4); }
+    .is-bar-val {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding-bottom: 3px;
+      font-size: .78rem;
+      font-weight: 700;
+      color: var(--text-light);
+      font-variant-numeric: lining-nums;
+    }
+    .is-axis {
+      display: flex;
+      margin: 6px 0 0 30px;
+      border-top: 1px solid rgba(255,255,255,.28);
+      padding-top: 6px;
+    }
+    .is-axis span {
+      flex: 1 1 0;
+      min-width: 0;
+      text-align: center;
+      font-size: .72rem;
       color: var(--text-muted);
     }
+    .is-axis span small { display: block; font-size: .92em; }
+    .is-tip {
+      position: absolute;
+      z-index: 5;
+      pointer-events: none;
+      background: #0e0e0e;
+      border: 1px solid rgba(255,255,255,.2);
+      padding: 7px 10px;
+      font-size: .8rem;
+      line-height: 1.45;
+      color: var(--text);
+      white-space: nowrap;
+      box-shadow: 0 2px 10px rgba(0,0,0,.5);
+    }
+    .is-tip strong { color: #ffffff; display: block; }
 
+    /* Category rows */
+    .is-cat {
+      display: grid;
+      grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+      gap: 4px 20px;
+      align-items: center;
+      padding: 9px 0;
+      border-top: 1px solid rgba(255,255,255,.07);
+    }
+    .is-cat:first-of-type { border-top: 0; }
+    .is-cat-name { color: var(--text-light); font-size: .92rem; font-weight: 700; }
+    .is-cat-desc { color: var(--text-muted); font-size: .78rem; line-height: 1.4; margin-top: 2px; }
+    .is-cat-track { display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .is-cat-bar {
+      height: 14px;
+      min-width: 3px;
+      flex: 0 0 auto;
+      background: var(--red-light);
+      border-radius: 0 4px 4px 0;
+    }
+    .is-cat-val {
+      flex: 0 0 auto;
+      font-size: .88rem;
+      color: var(--text-light);
+      font-variant-numeric: lining-nums;
+      white-space: nowrap;
+    }
+    .is-cat-val small { color: var(--text-muted); font-size: .82rem; margin-left: 4px; }
+
+    /* Indicators */
+    .is-ind-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 18px 24px;
+      margin: 0;
+    }
+    .is-ind-grid dt { font-size: .84rem; color: var(--text-mid); line-height: 1.35; }
+    .is-ind-grid dd {
+      margin: 0 0 4px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      font-variant-numeric: lining-nums;
+      color: var(--text-light);
+      line-height: 1.1;
+    }
+    .is-ind-grid div { display: flex; flex-direction: column-reverse; justify-content: flex-end; }
+
+    .is-table-toggle { margin-top: 18px; }
+    .is-table-toggle summary {
+      cursor: pointer;
+      color: var(--gold-2);
+      font-size: .88rem;
+      width: fit-content;
+    }
+    .is-table-toggle .doc-table-wrap { margin-top: 12px; }
+    .is-table-toggle td, .is-table-toggle th { font-variant-numeric: tabular-nums lining-nums; }
+    .is-total-row td { font-weight: 700; color: var(--text-light); }
+
+    .is-about {
+      color: var(--text-mid);
+      font-size: .9rem;
+      line-height: 1.65;
+    }
+    .is-about p { margin-bottom: 10px; }
+    .is-about h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: .95rem;
+      color: #ffffff;
+      margin: 16px 0 4px;
+    }
+    .is-about ul { margin: 0 0 10px 18px; }
+
+    @media (max-width: 680px) {
+      .chart-panel { padding: 18px 14px; }
+      .is-cat { grid-template-columns: 1fr; }
+      .is-chart { height: 190px; }
+      .is-axis span { font-size: .66rem; }
+    }
+
+    /* Board packets and grant applications: print on white, table in place of controls */
+    @media print {
+      body:has(#stats.active) { background: #fff !important; color: #000 !important; }
+      body:has(#stats.active) header,
+      body:has(#stats.active) footer,
+      body:has(#stats.active) .fire-status-bar,
+      #stats .doc-controls,
+      #stats .is-table-toggle summary,
+      #stats .is-tip { display: none !important; }
+      #stats * { color: #000 !important; box-shadow: none !important; text-shadow: none !important; }
+      #stats .page-header, #stats .chart-panel, #stats .stat-card, #stats .is-notice,
+      #stats .doc-table-wrap, #stats .doc-table, #stats .doc-table tr, #stats .doc-table th, #stats .doc-table td { background: #fff !important; }
+      #stats .doc-table th, #stats .doc-table td { border-bottom: 1px solid #bbb !important; }
+      #stats .chart-panel, #stats .stat-card, #stats .is-cat { break-inside: avoid; }
+      #stats .is-bar, #stats .is-cat-bar { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    }
     /* ─────────────────── SUB-HEADING ─────────────────── */
     .sub-heading {
       font-family: 'Playfair Display', serif;
@@ -1666,8 +1887,6 @@
 
       /* ── RUN REPORTS ── */
       .runs-grid { grid-template-columns: repeat(2, 1fr); }
-      .chart-mock { gap: 8px; }
-      .bar { width: 26px; }
 
       /* ── FOOTER ── */
       .footer-inner { padding: 28px 16px; gap: 24px; grid-template-columns: 1fr; }
@@ -1756,9 +1975,6 @@
     .vintage-card:hover::after {
       animation: goldCardShimmer 0.7s ease-in-out forwards;
     }
-
-    /* ── BAR CHART GROW ANIMATION ── */
-    .bar { transition: height 0.9s cubic-bezier(0.16,1,0.3,1); }
 
     /* ── NEXT MEETING GOLD HIGHLIGHT ── */
     .next-meeting {
@@ -2177,7 +2393,7 @@
     <a href="#" class="active" aria-current="page" onclick="showSection('home',this);return false;">Home</a>
     <a href="#" onclick="showSection('events',this);return false;">Events</a>
     <a href="#" onclick="showSection('minutes',this);return false;">Minutes &amp; Agendas</a>
-    <a href="#" onclick="showSection('runs',this);return false;">Run Reports</a>
+    <a href="#incident-statistics" onclick="showSection('stats',this);return false;">Incident Statistics</a>
   </nav>
 </header>
 
@@ -2290,9 +2506,9 @@
             <path d="M9 19v-6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2zm0 0V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v10m0 0a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v14z" stroke="rgba(255,255,255,.5)" stroke-width="1.5" stroke-linecap="round"/>
           </svg>
         </div>
-        <h3>Run &amp; Incident Reports</h3>
-        <p>Annual call volume statistics, incident category breakdowns, and mutual aid data by member department.</p>
-        <a class="card-link" href="#" onclick="showSection('runs',document.querySelectorAll('nav a')[3]);return false;">View Run Data →</a>
+        <h3>Incident Statistics</h3>
+        <p>Monthly incident volume, incident categories, and mutual aid figures from reports published through NERIS Public.</p>
+        <a class="card-link" href="#incident-statistics" onclick="showSection('stats',document.querySelectorAll('nav a')[3]);return false;">View Statistics →</a>
       </div>
     </div>
 
@@ -2454,51 +2670,69 @@
   </div>
 </section>
 
-<!-- ══════════════════════ RUNS ══════════════════════ -->
-<section id="runs">
+<!-- ══════════════════════ INCIDENT STATISTICS ══════════════════════ -->
+<section id="stats">
   <div class="page-header">
-    <div class="breadcrumb">Home · Run Reports</div>
-    <h2>Run &amp; Incident Reports</h2>
-    <p>Annual call volume summaries and incident data across all member departments of the Authority.</p>
+    <div class="breadcrumb">Home · Incident Statistics</div>
+    <h2>Incident Statistics</h2>
+    <p>Incidents reported by the Authority and published through the National Emergency Response Information System (NERIS).</p>
   </div>
   <div class="container">
-    <div class="ornate-rule" style="margin-bottom:24px;"><span>2025 Annual Summary</span></div>
+    <div id="is-status" class="is-notice" role="status">Loading incident statistics…</div>
 
-    <div class="runs-grid">
-      <div class="stat-card"><div class="sc-num">[###]</div><div class="sc-label">Total Calls</div></div>
-      <div class="stat-card"><div class="sc-num">[###]</div><div class="sc-label">Structure Fires</div></div>
-      <div class="stat-card"><div class="sc-num">[###]</div><div class="sc-label">Vehicle Fires</div></div>
-      <div class="stat-card"><div class="sc-num">[###]</div><div class="sc-label">MVA / Rescue</div></div>
-      <div class="stat-card"><div class="sc-num">[###]</div><div class="sc-label">Mutual Aid Given</div></div>
-      <div class="stat-card"><div class="sc-num">[###]</div><div class="sc-label">Mutual Aid Received</div></div>
-    </div>
-
-    <div class="chart-panel">
-      <div class="chart-title">Total Annual Call Volume — Five Year Trend</div>
-      <div class="chart-mock">
-        <div class="bar-group"><div class="bar-val">[###]</div><div class="bar" style="height:80px;"></div><div class="bar-year">2020</div></div>
-        <div class="bar-group"><div class="bar-val">[###]</div><div class="bar" style="height:100px;"></div><div class="bar-year">2021</div></div>
-        <div class="bar-group"><div class="bar-val">[###]</div><div class="bar" style="height:115px;"></div><div class="bar-year">2022</div></div>
-        <div class="bar-group"><div class="bar-val">[###]</div><div class="bar" style="height:108px;"></div><div class="bar-year">2023</div></div>
-        <div class="bar-group"><div class="bar-val">[###]</div><div class="bar" style="height:125px;"></div><div class="bar-year">2024</div></div>
-        <div class="bar-group"><div class="bar-val">[###]</div><div class="bar" style="height:138px;border-top-color:#dc2626;background:linear-gradient(180deg,rgba(185,28,28,.85) 0%,rgba(185,28,28,.4) 100%);"></div><div class="bar-year current">2025</div></div>
+    <div id="is-content" hidden>
+      <div class="doc-controls">
+        <label for="is-year">Reporting period:</label>
+        <select id="is-year"></select>
+        <label for="is-compare" id="is-compare-label" style="margin-left:16px;" hidden>Compare with:</label>
+        <select id="is-compare" hidden></select>
       </div>
-      <div class="chart-caption">Chart reflects actual run data provided by member departments. Hover bars for detail. — Placeholder values shown.</div>
-    </div>
 
-    <div class="sub-heading">Annual Run Report Archive</div>
-    <div class="doc-table-wrap">
-      <table class="doc-table">
-        <thead>
-          <tr><th>Year</th><th>Document</th><th>Format</th><th></th></tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>2025</strong></td><td>Annual Run Report — Full Detail</td><td><a class="dl-btn" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
-          <tr><td><strong>2024</strong></td><td>Annual Run Report — Full Detail</td><td><a class="dl-btn" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
-          <tr><td><strong>2023</strong></td><td>Annual Run Report — Full Detail</td><td><a class="dl-btn" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
-          <tr><td><strong>2022</strong></td><td>Annual Run Report — Full Detail</td><td><a class="dl-btn" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
-        </tbody>
-      </table>
+      <p class="is-period" id="is-period"></p>
+
+      <div class="is-notice">
+        These figures are not real-time. NERIS Public generally publishes incidents about 60 days after they occur, so recent calls are not included, and departments may still correct a report after submitting it. <span id="is-freshness"></span>
+      </div>
+
+      <div class="runs-grid" id="is-cards"></div>
+
+      <div class="chart-panel">
+        <h3 class="chart-title" id="is-monthly-title">Incidents by Month</h3>
+        <p class="chart-note" id="is-monthly-note"></p>
+        <div id="is-monthly"></div>
+        <details class="is-table-toggle" id="is-table-toggle">
+          <summary>View these figures as a table</summary>
+          <div class="doc-table-wrap"><table class="doc-table" id="is-table" aria-label="Incidents by month"></table></div>
+        </details>
+      </div>
+
+      <div class="chart-panel">
+        <h3 class="chart-title">Incident Categories</h3>
+        <p class="chart-note">NERIS categories, as grouped by the NERIS Public Explorer. Each incident is counted in exactly one category.</p>
+        <div id="is-categories"></div>
+      </div>
+
+      <div class="chart-panel">
+        <h3 class="chart-title">Selected Incident Types</h3>
+        <p class="chart-note">Counted from the incident types and aid direction on each report. An incident can appear in more than one of these, so they do not add up to the total.</p>
+        <dl class="is-ind-grid" id="is-indicators"></dl>
+      </div>
+
+      <div class="chart-panel is-about">
+        <h3 class="chart-title">About This Data</h3>
+        <p><strong>Source:</strong> <a id="is-source" href="#" target="_blank" rel="noopener">NERIS Public: Incident Basics</a>. NERIS is operated by UL Research Institutes’ Fire Safety Research Institute in collaboration with the U.S. Fire Administration. NERIS and its operators have not reviewed or endorsed this page. NERIS lists this department as “<span id="is-neris-name"></span>”, ID <span id="is-neris-id"></span>.</p>
+        <p>Incident Basics is a current snapshot, not the authoritative annual record. Totals can change as reports are added or corrected, and may differ from the Authority’s own records or from the older NFIRS system, which uses different categories. No NFIRS figures are combined here.</p>
+        <h4>How incidents are counted</h4>
+        <ul>
+          <li>Every figure counts unique incident reports, not unit responses.</li>
+          <li><strong>Fire incidents</strong> are incidents with any fire incident type on the report. <span id="is-fire-note"></span></li>
+          <li><strong>Non-fire responses</strong> are all other incidents, including false alarms and calls cancelled before arrival.</li>
+          <li><strong>Average per month</strong> uses only months NERIS has fully published.</li>
+          <li><strong>Year-over-year changes</strong> compare only the same months in each year, and appear once at least three months overlap.</li>
+          <li><strong>Mutual aid</strong> comes from the aid direction recorded on each report.</li>
+        </ul>
+        <p>Only totals appear on this page. Addresses, narratives, and information about the people involved are never collected or shown here.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -2519,7 +2753,7 @@
         <li><a href="#" onclick="showSection('events',document.querySelectorAll('nav a')[1]);return false;">Events &amp; Meetings</a></li>
         <li><a href="#" onclick="showSection('minutes',document.querySelectorAll('nav a')[2]);return false;">Meeting Minutes</a></li>
         <li><a href="#" onclick="showSection('minutes',document.querySelectorAll('nav a')[2]);return false;">Financial Documents</a></li>
-        <li><a href="#" onclick="showSection('runs',document.querySelectorAll('nav a')[3]);return false;">Run Reports</a></li>
+        <li><a href="#incident-statistics" onclick="showSection('stats',document.querySelectorAll('nav a')[3]);return false;">Incident Statistics</a></li>
       </ul>
     </div>
     <div>
@@ -2567,7 +2801,8 @@
     const heading = target.querySelector('h1, h2');
     if (heading) { heading.setAttribute('tabindex', '-1'); heading.focus({ preventScroll: true }); }
     staggerIn(target);
-    if (id === 'runs') animateBars();
+    history.replaceState(null, '', id === 'stats' ? '#incident-statistics' : location.pathname + location.search);
+    if (id === 'stats') loadIncidentStats();
   }
 
   // ── NAV LENS FLARE ──
@@ -2635,7 +2870,7 @@
   document.querySelectorAll('nav a').forEach((link, i) => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
-      showSection(['home','events','minutes','runs'][i], this);
+      showSection(['home','events','minutes','stats'][i], this);
       document.getElementById('navToggle').classList.remove('open');
       document.getElementById('navToggle').setAttribute('aria-expanded', 'false');
       document.querySelector('nav').classList.remove('open');
@@ -2682,27 +2917,356 @@
     });
   }
 
-  // ── BAR CHART GROW ──
-  function initBars() {
-    document.querySelectorAll('.bar').forEach(function(bar) {
-      var h = parseFloat(bar.style.height);
-      if (!isNaN(h) && h > 0) {
-        bar.dataset.targetHeight = bar.style.height;
-        bar.style.height = '0px';
+  // ── INCIDENT STATISTICS ──
+  // Reads data/incident-stats.json, which scripts/incident-stats.mjs builds from NERIS Public.
+  var INCIDENT_STATS_URL = 'data/incident-stats.json';
+  var IS_STALE_DAYS      = 21;  // refreshed weekly, so three weeks means refreshes have stopped
+  var IS_MIN_AVG_MONTHS  = 3;   // fewer full months than this isn't a meaningful average
+  var IS_MIN_YOY_MONTHS  = 3;   // same for a year-over-year change
+  var IS_MIN_PCT_BASE    = 20;  // percent changes on small counts mislead; show the count only
+  var IS_MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  var IS_MONTHS_LONG = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  // Names follow the NERIS Public Explorer; descriptions are ours, for the general public
+  var IS_CATEGORIES = {
+    fire:             { name: 'Fire',                   desc: 'Structure, vehicle, outdoor, and other fires' },
+    hazsit:           { name: 'Hazardous Situation',    desc: 'Vehicle crashes, downed power lines, gas leaks, spills' },
+    alarm:            { name: 'Alarms',                 desc: 'Fire, gas, and CO alarms; malfunctioning and false alarms' },
+    noemerg:          { name: 'False Call / Cancelled', desc: 'Cancelled calls, nothing found, authorized burns, good-intent calls' },
+    rescue:           { name: 'Rescue',                 desc: 'Extrication, elevator, and other rescues' },
+    ems:              { name: 'EMS',                    desc: 'Medical calls and injuries' },
+    pubserv:          { name: 'Public Service',         desc: 'Citizen assists, standbys, and other service calls' },
+    lawenforce:       { name: 'Law Enforcement',        desc: 'Incidents reported as law enforcement' },
+    multi_discipline: { name: 'Multi-Discipline',       desc: 'Reports with types from more than one category' },
+    other:            { name: 'Other',                  desc: 'Reports without a recognized category' }
+  };
+  var IS_INDICATORS = [
+    ['Structure fires',                 function(m) { return m.indicators.structureFire; }],
+    ['Vehicle fires',                   function(m) { return m.indicators.vehicleFire; }],
+    ['Outdoor fires',                   function(m) { return m.indicators.outdoorFire; }],
+    ['Motor vehicle crashes',           function(m) { return m.indicators.vehicleCrash; }],
+    ['Power line and electrical hazards', function(m) { return m.indicators.electrical; }],
+    ['Gas leaks and hazardous materials', function(m) { return m.indicators.hazmat; }],
+    ['Mutual aid given',                function(m) { return m.aidGiven; }],
+    ['Mutual aid received',             function(m) { return m.aidReceived; }]
+  ];
+
+  var isData = null;
+  var isLoading = false;
+
+  function isDayText(iso) {
+    return new Date(iso + 'T12:00:00Z').toLocaleDateString('en-US', { timeZone: 'UTC', month: 'long', day: 'numeric', year: 'numeric' });
+  }
+
+  function isMonthKeys(period) {
+    var keys = Object.keys(isData.months).sort();
+    return period === 'all' ? keys : keys.filter(function(k) { return k.slice(0, 4) === period; });
+  }
+
+  // Calendar months a period's chart runs across: the whole year, or first to last published
+  function isChartSlots(period, keys) {
+    if (period !== 'all') {
+      return IS_MONTHS.map(function(_, i) { return period + '-' + String(i + 1).padStart(2, '0'); });
+    }
+    var slots = [];
+    var y = +keys[0].slice(0, 4), m = +keys[0].slice(5);
+    var end = keys[keys.length - 1];
+    for (;;) {
+      var key = y + '-' + String(m).padStart(2, '0');
+      slots.push(key);
+      if (key >= end) return slots;
+      if (++m > 12) { m = 1; y++; }
+    }
+  }
+
+  function isSum(keys, read) {
+    return keys.reduce(function(n, k) { return n + read(isData.months[k]); }, 0);
+  }
+
+  function isPeriodText(keys) {
+    var first = keys[0], last = keys[keys.length - 1];
+    var start = first === isData.coverage.firstIncident.slice(0, 7)
+      ? isData.coverage.firstIncident
+      : first + '-01';
+    var y = +last.slice(0, 4), m = +last.slice(5);
+    var end = last === isData.coverage.latestIncident.slice(0, 7) && !isData.months[last].complete
+      ? isData.coverage.latestIncident
+      : new Date(Date.UTC(y, m, 0)).toISOString().slice(0, 10);
+    return isDayText(start) + ' – ' + isDayText(end);
+  }
+
+  // Change from the prior year over the months complete in both, or null if too few overlap
+  function isYearChange(period, read) {
+    if (period === 'all') return null;
+    var prior = String(+period - 1);
+    var shared = isMonthKeys(period).filter(function(k) {
+      var p = isData.months[prior + k.slice(4)];
+      return isData.months[k].complete && p && p.complete;
+    });
+    if (shared.length < IS_MIN_YOY_MONTHS) return null;
+    var now = isSum(shared, read);
+    var then = isSum(shared.map(function(k) { return prior + k.slice(4); }), read);
+    var diff = now - then;
+    var sign = diff > 0 ? '+' : '−';
+    var text = diff === 0 ? 'No change' : sign + Math.abs(diff).toLocaleString('en-US');
+    if (diff !== 0 && then >= IS_MIN_PCT_BASE) text += ' (' + sign + Math.round(Math.abs(diff) / then * 100) + '%)';
+    return text + ' vs. the same ' + shared.length + ' months of ' + prior;
+  }
+
+  function isRenderCards(period, keys) {
+    var total = isSum(keys, function(m) { return m.total; });
+    var fire = isSum(keys, function(m) { return m.fire; });
+    var full = keys.filter(function(k) { return isData.months[k].complete; });
+    var hasAvg = full.length >= IS_MIN_AVG_MONTHS;
+    var share = function(n) { return total ? Math.round(n / total * 100) + '% of incidents' : ''; };
+    var nonFireOf = function(m) { return m.total - m.fire; };
+    var cards = [
+      ['Total Incidents', total, keys.length + (keys.length === 1 ? ' month' : ' months') + ' of records', isYearChange(period, function(m) { return m.total; })],
+      ['Fire Incidents', fire, share(fire), isYearChange(period, function(m) { return m.fire; })],
+      ['Non-Fire Responses', total - fire, share(total - fire), isYearChange(period, nonFireOf)],
+      ['Average per Month', hasAvg ? Math.round(isSum(full, function(m) { return m.total; }) / full.length) : '—',
+        hasAvg ? 'Over ' + full.length + ' fully published months' : 'Needs at least ' + IS_MIN_AVG_MONTHS + ' full months', null]
+    ];
+    document.getElementById('is-cards').innerHTML = cards.map(function(c) {
+      var value = typeof c[1] === 'number' ? c[1].toLocaleString('en-US') : c[1];
+      return '<div class="stat-card"><div class="sc-num">' + value + '</div><div class="sc-label">' + c[0] + '</div>' +
+        '<div class="sc-sub">' + c[2] + '</div>' + (c[3] ? '<div class="sc-delta">' + c[3] + '</div>' : '') + '</div>';
+    }).join('');
+  }
+
+  function isNiceMax(n) {
+    var step = n <= 10 ? 2 : n <= 25 ? 5 : n <= 50 ? 10 : n <= 100 ? 20 : n <= 250 ? 50 : 100;
+    return { max: Math.ceil(n / step) * step, step: step };
+  }
+
+  function isMonthName(key) {
+    return IS_MONTHS_LONG[+key.slice(5) - 1] + ' ' + key.slice(0, 4);
+  }
+
+  function isRenderMonthly(period, compare, keys) {
+    var slots = isChartSlots(period, keys);
+    var priorOf = function(k) { return compare + k.slice(4); };
+    var value = function(k) { return isData.months[k] ? isData.months[k].total : null; };
+    var values = [];
+    slots.forEach(function(k) {
+      if (value(k) !== null) values.push(value(k));
+      if (compare && value(priorOf(k)) !== null) values.push(value(priorOf(k)));
+    });
+    var scale = isNiceMax(Math.max.apply(null, values));
+    var peak = Math.max.apply(null, slots.map(function(k) { return value(k) || 0; }));
+    var peakLabelled = false;
+    var pct = function(n) { return n / scale.max * 88; }; // headroom for the label on the tallest bar
+
+    var grid = '';
+    for (var t = 0; t <= scale.max; t += scale.step) {
+      grid += '<div class="is-grid" style="bottom:' + pct(t) + '%"><span>' + t + '</span></div>';
+    }
+
+    var cols = slots.map(function(k) {
+      var v = value(k), p = compare ? value(priorOf(k)) : null;
+      var tip = '<strong>' + isMonthName(k) + '</strong>';
+      var label;
+      if (v === null && p === null) {
+        tip += 'No published records';
+        label = isMonthName(k) + ': no published records';
+      } else {
+        var month = isData.months[k];
+        tip += v === null ? 'No published records' : v + ' incidents' + (month.complete ? '' : ' so far (partial month)');
+        if (compare) tip += '<br>' + isMonthName(priorOf(k)) + ': ' + (p === null ? 'no published records' : p + ' incidents');
+        label = tip.replace(/<strong>|<\/strong>/g, ' ').replace('<br>', ', ').trim();
       }
+      var bars = '';
+      if (compare && p !== null) bars += '<div class="is-bar prior" style="height:' + pct(p) + '%"></div>';
+      if (v !== null) {
+        var showVal = v === peak && !peakLabelled;
+        if (showVal) peakLabelled = true;
+        bars += '<div class="is-bar" style="height:' + pct(v) + '%' + (isData.months[k].complete ? '' : ';opacity:.55') + '">' +
+          (showVal ? '<span class="is-bar-val">' + v + '</span>' : '') + '</div>';
+      }
+      return '<div class="is-col" tabindex="0" role="img" aria-label="' + label + '" data-tip="' + tip.replace(/"/g, '&quot;') + '">' + bars + '</div>';
+    }).join('');
+
+    var axis = slots.map(function(k, i) {
+      var showYear = period === 'all' && (i === 0 || k.slice(5) === '01');
+      return '<span>' + IS_MONTHS[+k.slice(5) - 1] + (showYear ? '<small>' + k.slice(0, 4) + '</small>' : '') + '</span>';
+    }).join('');
+
+    var legend = compare
+      ? '<div class="is-legend"><span style="--swatch:var(--red-light)">' + period + '</span><span style="--swatch:var(--gold-4)">' + compare + '</span></div>'
+      : '';
+    var el = document.getElementById('is-monthly');
+    el.innerHTML = legend + '<div class="is-chart" id="is-chart">' + grid + '<div class="is-cols">' + cols + '</div></div><div class="is-axis" aria-hidden="true">' + axis + '</div>';
+
+    var missing = slots.filter(function(k) { return !isData.months[k]; }).length;
+    var partial = slots.filter(function(k) { return isData.months[k] && !isData.months[k].complete; }).length;
+    var notes = ['Hover or tap a month for its total.'];
+    if (partial) notes.push('A faded bar is a month NERIS has only partly published.');
+    if (missing) notes.push('A month with no bar has no published records' + (period === 'all' ? '.' : ' yet, or falls before records begin on ' + isDayText(isData.coverage.firstIncident) + '.'));
+    document.getElementById('is-monthly-note').textContent = notes.join(' ');
+    isBindChartTips();
+    isRenderTable(keys);
+  }
+
+  function isBindChartTips() {
+    var chart = document.getElementById('is-chart');
+    var tip = null;
+    function hide() { if (tip) { tip.remove(); tip = null; } }
+    function show(col) {
+      hide();
+      tip = document.createElement('div');
+      tip.className = 'is-tip';
+      tip.setAttribute('aria-hidden', 'true');
+      tip.innerHTML = col.dataset.tip;
+      chart.appendChild(tip);
+      var c = chart.getBoundingClientRect(), r = col.getBoundingClientRect();
+      var left = r.left - c.left + r.width / 2 - tip.offsetWidth / 2;
+      tip.style.left = Math.max(-30, Math.min(left, c.width - tip.offsetWidth)) + 'px';
+      tip.style.top = '-8px';
+    }
+    chart.querySelectorAll('.is-col').forEach(function(col) {
+      col.addEventListener('mouseenter', function() { show(col); });
+      col.addEventListener('mouseleave', hide);
+      col.addEventListener('focus', function() { show(col); });
+      col.addEventListener('blur', hide);
+      col.addEventListener('keydown', function(e) { if (e.key === 'Escape') hide(); });
     });
   }
 
-  var barsAnimated = false;
-  function animateBars() {
-    if (barsAnimated) return;
-    barsAnimated = true;
-    document.querySelectorAll('.bar').forEach(function(bar, i) {
-      if (bar.dataset.targetHeight) {
-        setTimeout(function() { bar.style.height = bar.dataset.targetHeight; }, 150 + i * 110);
-      }
-    });
+  function isRenderTable(keys) {
+    var row = function(label, read, cls) {
+      return '<tr' + (cls ? ' class="' + cls + '"' : '') + '><td>' + label + '</td>' + [
+        function(m) { return m.total; }, function(m) { return m.fire; }, function(m) { return m.total - m.fire; },
+        function(m) { return m.aidGiven; }, function(m) { return m.aidReceived; }
+      ].map(function(f) { return '<td>' + read(f) + '</td>'; }).join('') + '</tr>';
+    };
+    document.getElementById('is-table').innerHTML =
+      '<thead><tr><th scope="col">Month</th><th scope="col">Incidents</th><th scope="col">Fire</th><th scope="col">Non-fire</th><th scope="col">Aid given</th><th scope="col">Aid received</th></tr></thead><tbody>' +
+      keys.map(function(k) {
+        var m = isData.months[k];
+        return row(isMonthName(k) + (m.complete ? '' : ' (partial)'), function(f) { return f(m); });
+      }).join('') +
+      row('Total', function(f) { return isSum(keys, f); }, 'is-total-row') + '</tbody>';
   }
+
+  function isRenderCategories(keys) {
+    var total = isSum(keys, function(m) { return m.total; });
+    var rows = Object.keys(IS_CATEGORIES).map(function(key) {
+      return { key: key, n: isSum(keys, function(m) { return m.categories[key] || 0; }) };
+    }).filter(function(r) { return r.n > 0; }).sort(function(a, b) { return b.n - a.n; });
+    var top = rows.length ? rows[0].n : 1;
+    document.getElementById('is-categories').innerHTML = rows.map(function(r) {
+      var c = IS_CATEGORIES[r.key];
+      return '<div class="is-cat"><div><div class="is-cat-name">' + c.name + '</div><div class="is-cat-desc">' + c.desc + '</div></div>' +
+        '<div class="is-cat-track"><div class="is-cat-bar" style="width:calc((100% - 92px) * ' + (r.n / top) + ')"></div>' +
+        '<div class="is-cat-val">' + r.n + '<small>' + Math.round(r.n / total * 100) + '%</small></div></div></div>';
+    }).join('');
+  }
+
+  function isRenderIndicators(keys) {
+    document.getElementById('is-indicators').innerHTML = IS_INDICATORS.map(function(ind) {
+      return '<div><dt>' + ind[0] + '</dt><dd>' + isSum(keys, ind[1]) + '</dd></div>';
+    }).join('');
+  }
+
+  function isRender() {
+    var period = document.getElementById('is-year').value;
+    var keys = isMonthKeys(period);
+
+    // Offer only earlier years that share a calendar month with this period
+    var compareSel = document.getElementById('is-compare');
+    var compareLabel = document.getElementById('is-compare-label');
+    var chosen = compareSel.value;
+    var years = period === 'all' ? [] : isYears().filter(function(y) {
+      return y < period && keys.some(function(k) { return isData.months[y + k.slice(4)]; });
+    });
+    compareSel.innerHTML = '<option value="">None</option>' + years.map(function(y) { return '<option>' + y + '</option>'; }).join('');
+    compareSel.value = years.indexOf(chosen) >= 0 ? chosen : '';
+    compareSel.hidden = compareLabel.hidden = !years.length;
+
+    var through = isData.months[keys[keys.length - 1]];
+    var partialYear = period !== 'all' && keys.filter(function(k) { return isData.months[k].complete; }).length < 12;
+    document.getElementById('is-period').innerHTML =
+      '<strong>Reporting period:</strong> ' + isPeriodText(keys) +
+      (partialYear ? '<span class="is-tag">Partial year</span>' : '') +
+      (through && !through.complete ? '<span class="is-tag">Latest month partial</span>' : '');
+
+    isRenderCards(period, keys);
+    isRenderMonthly(period, compareSel.value, keys);
+    isRenderCategories(keys);
+    isRenderIndicators(keys);
+
+    var fireExtra = isSum(keys, function(m) { return m.fire - m.categories.fire; });
+    document.getElementById('is-fire-note').textContent = fireExtra
+      ? 'For this period, ' + fireExtra + (fireExtra === 1 ? ' report also lists' : ' reports also list') + ' another kind of incident. Those count as fires here but under Multi-Discipline in the categories, as they do in the NERIS Public Explorer.'
+      : '';
+  }
+
+  function isYears() {
+    var seen = {};
+    Object.keys(isData.months).forEach(function(k) { seen[k.slice(0, 4)] = true; });
+    return Object.keys(seen).sort().reverse();
+  }
+
+  function isSetup() {
+    var yearSel = document.getElementById('is-year');
+    var lastKey = Object.keys(isData.months).sort().pop();
+    var options = isYears().map(function(y) { return '<option value="' + y + '">' + y + '</option>'; });
+    options.push('<option value="all">All published records</option>');
+    yearSel.innerHTML = options.join('');
+    yearSel.value = lastKey.slice(0, 4);
+    yearSel.addEventListener('change', isRender);
+    document.getElementById('is-compare').addEventListener('change', isRender);
+
+    document.getElementById('is-source').href = isData.source.explorer;
+    document.getElementById('is-neris-name').textContent = isData.department.nerisName;
+    document.getElementById('is-neris-id').textContent = isData.department.nerisId;
+    var refreshed = new Date(isData.refreshedAt);
+    var refreshedText = refreshed.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+    document.getElementById('is-freshness').textContent =
+      'Latest published incident: ' + isDayText(isData.coverage.latestIncident) + '. This page last refreshed: ' + refreshedText + '.';
+
+    var status = document.getElementById('is-status');
+    if ((Date.now() - refreshed.getTime()) / 86400000 > IS_STALE_DAYS) {
+      status.textContent = 'These figures have not refreshed since ' + refreshedText + ', so they may be further behind than usual.';
+    } else {
+      status.hidden = true;
+    }
+    document.getElementById('is-content').hidden = false;
+    isRender();
+  }
+
+  function isShowError() {
+    var status = document.getElementById('is-status');
+    status.textContent = 'Incident statistics could not be loaded right now. Please try again later, or view these records in the ';
+    var link = document.createElement('a');
+    link.href = 'https://public.neris.fsri.org/explorer.html?neris_id=FD26137918';
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = 'NERIS Public Explorer';
+    status.appendChild(link);
+    status.appendChild(document.createTextNode('.'));
+  }
+
+  function loadIncidentStats() {
+    if (isData || isLoading) return;
+    isLoading = true;
+    fetch(INCIDENT_STATS_URL, { cache: 'no-cache' })
+      .then(function(resp) {
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        return resp.json();
+      })
+      .then(function(data) {
+        if (!data.months || !Object.keys(data.months).length) throw new Error('No incident data');
+        isData = data;
+        isSetup();
+      })
+      .catch(isShowError)
+      .then(function() { isLoading = false; });
+  }
+
+  window.addEventListener('beforeprint', function() {
+    var details = document.getElementById('is-table-toggle');
+    if (details) details.open = true;
+  });
 
   // ── MEETING SCHEDULE ──
   // Regular board meetings fall on the 1st Thursday of each month. List any exceptions here,
@@ -3084,7 +3648,6 @@
 
   // ── INIT ──
   initBurnPermit();
-  initBars();
   renderMeetings();
   highlightNextMeeting();
   initCalendarLinks();
@@ -3092,6 +3655,7 @@
   enhanceActionCells();
   setTimeout(function() { staggerIn(document.getElementById('home')); }, 380);
   setTimeout(animateStats, 180);
+  if (location.hash === '#incident-statistics') showSection('stats', document.querySelectorAll('nav a')[3]);
 
 </script>
 </body>

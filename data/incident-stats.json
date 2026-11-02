@@ -1,0 +1,263 @@
+{
+  "schema": 1,
+  "department": {
+    "nerisId": "FD26137918",
+    "nerisName": "Otsego County Fire Department"
+  },
+  "source": {
+    "name": "NERIS Public: Incident Basics",
+    "service": "https://lPbcyJOcoLyZmvo6.svcs5.arcgis.com/lPbcyJOcoLyZmvo6/arcgis/rest/services/NERIS%20Public%20Incident%20Basics/FeatureServer/0",
+    "explorer": "https://public.neris.fsri.org/explorer.html?neris_id=FD26137918",
+    "updated": "2026-11-01T13:38:15.973Z"
+  },
+  "refreshedAt": "2026-11-02T15:05:15.338Z",
+  "coverage": {
+    "firstIncident": "2025-12-03",
+    "latestIncident": "2026-08-31"
+  },
+  "months": {
+    "2025-12": {
+      "total": 44,
+      "fire": 4,
+      "aidGiven": 4,
+      "aidReceived": 2,
+      "categories": {
+        "fire": 4,
+        "ems": 0,
+        "rescue": 1,
+        "hazsit": 16,
+        "pubserv": 0,
+        "alarm": 12,
+        "noemerg": 10,
+        "lawenforce": 0,
+        "other": 0,
+        "multi_discipline": 1
+      },
+      "indicators": {
+        "structureFire": 4,
+        "vehicleFire": 2,
+        "outdoorFire": 0,
+        "vehicleCrash": 7,
+        "electrical": 7,
+        "hazmat": 2
+      },
+      "complete": true
+    },
+    "2026-01": {
+      "total": 43,
+      "fire": 4,
+      "aidGiven": 1,
+      "aidReceived": 1,
+      "categories": {
+        "fire": 4,
+        "ems": 0,
+        "rescue": 0,
+        "hazsit": 19,
+        "pubserv": 0,
+        "alarm": 16,
+        "noemerg": 4,
+        "lawenforce": 0,
+        "other": 0,
+        "multi_discipline": 0
+      },
+      "indicators": {
+        "structureFire": 2,
+        "vehicleFire": 2,
+        "outdoorFire": 0,
+        "vehicleCrash": 14,
+        "electrical": 0,
+        "hazmat": 4
+      },
+      "complete": true
+    },
+    "2026-02": {
+      "total": 33,
+      "fire": 2,
+      "aidGiven": 1,
+      "aidReceived": 2,
+      "categories": {
+        "fire": 2,
+        "ems": 0,
+        "rescue": 1,
+        "hazsit": 14,
+        "pubserv": 0,
+        "alarm": 10,
+        "noemerg": 6,
+        "lawenforce": 0,
+        "other": 0,
+        "multi_discipline": 0
+      },
+      "indicators": {
+        "structureFire": 0,
+        "vehicleFire": 2,
+        "outdoorFire": 0,
+        "vehicleCrash": 9,
+        "electrical": 1,
+        "hazmat": 4
+      },
+      "complete": true
+    },
+    "2026-03": {
+      "total": 44,
+      "fire": 4,
+      "aidGiven": 2,
+      "aidReceived": 1,
+      "categories": {
+        "fire": 4,
+        "ems": 0,
+        "rescue": 0,
+        "hazsit": 17,
+        "pubserv": 0,
+        "alarm": 9,
+        "noemerg": 14,
+        "lawenforce": 0,
+        "other": 0,
+        "multi_discipline": 0
+      },
+      "indicators": {
+        "structureFire": 3,
+        "vehicleFire": 1,
+        "outdoorFire": 0,
+        "vehicleCrash": 4,
+        "electrical": 5,
+        "hazmat": 5
+      },
+      "complete": true
+    },
+    "2026-04": {
+      "total": 33,
+      "fire": 8,
+      "aidGiven": 1,
+      "aidReceived": 1,
+      "categories": {
+        "fire": 8,
+        "ems": 0,
+        "rescue": 0,
+        "hazsit": 14,
+        "pubserv": 0,
+        "alarm": 4,
+        "noemerg": 7,
+        "lawenforce": 0,
+        "other": 0,
+        "multi_discipline": 0
+      },
+      "indicators": {
+        "structureFire": 2,
+        "vehicleFire": 1,
+        "outdoorFire": 6,
+        "vehicleCrash": 5,
+        "electrical": 5,
+        "hazmat": 2
+      },
+      "complete": true
+    },
+    "2026-05": {
+      "total": 60,
+      "fire": 13,
+      "aidGiven": 4,
+      "aidReceived": 3,
+      "categories": {
+        "fire": 13,
+        "ems": 0,
+        "rescue": 1,
+        "hazsit": 13,
+        "pubserv": 2,
+        "alarm": 14,
+        "noemerg": 17,
+        "lawenforce": 0,
+        "other": 0,
+        "multi_discipline": 0
+      },
+      "indicators": {
+        "structureFire": 4,
+        "vehicleFire": 1,
+        "outdoorFire": 9,
+        "vehicleCrash": 1,
+        "electrical": 8,
+        "hazmat": 3
+      },
+      "complete": true
+    },
+    "2026-06": {
+      "total": 47,
+      "fire": 3,
+      "aidGiven": 0,
+      "aidReceived": 0,
+      "categories": {
+        "fire": 2,
+        "ems": 1,
+        "rescue": 1,
+        "hazsit": 10,
+        "pubserv": 0,
+        "alarm": 15,
+        "noemerg": 16,
+        "lawenforce": 0,
+        "other": 0,
+        "multi_discipline": 2
+      },
+      "indicators": {
+        "structureFire": 1,
+        "vehicleFire": 0,
+        "outdoorFire": 2,
+        "vehicleCrash": 4,
+        "electrical": 3,
+        "hazmat": 4
+      },
+      "complete": true
+    },
+    "2026-07": {
+      "total": 36,
+      "fire": 5,
+      "aidGiven": 3,
+      "aidReceived": 1,
+      "categories": {
+        "fire": 5,
+        "ems": 0,
+        "rescue": 0,
+        "hazsit": 16,
+        "pubserv": 0,
+        "alarm": 1,
+        "noemerg": 13,
+        "lawenforce": 0,
+        "other": 0,
+        "multi_discipline": 1
+      },
+      "indicators": {
+        "structureFire": 3,
+        "vehicleFire": 0,
+        "outdoorFire": 2,
+        "vehicleCrash": 5,
+        "electrical": 8,
+        "hazmat": 2
+      },
+      "complete": true
+    },
+    "2026-08": {
+      "total": 40,
+      "fire": 7,
+      "aidGiven": 3,
+      "aidReceived": 2,
+      "categories": {
+        "fire": 6,
+        "ems": 1,
+        "rescue": 3,
+        "hazsit": 8,
+        "pubserv": 1,
+        "alarm": 12,
+        "noemerg": 7,
+        "lawenforce": 1,
+        "other": 0,
+        "multi_discipline": 1
+      },
+      "indicators": {
+        "structureFire": 3,
+        "vehicleFire": 0,
+        "outdoorFire": 4,
+        "vehicleCrash": 6,
+        "electrical": 3,
+        "hazmat": 0
+      },
+      "complete": true
+    }
+  }
+}

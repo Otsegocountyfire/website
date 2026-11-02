@@ -1,0 +1,33 @@
+# Refreshes data/incident-stats.json from NERIS Public and commits it to main.
+# A failed run changes nothing, so the site keeps its last good numbers, and GitHub
+# emails the failure to whoever last edited this schedule.
+name: Refresh incident statistics
+
+on:
+  workflow_dispatch:
+  # NERIS confirmed in writing (helpdesk, November 2026) that OCFA may retrieve its own
+  # records with one automated refresh per week. Don't run this more often without asking.
+  schedule:
+    - cron: '17 11 * * 1'   # Mondays, 11:17 UTC
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - run: node scripts/incident-stats.mjs
+      - run: node --test scripts/incident-stats.test.mjs
+      - name: Commit the new data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/incident-stats.json
+          git commit -m "Refresh incident statistics"
+          git push
