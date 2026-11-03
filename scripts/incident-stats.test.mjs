@@ -114,6 +114,22 @@ test('the published file holds aggregates only', () => {
   }
 });
 
+test('NFIRS history matches the totals printed on the BFS reports', () => {
+  const { years } = JSON.parse(readFileSync(new URL('../data/nfirs-annual.json', import.meta.url), 'utf8'));
+  const printed = { 2016: [253, 15], 2018: [376, 26], 2019: [334, 19], 2020: [281, 13], 2021: [207, 10], 2023: [324, 13], 2024: [379, 23], 2025: [486, 29] };
+  const sum = list => list.reduce((a, b) => a + b, 0);
+  assert.deepEqual(Object.keys(years).filter(y => years[y]), Object.keys(printed));
+  for (const [year, [total, aid]] of Object.entries(printed)) {
+    const y = years[year];
+    assert.equal(y.counts.length, 12);
+    assert.equal(sum(y.counts), total, `${year} counts`);
+    assert.equal(y.total, total, `${year} total`);
+    assert.equal(sum(y.aidGiven), aid, `${year} aid given`);
+    // Only months with nothing reported may be left out of comparisons
+    for (const month of y.excludedMonths) assert.equal(y.counts[month - 1], 0, `${year}-${month}`);
+  }
+});
+
 // Figures read from the official Explorer (FD26137918, all time) on 2026-11-02. Skipped once
 // newer incidents are published: re-read the Explorer and update them to re-check by hand.
 test('published file matches the official Explorer snapshot', t => {

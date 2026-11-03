@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "source": {
+    "name": "Michigan Bureau of Fire Services, Monthly Incident Counts (NFIRS 5.0)",
+    "page": "https://www.michigan.gov/lara/bureau-list/bfs/nfirs/compliance-and-statistics"
+  },
+  "department": {
+    "fdid": "06903",
+    "name": "Otsego County FD"
+  },
+  "years": {
+    "2016": {
+      "counts": [18, 14, 10, 12, 25, 24, 36, 32, 13, 20, 26, 23],
+      "aidGiven": [1, 1, 0, 3, 1, 4, 0, 1, 1, 0, 2, 1],
+      "total": 253,
+      "excludedMonths": [],
+      "reportRun": "2017-04-28",
+      "report": "https://www.michigan.gov/documents/lara/2016_Michigan_Monthly_Incident_Counts_1_541385_7.pdf"
+    },
+    "2017": null,
+    "2018": {
+      "counts": [49, 25, 18, 24, 33, 21, 30, 77, 36, 28, 18, 17],
+      "aidGiven": [5, 0, 3, 2, 5, 2, 2, 2, 1, 1, 2, 1],
+      "total": 376,
+      "excludedMonths": [],
+      "reportRun": "2021-02-09",
+      "report": "https://www.michigan.gov/documents/lara/Monthly_Incident_Counts_3-6-18_616404_7.pdf"
+    },
+    "2019": {
+      "counts": [34, 38, 19, 32, 19, 29, 41, 29, 30, 16, 16, 31],
+      "aidGiven": [2, 3, 1, 2, 1, 1, 0, 1, 1, 0, 5, 2],
+      "total": 334,
+      "excludedMonths": [],
+      "reportRun": "2021-10-25",
+      "report": "https://www.michigan.gov/documents/lara/Monthly_Incident_Counts_2-20-2019_646894_7.pdf"
+    },
+    "2020": {
+      "counts": [26, 18, 18, 21, 25, 28, 35, 27, 39, 16, 28, 0],
+      "aidGiven": [0, 0, 3, 3, 2, 2, 0, 0, 2, 0, 1, 0],
+      "total": 281,
+      "excludedMonths": [12],
+      "note": "No December figures",
+      "reportRun": "2021-10-25",
+      "report": "https://www.michigan.gov/documents/lara/2020_Monthly_Incident_Counts_2-18-20_681456_7.pdf"
+    },
+    "2021": {
+      "counts": [19, 20, 23, 24, 24, 30, 29, 20, 18, 0, 0, 0],
+      "aidGiven": [0, 2, 2, 1, 1, 2, 0, 0, 2, 0, 0, 0],
+      "total": 207,
+      "excludedMonths": [10, 11, 12],
+      "note": "Through September",
+      "reportRun": "2021-10-25",
+      "report": "https://www.michigan.gov/documents/lara/2021_Monthly_Incident_Counts_84_2-15-2021_716349_7.PDF"
+    },
+    "2022": null,
+    "2023": {
+      "counts": [22, 24, 18, 31, 45, 0, 46, 24, 35, 36, 23, 20],
+      "aidGiven": [2, 2, 1, 0, 0, 0, 1, 2, 0, 1, 3, 1],
+      "total": 324,
+      "excludedMonths": [6],
+      "note": "No June figures",
+      "reportRun": "2026-01-20",
+      "report": "https://www.michigan.gov/lara/-/media/Project/Websites/lara/bfs/Updates/2023-Monthly_Incident_Counts--1-20-26.pdf"
+    },
+    "2024": {
+      "counts": [25, 26, 22, 39, 27, 36, 44, 36, 28, 40, 27, 29],
+      "aidGiven": [3, 3, 1, 1, 2, 2, 2, 1, 1, 3, 1, 3],
+      "total": 379,
+      "excludedMonths": [],
+      "reportRun": "2026-01-20",
+      "report": "https://www.michigan.gov/lara/-/media/Project/Websites/lara/bfs/Updates/2024-Monthly_Incident_Counts-1-20-26.pdf"
+    },
+    "2025": {
+      "counts": [33, 25, 75, 69, 49, 46, 40, 47, 39, 21, 42, 0],
+      "aidGiven": [1, 3, 2, 1, 2, 5, 3, 1, 1, 7, 3, 0],
+      "total": 486,
+      "excludedMonths": [12],
+      "note": "December is in NERIS",
+      "reportRun": "2026-01-20",
+      "report": "https://www.michigan.gov/lara/-/media/Project/Websites/lara/bfs/Updates/2025-Monthly_Incident_Counts-1-12-26.pdf"
+    }
+  }
+}

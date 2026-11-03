@@ -21,7 +21,7 @@
   <meta property="og:image:alt" content="Otsego County Fire Authority logo over firefighters training on an aircraft fire" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://otsegocountyfiremi.gov/" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     /* ══════════════════════════════════════════════════════
        OTSEGO COUNTY FIRE AUTHORITY — VINTAGE FIRE TRUCK STYLE
@@ -57,7 +57,7 @@
       /* Text — white and light grays */
       --text:       #f0ede8;
       --text-mid:   #c0bdb8;
-      --text-muted: #9c9890;
+      --text-muted: #a8a49c;
       --text-light: #ffffff;
 
       /* Gold — trim/coachlines only */
@@ -200,7 +200,7 @@
       text-transform: uppercase;
     }
     .header-titles .tagline {
-      font-family: 'IM Fell English', Georgia, serif;
+      font-family: 'Libre Baskerville', Georgia, serif;
       font-style: italic;
       font-size: .78rem;
       color: var(--gray-400);
@@ -402,26 +402,32 @@
       font-size: 3rem;
       font-weight: 900;
       line-height: 1.05;
-      letter-spacing: .04em;
-      color: #ffffff;
-      margin-bottom: 6px;
-      /* sign-painter inline letterpress — crisp offset stack + edge highlight */
-      text-shadow:
-        -1px -1px 0 rgba(255,255,255,.055),   /* top-left catch light on the stroke */
-        1px  2px 0 rgba(0,0,0,.6),
-        2px  3px 0 rgba(0,0,0,.45),
-        3px  5px 12px rgba(0,0,0,.55),
-        0    0   55px rgba(185,28,28,.1);
+      letter-spacing: .005em;
+      color: #f2c14e;
+      margin-bottom: 26px;
+    }
+    .hero-title span { display: block; }
+    /* Gold-leaf lettering with a sign-painter letterpress stack (drop-shadow works with clipped text; text-shadow would muddy it) */
+    @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+      .hero-title span {
+        background: linear-gradient(170deg,
+          #fff2b0 0%, #f5cc50 18%, #e0a820 34%,
+          #b8860b 48%, #e8b02a 58%, #ffd868 70%,
+          #d4a017 84%, #8a5a00 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        /* Extend the painted area below the line so descenders (g, y) aren't clipped; the negative margin keeps the spacing */
+        padding: 0 .06em .18em;
+        margin-bottom: -.18em;
+        filter:
+          drop-shadow(0 -1px 0 rgba(255,244,190,.18))
+          drop-shadow(1px 2px 0 rgba(40,20,0,.85))
+          drop-shadow(2px 3px 0 rgba(0,0,0,.55))
+          drop-shadow(3px 6px 12px rgba(0,0,0,.6));
+      }
     }
 
-    .hero-est {
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      font-size: 1rem;
-      color: var(--text-muted);
-      letter-spacing: .08em;
-      margin-bottom: 22px;
-    }
 
     .hero-divider {
       width: 120px;
@@ -431,8 +437,9 @@
     .hero-divider::before {
       content: '';
       display: block;
-      height: 2px;
-      background: var(--gold-leaf-h);
+      height: 3px;
+      background: linear-gradient(180deg, #e04040 0%, var(--red) 45%, var(--red-dark) 100%);
+      box-shadow: 0 2px 6px rgba(0,0,0,.6);
     }
     .hero-divider::after {
       content: '✦  ◆  ✦';
@@ -445,13 +452,33 @@
     }
 
     .hero-body {
-      font-family: 'IM Fell English', serif;
+      font-family: 'Libre Baskerville', serif;
       font-size: 1.08rem;
       color: var(--text-mid);
       max-width: 620px;
       margin: 0 auto 32px;
       line-height: 1.8;
     }
+
+    /* Next board meeting, between the intro and the buttons */
+    .hero-next {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1rem;
+      color: #ffffff;
+      margin: -14px auto 30px;
+      line-height: 1.7;
+    }
+    .hero-next__label {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold-3);
+    }
+    .hero-next__part { white-space: nowrap; }
+    .hero-next__moved { color: var(--text-muted); font-style: italic; }
 
     .hero-cta {
       display: flex;
@@ -568,13 +595,15 @@
       background: var(--gold-leaf-h);
     }
     .breadcrumb {
-      font-family: 'IM Fell English', serif;
+      font-family: 'Libre Baskerville', serif;
       font-style: italic;
       font-size: .78rem;
       color: var(--gray-400);
       letter-spacing: .06em;
       margin-bottom: 8px;
     }
+    .breadcrumb a { color: inherit; text-decoration: underline; text-decoration-color: rgba(255,255,255,.3); text-underline-offset: 3px; }
+    .breadcrumb a:hover { color: #ffffff; text-decoration-color: currentColor; }
     .page-header h2 {
       font-family: 'Playfair Display', serif;
       font-size: 2rem;
@@ -583,10 +612,10 @@
       letter-spacing: .02em;
     }
     .page-header p {
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      font-size: .92rem;
-      color: var(--gray-400);
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-mid);
       margin-top: 6px;
     }
 
@@ -714,7 +743,7 @@
       letter-spacing: .02em;
     }
     .vintage-card p {
-      font-family: 'IM Fell English', serif;
+      font-family: 'Libre Baskerville', serif;
       font-size: .9rem;
       color: var(--text-mid);
       line-height: 1.7;
@@ -732,6 +761,29 @@
       padding-bottom: 2px;
     }
     .card-link:hover { color: var(--red-dark); border-color: var(--red-dark); }
+
+    /* The latest item for each Quick Access card, filled in by script */
+    .card-now {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(212,160,23,.25);
+      font-family: 'Libre Baskerville', serif;
+      font-size: .88rem;
+      color: #ffffff;
+      line-height: 1.6;
+    }
+    .card-now__label {
+      display: block;
+      margin-bottom: 2px;
+      font-family: 'Playfair Display', serif;
+      font-size: .66rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold-3);
+    }
+    .card-now a { color: inherit; text-decoration: underline; text-decoration-color: rgba(212,160,23,.5); text-underline-offset: 3px; }
+    .card-now a:hover { text-decoration-color: var(--gold-3); }
 
     /* ─────────────────── ABOUT LAYOUT ─────────────────── */
     .about-grid {
@@ -752,7 +804,7 @@
       border-bottom: 1px solid rgba(255,255,255,.15);
     }
     .about-body p {
-      font-family: 'IM Fell English', serif;
+      font-family: 'Libre Baskerville', serif;
       font-size: .93rem;
       color: var(--text-mid);
       margin-bottom: 16px;
@@ -917,9 +969,8 @@
       margin-bottom: 8px;
     }
     .event-meta {
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      font-size: .83rem;
+      font-family: 'Libre Baskerville', serif;
+      font-size: .88rem;
       color: var(--text-muted);
       display: flex;
       gap: 18px;
@@ -932,9 +983,8 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      font-size: .83rem;
+      font-family: 'Libre Baskerville', serif;
+      font-size: .88rem;
       color: rgba(255,255,255,.72);
       background: rgba(255,255,255,.05);
       border: 1px solid rgba(255,255,255,.14);
@@ -960,9 +1010,8 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      font-size: .83rem;
+      font-family: 'Libre Baskerville', serif;
+      font-size: .88rem;
       color: rgba(255,255,255,.72);
       background: rgba(185,28,28,.14);
       border: 1px solid rgba(185,28,28,.38);
@@ -1176,6 +1225,7 @@
 
     /* ─────────────────── INCIDENT STATISTICS ─────────────────── */
     #stats [hidden] { display: none !important; }
+    #stats .doc-controls { width: fit-content; max-width: 100%; }
     .is-period {
       color: var(--text-mid);
       font-size: .9rem;
@@ -1318,6 +1368,7 @@
       color: var(--text-muted);
     }
     .is-axis span small { display: block; font-size: .92em; }
+    .is-axis em { font-style: normal; }
     .is-tip {
       position: absolute;
       z-index: 5;
@@ -1381,6 +1432,12 @@
     }
     .is-ind-grid div { display: flex; flex-direction: column-reverse; justify-content: flex-end; }
 
+    .is-history-table { margin-top: 20px; }
+    .is-history-table td, .is-history-table th { font-variant-numeric: tabular-nums lining-nums; }
+    .is-history-note { margin: 14px 0 0; }
+    #stats .doc-table td, #stats .doc-table th { width: auto; white-space: normal; }
+    #stats .doc-table small { font-size: .9em; color: var(--text-muted); }
+    .is-history-note a { color: var(--gold-2); }
     .is-table-toggle { margin-top: 18px; }
     .is-table-toggle summary {
       cursor: pointer;
@@ -1411,6 +1468,13 @@
       .is-cat { grid-template-columns: 1fr; }
       .is-chart { height: 190px; }
       .is-axis span { font-size: .66rem; }
+      #stats .doc-table th { padding: 6px 4px; font-size: .58rem; letter-spacing: .02em; }
+      #stats .doc-table td { padding: 6px 4px; font-size: .72rem; }
+      #is-history-table th:nth-child(3), #is-history-table td:nth-child(3):not([colspan]) { display: none; }
+    }
+    @media (max-width: 400px) {
+      .is-axis em { display: none; }
+      #is-table th:nth-child(4), #is-table td:nth-child(4) { display: none; }
     }
 
     /* Board packets and grant applications: print on white, table in place of controls */
@@ -1418,7 +1482,8 @@
       body:has(#stats.active) { background: #fff !important; color: #000 !important; }
       body:has(#stats.active) header,
       body:has(#stats.active) footer,
-      body:has(#stats.active) .fire-status-bar,
+      body:has(#stats.active) .fire-bar,
+      body:has(#stats.active) .fire-reopen,
       #stats .doc-controls,
       #stats .is-table-toggle summary,
       #stats .is-tip { display: none !important; }
@@ -1476,9 +1541,8 @@
       border-bottom: 1px solid rgba(255,255,255,.12);
     }
     footer p {
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      font-size: .88rem;
+      font-family: 'Libre Baskerville', serif;
+      font-size: .9rem;
       color: var(--gray-400);
       line-height: 1.8;
     }
@@ -1495,7 +1559,7 @@
       border-top: 1px solid rgba(255,255,255,.08);
       text-align: center;
       padding: 16px 48px;
-      font-family: 'IM Fell English', serif;
+      font-family: 'Libre Baskerville', serif;
       font-style: italic;
       font-size: .8rem;
       color: var(--gray-600);
@@ -1796,7 +1860,6 @@
         background-attachment: scroll, scroll, scroll, scroll, scroll;
       }
       .hero-title { font-size: 1.85rem; }
-      .hero-est   { font-size: .88rem; }
       .hero-body  { font-size: .9rem; }
       .hero-top-rule { margin: 6px auto 24px; }
       .hero-frame { inset: 8px 10px; }
@@ -1900,7 +1963,7 @@
       .btn-vintage { text-align: center; }
 
       /* Page header tighter */
-      .page-header p { font-size: .82rem; }
+      .page-header p { font-size: .92rem; }
 
       /* Breadcrumb smaller */
       .breadcrumb { font-size: .68rem; }
@@ -1927,22 +1990,10 @@
     }
     .hero .hero-top-rule { animation: heroFadeUp 0.75s 0.10s cubic-bezier(0.16,1,0.3,1) both; }
     .hero .hero-title    { animation: heroFadeUp 0.85s 0.30s cubic-bezier(0.16,1,0.3,1) both; }
-    .hero .hero-est      { animation: heroFadeUp 0.70s 0.52s cubic-bezier(0.16,1,0.3,1) both; }
     .hero .hero-divider  { animation: heroFadeUp 0.60s 0.68s cubic-bezier(0.16,1,0.3,1) both; }
     .hero .hero-body     { animation: heroFadeUp 0.70s 0.82s cubic-bezier(0.16,1,0.3,1) both; }
+    .hero .hero-next     { animation: heroFadeUp 0.70s 0.92s cubic-bezier(0.16,1,0.3,1) both; }
     .hero .hero-cta      { animation: heroFadeUp 0.70s 1.00s cubic-bezier(0.16,1,0.3,1) both; }
-
-    /* ── DEEPER LETTERPRESS ON HERO TITLE ── */
-    .hero-title {
-      text-shadow:
-        -1px -1px 0    rgba(255,255,255,.07),
-         1px  2px 0    rgba(0,0,0,.78),
-         2px  4px 0    rgba(0,0,0,.62),
-         3px  6px 0    rgba(0,0,0,.48),
-         4px  8px 22px rgba(0,0,0,.72),
-         0    0   80px rgba(185,28,28,.20),
-         0    1px 0    rgba(255,255,255,.04);
-    }
 
     /* ── SECTION FADE-IN ── */
     @keyframes sectionFadeIn {
@@ -2095,7 +2146,7 @@
     /* ── LIVE SEARCH EMPTY STATE ── */
     .doc-search-empty {
       text-align: center;
-      font-family: 'IM Fell English', serif;
+      font-family: 'Libre Baskerville', serif;
       font-style: italic;
       color: var(--text-muted);
       font-size: .88rem;
@@ -2207,91 +2258,126 @@
       animation: ribbonStamp 0.42s 0.14s cubic-bezier(0.34,1.2,0.64,1) both;
     }
 
-    /* ─────────────────── BURN PERMIT / FIRE DANGER PANEL ─────────────────── */
-    .burn-permit-panel {
-      display: flex;
+    /* ─────────── FIRE STATUS BAR ─────────── */
+    .fire-bar {
+      --fb-color: #4ade80;
+      --fb-edge:  #006633;
+      display: none;
       align-items: center;
-      gap: 20px;
-      background: var(--bg-white);
-      border: 1px solid rgba(255,255,255,.08);
-      border-left: 5px solid var(--bp-border, var(--gray-600));
-      padding: 18px 24px;
-      margin-bottom: 36px;
-      box-shadow: 0 2px 10px rgba(0,0,0,.3), inset 0 0 60px var(--bp-glow, transparent);
-      transition: border-color .4s, box-shadow .4s;
-      flex-wrap: wrap;
+      gap: 10px 14px;
+      padding: 8px 16px;
+      background: #161616;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      box-shadow: inset 4px 0 0 var(--fb-edge), 0 4px 12px rgba(0,0,0,.35);
+      font-family: 'Barlow', 'Segoe UI', Arial, sans-serif;
+      font-size: 14.5px;
+      letter-spacing: .01em;
+      line-height: 1.4;
+      color: var(--text-mid);
+      /* Stays pinned to the top while scrolling, so reopening it from the flame shows it right there */
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
-    .bp-icon {
-      width: 38px; height: 38px;
-      flex-shrink: 0;
-      opacity: .85;
+    .fire-bar.is-shown { display: flex; }
+    .fire-bar__dot {
+      --lamp: var(--fb-color);
+      flex: none;
+      width: 9px; height: 9px; border-radius: 50%;
+      /* Lit-lamp look: bright core fading to the status color, with a soft halo */
+      background: radial-gradient(circle at 40% 35%, #ffffff 0%, color-mix(in srgb, var(--lamp) 55%, #ffffff) 30%, var(--lamp) 70%);
+      box-shadow:
+        0 0 4px 1px color-mix(in srgb, var(--lamp) 70%, transparent),
+        0 0 10px 3px color-mix(in srgb, var(--lamp) 30%, transparent);
     }
-    .bp-icon svg { width: 100%; height: 100%; }
-    .bp-content {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0 28px;
-      min-width: 260px;
+    /* Red flag: a true red lamp (the light red used for text reads as pink here) */
+    .fire-bar--alert .fire-bar__dot { --lamp: #ef4444; }
+    @media (prefers-reduced-motion: no-preference) {
+      .fire-bar__dot { animation: lamp-glow 2.8s ease-in-out infinite; }
+      /* Red flag: same glow, quicker beat */
+      .fire-bar--alert .fire-bar__dot { animation-duration: 1.2s; }
+      @keyframes lamp-glow {
+        0%, 100% {
+          opacity: .8;
+          box-shadow:
+            0 0 3px 1px color-mix(in srgb, var(--lamp) 55%, transparent),
+            0 0 6px 2px color-mix(in srgb, var(--lamp) 18%, transparent);
+        }
+        50% {
+          opacity: 1;
+          box-shadow:
+            0 0 6px 2px color-mix(in srgb, var(--lamp) 85%, transparent),
+            0 0 16px 6px color-mix(in srgb, var(--lamp) 40%, transparent);
+        }
+      }
     }
-    .bp-col { min-width: 0; }
-    .bp-col + .bp-col {
-      padding-left: 28px;
-      border-left: 1px solid rgba(255,255,255,.1);
-    }
-    .bp-eyebrow {
-      font-family: 'Playfair Display', serif;
-      font-size: .6rem;
-      font-weight: 700;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 3px;
-    }
-    .bp-status {
-      font-family: 'Playfair Display', serif;
-      font-size: .95rem;
-      font-weight: 900;
-      letter-spacing: .03em;
-      line-height: 1.1;
-      transition: color .4s;
-    }
-    .bp-status--permit { color: var(--bp-text, #ffffff); }
-    .bp-status--danger  { color: var(--bd-text, #ffffff); }
-    .bp-detail {
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      font-size: .8rem;
-      color: var(--text-muted);
-      margin-top: 3px;
-      line-height: 1.5;
-    }
-    .bp-actions {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      gap: 7px;
-      flex-shrink: 0;
-    }
-    .bp-updated {
-      font-family: 'IM Fell English', serif;
-      font-style: italic;
-      font-size: .68rem;
-      color: var(--text-muted);
-      text-align: right;
+    /* The two statuses sit side by side and only wrap when there truly isn't room */
+    /* Each status carries a "|" in front of it; the strip is shifted left and clipped, so the divider
+       shows between statuses on one line but disappears at the start of any line (first status or a wrap) */
+    .fire-bar__text { flex: 1 1 auto; min-width: 0; overflow: hidden; }
+    .fire-bar__parts { display: flex; flex-wrap: wrap; row-gap: 2px; margin-left: -25px; }
+    .fire-bar__part { white-space: nowrap; position: relative; padding-left: 25px; }
+    .fire-bar__part::before { content: '|'; position: absolute; left: 10px; color: rgba(255,255,255,.3); font-weight: 400; }
+    .fire-bar__text strong { color: var(--text); font-weight: 600; white-space: nowrap; }
+    .fire-bar__link {
+      flex: none;
+      color: var(--gold-2);
+      text-decoration: none;
       white-space: nowrap;
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: .03em;
     }
-    .bp-error { display: none; }
-    .bp-panel--error .bp-icon,
-    .bp-panel--error .bp-content,
-    .bp-panel--error .bp-actions .btn-vintage-filled { display: none; }
-    .bp-panel--error .bp-error { display: block; }
-    @media (max-width: 680px) {
-      .burn-permit-panel { flex-direction: column; align-items: flex-start; gap: 14px; }
-      .bp-content { grid-template-columns: 1fr; gap: 12px; }
-      .bp-col + .bp-col { padding-left: 0; border-left: none; border-top: 1px solid rgba(255,255,255,.1); padding-top: 12px; }
-      .bp-actions { align-items: flex-start; }
-      .bp-updated { text-align: left; }
+    .fire-bar__link:hover { text-decoration: underline; }
+    .fire-bar__close {
+      flex: none;
+      background: none; border: 0; cursor: pointer;
+      color: var(--text-muted);
+      font-size: 20px; line-height: 1;
+      width: 28px; height: 28px;
+      display: grid; place-items: center;
+      border-radius: 50%;
+    }
+    .fire-bar__close:hover { color: var(--text); background: rgba(255,255,255,.08); }
+    .fire-bar__close[hidden] { display: none; }
+
+    /* Fire button: brings the status bar back after a visitor closes it */
+    .fire-reopen {
+      --lamp: #4ade80;
+      position: fixed;
+      top: 12px; right: 12px;
+      z-index: 5;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(17,17,17,.75);
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+      display: grid; place-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0,0,0,.5), 0 0 8px 1px color-mix(in srgb, var(--lamp) 35%, transparent);
+    }
+    .fire-reopen[hidden] { display: none; }
+    .fire-reopen:hover { border-color: var(--gold-2); }
+    .fire-reopen svg {
+      width: 20px; height: 20px;
+      fill: var(--lamp);
+      filter: drop-shadow(0 0 4px color-mix(in srgb, var(--lamp) 70%, transparent));
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .fire-reopen { animation: reopen-glow 2.8s ease-in-out infinite; }
+      @keyframes reopen-glow {
+        0%, 100% { box-shadow: 0 4px 14px rgba(0,0,0,.5), 0 0 6px 1px color-mix(in srgb, var(--lamp) 25%, transparent); }
+        50%      { box-shadow: 0 4px 14px rgba(0,0,0,.5), 0 0 14px 4px color-mix(in srgb, var(--lamp) 45%, transparent); }
+      }
+    }
+    /* The landing page's top-right spot would cover this site's header buttons */
+    .fire-reopen { top: auto; bottom: 16px; right: 16px; }
+    @media (max-width: 760px) {
+      .fire-bar { font-size: 14px; padding: 8px 12px; }
+    }
+    @media (max-width: 400px) {
+      .fire-bar__link { display: none; }
     }
 
     /* ── Photo Band ── */
@@ -2390,12 +2476,25 @@
   <div class="header-stripe"></div>
 
   <nav id="site-nav" aria-label="Main">
-    <a href="#" class="active" aria-current="page" onclick="showSection('home',this);return false;">Home</a>
-    <a href="#" onclick="showSection('events',this);return false;">Events</a>
-    <a href="#" onclick="showSection('minutes',this);return false;">Minutes &amp; Agendas</a>
-    <a href="#incident-statistics" onclick="showSection('stats',this);return false;">Incident Statistics</a>
+    <a href="#home" class="active" aria-current="page">Home</a>
+    <a href="#events">Events</a>
+    <a href="#minutes">Minutes &amp; Agendas</a>
+    <a href="#incident-statistics">Incident Statistics</a>
   </nav>
 </header>
+
+  <!-- Filled in from the ocfa-fire-status Worker; stays hidden if the status can't be loaded -->
+  <div class="fire-bar" id="fire-bar" role="status" aria-live="polite">
+    <span class="fire-bar__dot" aria-hidden="true"></span>
+    <span class="fire-bar__text"><span class="fire-bar__parts">
+      <strong class="fire-bar__part" id="fb-permit"></strong><strong class="fire-bar__part" id="fb-danger"></strong>
+    </span></span>
+    <a class="fire-bar__link" href="https://www2.dnr.state.mi.us/burnpermits/" target="_blank" rel="noopener">Get a Permit →</a>
+    <button class="fire-bar__close" id="fb-close" type="button" aria-label="Hide fire status bar">×</button>
+  </div>
+  <button class="fire-reopen" id="fb-reopen" type="button" aria-label="Show fire status" title="Show fire status" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg>
+  </button>
 
 
 <main id="main" tabindex="-1">
@@ -2410,8 +2509,7 @@
     <div class="hero-top-rule">
       <div class="ornate-rule"><span>Est. 2025 · Otsego County · Michigan</span></div>
     </div>
-    <h1 class="hero-title">Otsego County<br/>Fire Authority</h1>
-    <div class="hero-est">Official Public Authority — State of Michigan</div>
+    <h1 class="hero-title"><span>Otsego County</span> <span>Fire Authority</span></h1>
     <div class="hero-divider"></div>
     <p class="hero-body">
       The governing body for fire protection services across the City of Gaylord
@@ -2419,9 +2517,11 @@
       committed to transparency, fiscal accountability, and the safety of every
       community we serve.
     </p>
+    <!-- Filled in by renderHomeMeetings() -->
+    <p class="hero-next" id="hero-next" hidden></p>
     <div class="hero-cta">
-      <a class="btn-vintage btn-vintage-filled" href="#" onclick="showSection('minutes',document.querySelectorAll('nav a')[2]);return false;">Meeting Documents</a>
-      <a class="btn-vintage" href="#" onclick="showSection('events',document.querySelectorAll('nav a')[1]);return false;">Upcoming Events</a>
+      <a class="btn-vintage btn-vintage-filled" href="#minutes">Meeting Documents</a>
+      <a class="btn-vintage" href="#events">Upcoming Events</a>
     </div>
   </div>
 
@@ -2431,7 +2531,8 @@
   <!-- Stats bar -->
   <div class="stats-bar">
     <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Member Entities</div></div>
-    <div class="stat-item"><div class="stat-num">597</div><div class="stat-label">Annual Runs</div></div>
+    <!-- Filled in from data/incident-stats.json; stays hidden if it can't be loaded -->
+    <div class="stat-item" id="home-incidents" hidden><div class="stat-num"></div><div class="stat-label"></div></div>
     <div class="stat-item"><div class="stat-num">206</div><div class="stat-label">Sq. Miles Covered</div></div>
     <div class="stat-item"><div class="stat-num">2025</div><div class="stat-label">Est. Founded</div></div>
   </div>
@@ -2440,33 +2541,6 @@
   <div class="coachline-divider"></div>
 
   <div class="container">
-    <!-- Burn Permit + Fire Danger Status -->
-    <div id="burn-permit-panel" class="burn-permit-panel">
-      <div class="bp-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2C9.5 5 8 7.5 8 10c0 2.2 1.8 4 4 4s4-1.8 4-4c0-1-.3-2-.8-2.8C14.5 8.5 14 10 13 10.5 13.5 8 12 2z" fill="rgba(255,154,0,.85)"/>
-          <path d="M12 13c-2.2 0-4 1.8-4 4s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4zm0 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" fill="rgba(255,200,80,.7)"/>
-        </svg>
-      </div>
-      <div class="bp-content">
-        <div class="bp-col">
-          <div class="bp-eyebrow">Burn Permit · Michigan DNR</div>
-          <div id="bp-status" class="bp-status bp-status--permit">Loading…</div>
-          <div id="bp-detail" class="bp-detail"></div>
-        </div>
-        <div class="bp-col">
-          <div class="bp-eyebrow">Fire Danger · NWS Gaylord</div>
-          <div id="bd-status" class="bp-status bp-status--danger">Loading…</div>
-          <div id="bd-detail" class="bp-detail"></div>
-        </div>
-      </div>
-      <div class="bp-actions">
-        <a class="btn-vintage btn-vintage-filled" href="https://www2.dnr.state.mi.us/burnpermits/" target="_blank" rel="noopener">Get a Permit →</a>
-        <div id="bp-updated" class="bp-updated"></div>
-      </div>
-      <div class="bp-error" id="bp-error" style="flex:1 1 100%;margin-top:4px;">Unable to load status — <a href="https://www2.dnr.state.mi.us/burnpermits/" target="_blank" rel="noopener" style="color:#f87171;">check the DNR website directly</a>.</div>
-    </div>
-
     <!-- Quick access -->
     <div class="section-heading">
       <div><span class="ribbon-heading">Quick Access</span></div>
@@ -2482,7 +2556,8 @@
         </div>
         <h3>Minutes &amp; Agendas</h3>
         <p>Official board meeting records, approved minutes, and posted agendas for all public Authority meetings.</p>
-        <a class="card-link" href="#" onclick="showSection('minutes',document.querySelectorAll('nav a')[2]);return false;">Browse Documents →</a>
+        <div class="card-now" id="card-now-minutes" hidden></div>
+        <a class="card-link" href="#minutes">Browse Documents →</a>
       </div>
 
       <div class="vintage-card">
@@ -2497,7 +2572,8 @@
         </div>
         <h3>Events &amp; Meetings</h3>
         <p>Scheduled board meetings, public hearings, training dates, and community events across the county.</p>
-        <a class="card-link" href="#" onclick="showSection('events',document.querySelectorAll('nav a')[1]);return false;">View Calendar →</a>
+        <div class="card-now" id="card-now-events" hidden></div>
+        <a class="card-link" href="#events">View Calendar →</a>
       </div>
 
       <div class="vintage-card">
@@ -2508,7 +2584,8 @@
         </div>
         <h3>Incident Statistics</h3>
         <p>Monthly incident volume, incident categories, and mutual aid figures from reports published through NERIS Public.</p>
-        <a class="card-link" href="#incident-statistics" onclick="showSection('stats',document.querySelectorAll('nav a')[3]);return false;">View Statistics →</a>
+        <div class="card-now" id="card-now-stats" hidden></div>
+        <a class="card-link" href="#incident-statistics">View Statistics →</a>
       </div>
     </div>
 
@@ -2568,14 +2645,14 @@
 <!-- ══════════════════════ EVENTS ══════════════════════ -->
 <section id="events">
   <div class="page-header">
-    <div class="breadcrumb">Home · Events</div>
+    <div class="breadcrumb"><a href="#home">Home</a> · Events</div>
     <h2>Events &amp; Meetings Calendar</h2>
     <p>All board meetings are open to the public in accordance with Michigan's Open Meetings Act.</p>
   </div>
   <div class="container">
     <div class="ornate-rule" style="margin-bottom:28px;"><span>Upcoming Meetings</span></div>
 
-    <p style="font-family:'IM Fell English',serif;font-style:italic;font-size:.85rem;color:var(--text-muted);margin-bottom:22px;">
+    <p style="font-family:'Libre Baskerville',serif;font-size:.95rem;line-height:1.7;color:var(--text-mid);margin-bottom:22px;">
       Regular board meetings are held the <strong style="color:var(--text-mid);">1st Thursday of each month</strong> at 9:30 AM at <a href="https://maps.google.com/?q=305+East+Main+Street+Gaylord+MI+49735" target="_blank" rel="noopener" style="color:var(--text-mid);">City Hall, Gaylord MI</a>, unless otherwise scheduled.
     </p>
 
@@ -2588,7 +2665,7 @@
 <!-- ══════════════════════ MINUTES ══════════════════════ -->
 <section id="minutes">
   <div class="page-header">
-    <div class="breadcrumb">Home · Minutes &amp; Agendas</div>
+    <div class="breadcrumb"><a href="#home">Home</a> · Minutes &amp; Agendas</div>
     <h2>Meeting Minutes &amp; Agendas</h2>
     <p>Official records of all Otsego County Fire Authority board meetings, posted following approval.</p>
   </div>
@@ -2659,10 +2736,10 @@
           <tbody>
             <tr><td><strong>Dec 2024</strong></td><td>Monthly Expenditures — December 2024</td><td><a class="dl-btn" href="Financials/2024-12-expenditures.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
             <tr><td><strong>FY 2024</strong></td><td>Annual Audit Report — FY 2024</td><td><a class="dl-btn" href="Financials/2024-annual-audit.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
-            <tr><td><strong>FY 2025</strong></td><td>Annual Audit Report — FY 2025</td><td><a class="dl-btn" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
-            <tr><td><strong>FY 2025</strong></td><td>Adopted Budget — FY 2025</td><td><a class="dl-btn" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
-            <tr><td><strong>FY 2024</strong></td><td>Adopted Budget — FY 2024</td><td><a class="dl-btn" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
-            <tr><td><strong>FY 2023</strong></td><td>Annual Audit Report — FY 2023</td><td><a class="dl-btn" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+            <tr><td><strong>FY 2025</strong></td><td>Annual Audit Report — FY 2025</td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+            <tr><td><strong>FY 2025</strong></td><td>Adopted Budget — FY 2025</td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+            <tr><td><strong>FY 2024</strong></td><td>Adopted Budget — FY 2024</td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+            <tr><td><strong>FY 2023</strong></td><td>Annual Audit Report — FY 2023</td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
           </tbody>
         </table>
       </div>
@@ -2673,7 +2750,7 @@
 <!-- ══════════════════════ INCIDENT STATISTICS ══════════════════════ -->
 <section id="stats">
   <div class="page-header">
-    <div class="breadcrumb">Home · Incident Statistics</div>
+    <div class="breadcrumb"><a href="#home">Home</a> · Incident Statistics</div>
     <h2>Incident Statistics</h2>
     <p>Incidents reported by the Authority and published through the National Emergency Response Information System (NERIS).</p>
   </div>
@@ -2691,7 +2768,7 @@
       <p class="is-period" id="is-period"></p>
 
       <div class="is-notice">
-        These figures are not real-time. NERIS Public generally publishes incidents about 60 days after they occur, so recent calls are not included, and departments may still correct a report after submitting it. <span id="is-freshness"></span>
+        NERIS Public data is published 60 days after incidents are reported and may later be corrected. <span id="is-freshness"></span>
       </div>
 
       <div class="runs-grid" id="is-cards"></div>
@@ -2718,10 +2795,18 @@
         <dl class="is-ind-grid" id="is-indicators"></dl>
       </div>
 
+      <div class="chart-panel" id="is-history" hidden>
+        <h3 class="chart-title">Annual Totals, 2016–2025 (NFIRS)</h3>
+        <p class="chart-note">Before NERIS, incidents were reported through the older NFIRS system. These totals come from Michigan Bureau of Fire Services reports for state fire department ID <span id="is-history-fdid"></span>, and are kept separate from the NERIS figures above. A faded bar is a year without all 12 months. Hover or tap a year for details.</p>
+        <div id="is-history-chart"></div>
+        <div class="doc-table-wrap is-history-table"><table class="doc-table" id="is-history-table" aria-label="Annual incident totals and changes from the prior year"></table></div>
+        <p class="chart-note is-history-note">Each change compares only the months both years reported, so missing months don’t count as drops. Years with no state report found are left blank. Older totals may reflect how completely incidents were reported, not just how many calls occurred. <a id="is-history-source" href="#" target="_blank" rel="noopener">Bureau of Fire Services reports</a>.</p>
+      </div>
+
       <div class="chart-panel is-about">
         <h3 class="chart-title">About This Data</h3>
         <p><strong>Source:</strong> <a id="is-source" href="#" target="_blank" rel="noopener">NERIS Public: Incident Basics</a>. NERIS is operated by UL Research Institutes’ Fire Safety Research Institute in collaboration with the U.S. Fire Administration. NERIS and its operators have not reviewed or endorsed this page. NERIS lists this department as “<span id="is-neris-name"></span>”, ID <span id="is-neris-id"></span>.</p>
-        <p>Incident Basics is a current snapshot, not the authoritative annual record. Totals can change as reports are added or corrected, and may differ from the Authority’s own records or from the older NFIRS system, which uses different categories. No NFIRS figures are combined here.</p>
+        <p>Incident Basics is a current snapshot, not the authoritative annual record. Totals can change as reports are added or corrected, and may differ from the Authority’s own records or from the older NFIRS system, which uses different categories. NFIRS totals appear only in the Annual Totals panel and are never added to NERIS figures.</p>
         <h4>How incidents are counted</h4>
         <ul>
           <li>Every figure counts unique incident reports, not unit responses.</li>
@@ -2749,11 +2834,11 @@
     <div>
       <h4>Quick Links</h4>
       <ul>
-        <li><a href="#" onclick="showSection('home',document.querySelectorAll('nav a')[0]);return false;">Home</a></li>
-        <li><a href="#" onclick="showSection('events',document.querySelectorAll('nav a')[1]);return false;">Events &amp; Meetings</a></li>
-        <li><a href="#" onclick="showSection('minutes',document.querySelectorAll('nav a')[2]);return false;">Meeting Minutes</a></li>
-        <li><a href="#" onclick="showSection('minutes',document.querySelectorAll('nav a')[2]);return false;">Financial Documents</a></li>
-        <li><a href="#incident-statistics" onclick="showSection('stats',document.querySelectorAll('nav a')[3]);return false;">Incident Statistics</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#events">Events &amp; Meetings</a></li>
+        <li><a href="#minutes">Meeting Minutes</a></li>
+        <li><a href="#minutes">Financial Documents</a></li>
+        <li><a href="#incident-statistics">Incident Statistics</a></li>
       </ul>
     </div>
     <div>
@@ -2790,20 +2875,59 @@
   // ── SECTION SWITCHING ──
   const REDUCED_MOTION = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function showSection(id, clickedLink) {
+  // Each section's address. Home has none, so the plain site address is the home page.
+  const SECTION_HASH = { home: '#home', events: '#events', minutes: '#minutes', stats: '#incident-statistics' };
+
+  // The section a hash names; '' is Home, and any other hash (#main, #) isn't a section
+  function sectionForHash(hash) {
+    if (!hash) return 'home';
+    return Object.keys(SECTION_HASH).find(id => SECTION_HASH[id] === hash) || null;
+  }
+
+  // fromHistory: the address already says where we are (page load, Back/Forward), so don't add an entry
+  function showSection(id, fromHistory) {
     document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
     const target = document.getElementById(id);
     target.classList.add('active');
-    document.querySelectorAll('nav a').forEach(a => { a.classList.remove('active'); a.removeAttribute('aria-current'); });
-    if (clickedLink) { clickedLink.classList.add('active'); clickedLink.setAttribute('aria-current', 'page'); }
+    document.querySelectorAll('nav a').forEach(a => {
+      const current = a.getAttribute('href') === SECTION_HASH[id];
+      a.classList.toggle('active', current);
+      if (current) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+    });
     window.scrollTo({ top: 0, behavior: REDUCED_MOTION ? 'auto' : 'smooth' });
     // Move keyboard/screen-reader focus to the new section's heading so it gets announced
     const heading = target.querySelector('h1, h2');
     if (heading) { heading.setAttribute('tabindex', '-1'); heading.focus({ preventScroll: true }); }
     staggerIn(target);
-    history.replaceState(null, '', id === 'stats' ? '#incident-statistics' : location.pathname + location.search);
+    // Each entry records its section, so Back can tell section entries from in-page jumps like #main
+    const url = id === 'home' ? location.pathname + location.search : SECTION_HASH[id];
+    if (!fromHistory && id !== currentSection) history.pushState({ section: id }, '', url);
+    else history.replaceState({ section: id }, '', url);
+    currentSection = id;
     if (id === 'stats') loadIncidentStats();
   }
+  let currentSection = 'home';
+
+  // Any link to a section switches to it in place; Ctrl/Shift/middle-click still open a new tab
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link || e.defaultPrevented || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+    const id = sectionForHash(link.getAttribute('href'));
+    if (!id) return;
+    e.preventDefault();
+    showSection(id);
+    if (link.closest('nav')) {
+      document.getElementById('navToggle').classList.remove('open');
+      document.getElementById('navToggle').setAttribute('aria-expanded', 'false');
+      document.querySelector('nav').classList.remove('open');
+    }
+  });
+
+  // Entries without a recorded section are in-page jumps (#main, a dead #), unless typed as a section address
+  window.addEventListener('popstate', function(e) {
+    const id = (e.state && e.state.section) || (location.hash && sectionForHash(location.hash));
+    if (id && id !== currentSection) showSection(id, true);
+  });
 
   // ── NAV LENS FLARE ──
   // Tracks the bottom border shimmer position and fires a sparkle when it crosses the active badge.
@@ -2867,16 +2991,6 @@
     requestAnimationFrame(tick);
   })();
 
-  document.querySelectorAll('nav a').forEach((link, i) => {
-    link.addEventListener('click', function(e) {
-      e.preventDefault();
-      showSection(['home','events','minutes','stats'][i], this);
-      document.getElementById('navToggle').classList.remove('open');
-      document.getElementById('navToggle').setAttribute('aria-expanded', 'false');
-      document.querySelector('nav').classList.remove('open');
-    });
-  });
-
   document.getElementById('navToggle').addEventListener('click', function() {
     const open = this.classList.toggle('open');
     this.setAttribute('aria-expanded', String(open));
@@ -2898,8 +3012,8 @@
   })();
 
   // ── STAT COUNTERS ──
-  function animateStats() {
-    document.querySelectorAll('.stats-bar .stat-num').forEach(function(el) {
+  function animateStats(els) {
+    (els || document.querySelectorAll('.stats-bar .stat-num')).forEach(function(el) {
       var raw = el.textContent.trim();
       var target = parseInt(raw.replace(/\D/g, ''), 10);
       if (isNaN(target) || target === 0) return;
@@ -2920,6 +3034,7 @@
   // ── INCIDENT STATISTICS ──
   // Reads data/incident-stats.json, which scripts/incident-stats.mjs builds from NERIS Public.
   var INCIDENT_STATS_URL = 'data/incident-stats.json';
+  var NFIRS_HISTORY_URL  = 'data/nfirs-annual.json';    // fixed history from Bureau of Fire Services reports
   var IS_STALE_DAYS      = 21;  // refreshed weekly, so three weeks means refreshes have stopped
   var IS_MIN_AVG_MONTHS  = 3;   // fewer full months than this isn't a meaningful average
   var IS_MIN_YOY_MONTHS  = 3;   // same for a year-over-year change
@@ -3087,7 +3202,8 @@
 
     var axis = slots.map(function(k, i) {
       var showYear = period === 'all' && (i === 0 || k.slice(5) === '01');
-      return '<span>' + IS_MONTHS[+k.slice(5) - 1] + (showYear ? '<small>' + k.slice(0, 4) + '</small>' : '') + '</span>';
+      var month = IS_MONTHS[+k.slice(5) - 1];
+      return '<span>' + month[0] + '<em>' + month.slice(1) + '</em>' + (showYear ? '<small>' + k.slice(0, 4) + '</small>' : '') + '</span>';
     }).join('');
 
     var legend = compare
@@ -3102,12 +3218,11 @@
     if (partial) notes.push('A faded bar is a month NERIS has only partly published.');
     if (missing) notes.push('A month with no bar has no published records' + (period === 'all' ? '.' : ' yet, or falls before records begin on ' + isDayText(isData.coverage.firstIncident) + '.'));
     document.getElementById('is-monthly-note').textContent = notes.join(' ');
-    isBindChartTips();
+    isBindChartTips(document.getElementById('is-chart'));
     isRenderTable(keys);
   }
 
-  function isBindChartTips() {
-    var chart = document.getElementById('is-chart');
+  function isBindChartTips(chart) {
     var tip = null;
     function hide() { if (tip) { tip.remove(); tip = null; } }
     function show(col) {
@@ -3222,7 +3337,7 @@
     var refreshed = new Date(isData.refreshedAt);
     var refreshedText = refreshed.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
     document.getElementById('is-freshness').textContent =
-      'Latest published incident: ' + isDayText(isData.coverage.latestIncident) + '. This page last refreshed: ' + refreshedText + '.';
+      'Latest incident: ' + isDayText(isData.coverage.latestIncident) + '. Last refreshed: ' + refreshedText + '.';
 
     var status = document.getElementById('is-status');
     if ((Date.now() - refreshed.getTime()) / 86400000 > IS_STALE_DAYS) {
@@ -3232,6 +3347,73 @@
     }
     document.getElementById('is-content').hidden = false;
     isRender();
+  }
+
+  // Change from the prior calendar year, over only the months both years reported.
+  // Returns null when the prior year has no report.
+  function isHistoryChange(years, year) {
+    var now = years[year], then = years[+year - 1];
+    if (!now || !then) return null;
+    var shared = now.counts.map(function(_, i) { return i; }).filter(function(i) {
+      return now.excludedMonths.indexOf(i + 1) < 0 && then.excludedMonths.indexOf(i + 1) < 0;
+    });
+    var add = function(list) { return shared.reduce(function(n, i) { return n + list[i]; }, 0); };
+    var a = add(now.counts), b = add(then.counts), diff = a - b;
+    var sign = diff > 0 ? '+' : '−';
+    var text = diff === 0 ? 'No change' : sign + Math.abs(diff) + ' (' + sign + Math.round(Math.abs(diff) / b * 100) + '%)';
+    return text + '<br><small>over ' + shared.length + ' shared months</small>';
+  }
+
+  function isRenderHistory(data) {
+    var years = data.years;
+    var list = Object.keys(years).sort();
+    var reported = list.filter(function(y) { return years[y]; });
+    var scale = isNiceMax(Math.max.apply(null, reported.map(function(y) { return years[y].total; })));
+    var peak = Math.max.apply(null, reported.map(function(y) { return years[y].total; }));
+    var pct = function(n) { return n / scale.max * 88; };
+
+    var grid = '';
+    for (var t = 0; t <= scale.max; t += scale.step) {
+      grid += '<div class="is-grid" style="bottom:' + pct(t) + '%"><span>' + t + '</span></div>';
+    }
+    var cols = list.map(function(y) {
+      var d = years[y];
+      if (!d) return '<div class="is-col" tabindex="0" role="img" aria-label="' + y + ': no state report found" data-tip="<strong>' + y + '</strong>No state report found"></div>';
+      var months = 12 - d.excludedMonths.length;
+      var detail = d.total + ' incidents, ' + months + ' of 12 months' + (d.note ? ' (' + d.note + ')' : '');
+      return '<div class="is-col" tabindex="0" role="img" aria-label="' + y + ': ' + detail + '" data-tip="<strong>' + y + '</strong>' + detail + '">' +
+        '<div class="is-bar" style="height:' + pct(d.total) + '%' + (months < 12 ? ';opacity:.55' : '') + '">' +
+        (d.total === peak ? '<span class="is-bar-val">' + d.total + '</span>' : '') + '</div></div>';
+    }).join('');
+    var axis = list.map(function(y) { return '<span>' + y + '</span>'; }).join('');
+    var el = document.getElementById('is-history-chart');
+    el.innerHTML = '<div class="is-chart" id="is-history-plot">' + grid + '<div class="is-cols">' + cols + '</div></div><div class="is-axis" aria-hidden="true">' + axis + '</div>';
+    isBindChartTips(document.getElementById('is-history-plot'));
+
+    document.getElementById('is-history-table').innerHTML =
+      '<thead><tr><th scope="col">Year</th><th scope="col">Incidents</th><th scope="col">Aid given</th><th scope="col">Months</th><th scope="col">Change from prior year</th></tr></thead><tbody>' +
+      list.slice().reverse().map(function(y) {
+        var d = years[y];
+        if (!d) return '<tr><td>' + y + '</td><td colspan="4">No state report found</td></tr>';
+        var sum = d.aidGiven.reduce(function(a, b) { return a + b; }, 0);
+        return '<tr><td>' + y + '</td><td>' + d.total + '</td><td>' + sum + '</td><td>' + (12 - d.excludedMonths.length) + ' of 12' +
+          (d.note ? '<br><small>' + d.note + '</small>' : '') + '</td><td>' + (isHistoryChange(years, y) || '—') + '</td></tr>';
+      }).join('') + '</tbody>';
+
+    document.getElementById('is-history-fdid').textContent = data.department.fdid + ' (' + data.department.name + ')';
+    document.getElementById('is-history-source').href = data.source.page;
+    document.getElementById('is-history').hidden = false;
+  }
+
+  // Separate from the NERIS data: if this file fails, its panel just stays hidden
+  function loadIncidentHistory() {
+    fetch(NFIRS_HISTORY_URL, { cache: 'no-cache' })
+      .then(function(resp) {
+        if (!resp.ok) throw new Error('HTTP ' + resp.status);
+        return resp.json();
+      })
+      .then(isRenderHistory)
+      .catch(function() {});
   }
 
   function isShowError() {
@@ -3246,18 +3428,32 @@
     status.appendChild(document.createTextNode('.'));
   }
 
+  // One request shared by the Home page and the Incident Statistics page; a failure allows a retry
+  var isRequest = null;
+  function isFetchData() {
+    if (!isRequest) {
+      isRequest = fetch(INCIDENT_STATS_URL, { cache: 'no-cache' })
+        .then(function(resp) {
+          if (!resp.ok) throw new Error('HTTP ' + resp.status);
+          return resp.json();
+        })
+        .then(function(data) {
+          if (!data.months || !Object.keys(data.months).length) throw new Error('No incident data');
+          return data;
+        });
+      isRequest.catch(function() { isRequest = null; });
+    }
+    return isRequest;
+  }
+
   function loadIncidentStats() {
     if (isData || isLoading) return;
     isLoading = true;
-    fetch(INCIDENT_STATS_URL, { cache: 'no-cache' })
-      .then(function(resp) {
-        if (!resp.ok) throw new Error('HTTP ' + resp.status);
-        return resp.json();
-      })
+    isFetchData()
       .then(function(data) {
-        if (!data.months || !Object.keys(data.months).length) throw new Error('No incident data');
         isData = data;
         isSetup();
+        loadIncidentHistory();
       })
       .catch(isShowError)
       .then(function() { isLoading = false; });
@@ -3279,10 +3475,8 @@
   };
   var UPCOMING_MEETINGS_SHOWN = 6;
 
-  function renderMeetings() {
-    var list = document.querySelector('#events .events-list');
-    if (!list) return;
-    var MO = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  // Board meetings around today, after MEETING_CHANGES, split into past and upcoming
+  function boardMeetings() {
     function iso(d) {
       return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
     }
@@ -3299,9 +3493,20 @@
       meetings.push({ date: change.moved ? parseIso(change.moved) : regular, moved: !!change.moved });
     }
     meetings.sort(function(a, b) { return a.date - b.date; });
+    return {
+      today: today,
+      past: meetings.filter(function(m) { return m.date < today; }),
+      upcoming: meetings.filter(function(m) { return m.date >= today; }).slice(0, UPCOMING_MEETINGS_SHOWN)
+    };
+  }
 
-    var past     = meetings.filter(function(m) { return m.date < today; });
-    var upcoming = meetings.filter(function(m) { return m.date >= today; }).slice(0, UPCOMING_MEETINGS_SHOWN);
+  function renderMeetings() {
+    var list = document.querySelector('#events .events-list');
+    if (!list) return;
+    var MO = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var all      = boardMeetings();
+    var past     = all.past;
+    var upcoming = all.upcoming;
     var shown    = past.length ? [Object.assign(past[past.length - 1], { past: true })].concat(upcoming) : upcoming;
 
     var clockSvg = '<svg viewBox="0 0 24 24" fill="rgba(185,28,28,0.75)"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm.5 14.5H11V11h1.5v5.5zm0-7H11V8h1.5v1.5z"/></svg>';
@@ -3352,6 +3557,68 @@
         badge.insertAdjacentElement('afterend', pill);
       }
     }
+  }
+
+  // ── HOME: NEXT MEETING AND LATEST ITEMS ──
+  function homeNow(id, label, html) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = '<span class="' + (id === 'hero-next' ? 'hero-next__label' : 'card-now__label') + '">' + label + '</span>' + html;
+    el.hidden = false;
+  }
+
+  function renderHomeMeetings() {
+    var all = boardMeetings();
+    if (!all.upcoming.length) return;
+    var next = all.upcoming[0];
+    var when = next.date.getTime() === all.today.getTime()
+      ? 'Today'
+      : next.date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
+    homeNow('hero-next', 'Next Board Meeting',
+      [when, '9:30 AM', 'City Hall, Gaylord'].map(function(part) {
+        return '<span class="hero-next__part">' + part + '</span>';
+      }).join(' · ')
+      + (next.moved ? ' <span class="hero-next__moved">(Rescheduled)</span>' : ''));
+    homeNow('card-now-events', 'Coming Up', all.upcoming.slice(0, 3).map(function(m) {
+      return m.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    }).join(' · '));
+  }
+
+  // The newest document in the minutes table that has a file to view
+  function renderHomeMinutes() {
+    var rows = document.querySelectorAll('table[data-doc-group="minutes"] tbody tr');
+    for (var i = 0; i < rows.length; i++) {
+      var link = rows[i].querySelector('a.dl-btn:not(.dl-btn--disabled)');
+      var title = rows[i].cells[2];
+      if (!link || !title) continue;
+      var a = document.createElement('a');
+      a.href = link.getAttribute('href');
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.textContent = title.textContent.trim();
+      homeNow('card-now-minutes', 'Latest Posted', a.outerHTML);
+      return;
+    }
+  }
+
+  function renderHomeIncidents(data) {
+    var keys = Object.keys(data.months).sort().filter(function(k) { return data.months[k].complete; });
+    if (!keys.length) return;
+    var recent = keys.slice(-12);
+    var total = recent.reduce(function(n, k) { return n + data.months[k].total; }, 0);
+    var first = recent[0], last = recent[recent.length - 1];
+    var monthText = function(k) { return IS_MONTHS[+k.slice(5) - 1] + ' ' + k.slice(0, 4); };
+
+    var item = document.getElementById('home-incidents');
+    item.querySelector('.stat-num').textContent = total.toLocaleString('en-US');
+    item.querySelector('.stat-label').textContent = recent.length === 12 ? 'Incidents, 12 Months' : 'Incidents Since ' + monthText(first);
+    item.title = total + ' incidents, ' + monthText(first) + ' – ' + monthText(last) + ', from NERIS Public';
+    item.hidden = false;
+    animateStats([item.querySelector('.stat-num')]);
+
+    var latest = data.months[last];
+    homeNow('card-now-stats', 'Latest Month',
+      IS_MONTHS_LONG[+last.slice(5) - 1] + ' ' + last.slice(0, 4) + ' · ' + latest.total + ' incident' + (latest.total === 1 ? '' : 's'));
   }
 
   // ── STAGGER HELPER ──
@@ -3565,97 +3832,122 @@
     });
   }
 
-  // ── BURN PERMIT STATUS ──
-  // Cloudflare Worker (ocfa-fire-status, in the OCFA Cloudflare account); source is worker.js.
-  var BURN_PERMIT_WORKER_URL = 'https://ocfa-fire-status.otsego-county-fire-authority.workers.dev/';
-
-  var BP_COLORS = {
-    green:  { border: '#006633', glow: 'rgba(0,102,51,.07)',    text: '#4ade80' },
-    orange: { border: '#ff9a00', glow: 'rgba(255,154,0,.08)',   text: '#fb923c' },
-    red:    { border: '#dc2626', glow: 'rgba(220,38,38,.10)',   text: '#fca5a5' },
-    yellow: { border: '#d97706', glow: 'rgba(217,119,6,.08)',   text: '#fbbf24' },
-    brown:  { border: '#b58b7c', glow: 'rgba(181,139,124,.06)', text: '#d4a890' },
-    gray:   { border: '#888480', glow: 'rgba(136,132,128,.06)', text: '#c0bdb8' },
+  // ── FIRE STATUS BAR ──
+  // Cloudflare Worker (ocfa-fire-status, in the OCFA Cloudflare account); source is worker.js on main.
+  var FIRE_STATUS_URL = 'https://ocfa-fire-status.otsego-county-fire-authority.workers.dev/';
+  var FB_COLORS = {
+    green:  { edge: '#006633', text: '#4ade80' },
+    yellow: { edge: '#d97706', text: '#fbbf24' },
+    orange: { edge: '#ff9a00', text: '#fb923c' },
+    red:    { edge: '#dc2626', text: '#fca5a5' },
+    brown:  { edge: '#b58b7c', text: '#d4a890' },
+    gray:   { edge: '#888480', text: '#c0bdb8' },
   };
+  var FB_CACHE_KEY   = 'ocfa_fire_status_v4';   // bump (with ?v= below) whenever the Worker's data changes
+  var FB_HIDDEN_KEY  = 'ocfa_fire_bar_hidden';  // remembers which status the visitor closed
+  var FB_TTL_MS      = 60 * 60 * 1000;
 
-  var BP_CACHE_KEY = 'ocfa_fire_status_v2';
-  var BP_TTL_MS    = 60 * 60 * 1000; // 1 hour
+  function showFireBar(data) {
+    var bar = document.getElementById('fire-bar');
+    var permit = data.permit || {};
+    var danger = data.danger || { label: 'No Active Alerts', color: 'green' };
+    // A visitor who closed the bar sees it again only when the status changes
+    var rating = data.rating || null;
+    var statusKey = permit.label + '|' + danger.label + '|' + (rating ? rating.level : '');
 
-  function applyBurnPermit(data) {
-    var panel  = document.getElementById('burn-permit-panel');
-    var permit = data.permit || data;
-    var danger = data.danger || null;
-
-    // Border/glow: use worst-case color between permit and danger
-    var dangerColor  = danger ? danger.color : 'green';
-    var borderSource = (dangerColor !== 'green') ? dangerColor : permit.color;
-    var c = BP_COLORS[borderSource] || BP_COLORS.gray;
-    panel.style.setProperty('--bp-border', c.border);
-    panel.style.setProperty('--bp-glow',   c.glow);
-
-    // Permit column
-    var pc = BP_COLORS[permit.color] || BP_COLORS.gray;
-    panel.style.setProperty('--bp-text', pc.text);
-    document.getElementById('bp-status').textContent = permit.label;
-    document.getElementById('bp-detail').textContent = permit.detail;
-
-    // Fire danger column
-    if (danger) {
-      var dc = BP_COLORS[danger.color] || BP_COLORS.gray;
-      panel.style.setProperty('--bd-text', dc.text);
-      document.getElementById('bd-status').textContent = danger.label;
-      document.getElementById('bd-detail').textContent = danger.detail;
+    // Lamp and edge follow the burning status; only a Red Flag Warning overrides it
+    var BURN_COLOR = { 0: 'red', 1: 'green', 2: 'orange', 3: 'gray' };
+    var burnColor = BURN_COLOR[permit.status] || 'gray';
+    permit.color = burnColor;
+    var lampColor = danger.color === 'red' ? 'red' : burnColor;
+    var c = FB_COLORS[lampColor];
+    // Lamp needs saturated colors (the light text shades read as pink/pale when glowing)
+    var LAMP = { green: '#4ade80', orange: '#fb923c', red: '#ef4444', gray: '#a8a49c' };
+    bar.querySelector('.fire-bar__dot').style.setProperty('--lamp', LAMP[lampColor]);
+    bar.style.setProperty('--fb-color', c.text);
+    bar.style.setProperty('--fb-edge',  c.edge);
+    // Short, self-explanatory phrases (no "Burn permit:" / "Fire danger:" prefixes)
+    var PERMIT_TEXT = { 0: 'No Burning', 1: 'Burning Permitted', 2: 'Restricted Burning', 3: 'Contact DNR' };
+    document.getElementById('fb-permit').textContent = PERMIT_TEXT[permit.status] || permit.label || 'Burn permit status unknown';
+    // Normal-day text stays neutral; only a non-green status gets its warning color
+    function phraseColor(color) { return color && color !== 'green' ? (FB_COLORS[color] || FB_COLORS.gray).text : ''; }
+    document.getElementById('fb-permit').style.color = phraseColor(permit.color);
+    // Second slot: an NWS fire weather alert if there is one; otherwise the DNR's daily fire danger level
+    // (colored like the roadside fire danger signs); otherwise nothing
+    var RATING_COLOR = { 'Low': '#4ade80', 'Moderate': '#60a5fa', 'High': '#facc15', 'Very High': '#fb923c', 'Extreme': '#ef4444' };
+    var dangerEl = document.getElementById('fb-danger');
+    dangerEl.textContent = '';
+    dangerEl.style.color = '';
+    dangerEl.removeAttribute('title');
+    dangerEl.hidden = false;
+    if (danger.color !== 'green') {
+      dangerEl.textContent = danger.label;
+      dangerEl.style.color = phraseColor(danger.color);
+    } else if (rating && RATING_COLOR[rating.level]) {
+      var levelEl = document.createElement('span');
+      levelEl.textContent = rating.level;
+      levelEl.style.color = RATING_COLOR[rating.level];
+      dangerEl.append('Fire Danger: ', levelEl);
+      dangerEl.title = 'Today’s ' + rating.area + ' fire danger from the ' + rating.source;
+    } else {
+      dangerEl.hidden = true;
     }
-
-    if (data.updated) {
-      var d = new Date(data.updated);
-      var fmt = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
-              + ' · ' + d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
-      document.getElementById('bp-updated').textContent = 'Updated ' + fmt;
+    // During a Red Flag Warning the bar can't be closed
+    document.getElementById('fb-close').hidden = (danger.color === 'red');
+    bar.classList.toggle('fire-bar--alert', danger.color === 'red');
+    // Closed bars stay closed until the status changes; the fire button brings one back any time
+    var closeBtn  = document.getElementById('fb-close');
+    var reopenBtn = document.getElementById('fb-reopen');
+    reopenBtn.style.setProperty('--lamp', LAMP[lampColor]);
+    function setClosed(closed) {
+      bar.classList.toggle('is-shown', !closed);
+      reopenBtn.hidden = !closed;
     }
+    var dismissed = false;
+    try { dismissed = localStorage.getItem(FB_HIDDEN_KEY) === statusKey; } catch(e) {}
+    setClosed(dismissed && danger.color !== 'red');
+    closeBtn.onclick = function() {
+      try { localStorage.setItem(FB_HIDDEN_KEY, statusKey); } catch(e) {}
+      setClosed(true);
+      reopenBtn.focus();
+    };
+    reopenBtn.onclick = function() {
+      try { localStorage.removeItem(FB_HIDDEN_KEY); } catch(e) {}
+      setClosed(false);
+      (closeBtn.hidden ? bar.querySelector('.fire-bar__link') : closeBtn).focus();
+    };
   }
 
-  function initBurnPermit() {
-    var panel = document.getElementById('burn-permit-panel');
-    if (!panel) return;
-    // No Worker configured yet: show the "check the DNR website" fallback instead of a stuck "Loading…"
-    if (!BURN_PERMIT_WORKER_URL || BURN_PERMIT_WORKER_URL === 'REPLACE_WITH_YOUR_WORKER_URL') {
-      panel.classList.add('bp-panel--error');
-      return;
-    }
-
+  (function initFireBar() {
     try {
-      var cached = JSON.parse(localStorage.getItem(BP_CACHE_KEY) || 'null');
-      if (cached && (Date.now() - cached.fetchedAt) < BP_TTL_MS) {
-        applyBurnPermit(cached);
-        return;
-      }
+      var cached = JSON.parse(localStorage.getItem(FB_CACHE_KEY) || 'null');
+      if (cached && (Date.now() - cached.fetchedAt) < FB_TTL_MS) { showFireBar(cached); return; }
     } catch(e) {}
-
-    fetch(BURN_PERMIT_WORKER_URL)
+    fetch(FIRE_STATUS_URL + '?v=4')  // ?v= changes whenever the Worker's data changes, so browsers don't reuse an older saved answer
       .then(function(r) { return r.json(); })
       .then(function(data) {
         if (data.error) throw new Error(data.message);
         data.fetchedAt = Date.now();
-        try { localStorage.setItem(BP_CACHE_KEY, JSON.stringify(data)); } catch(e) {}
-        applyBurnPermit(data);
+        try { localStorage.setItem(FB_CACHE_KEY, JSON.stringify(data)); } catch(e) {}
+        showFireBar(data);
       })
-      .catch(function() {
-        panel.classList.add('bp-panel--error');
-        document.getElementById('bp-status').textContent = 'Status Unavailable';
-      });
-  }
+      .catch(function() { /* leave the bar hidden; the page works without it */ });
+  })();
 
   // ── INIT ──
-  initBurnPermit();
   renderMeetings();
   highlightNextMeeting();
+  renderHomeMeetings();
+  renderHomeMinutes();
+  isFetchData().then(renderHomeIncidents).catch(function() {});
   initCalendarLinks();
   initDocSearch();
   enhanceActionCells();
   setTimeout(function() { staggerIn(document.getElementById('home')); }, 380);
   setTimeout(animateStats, 180);
-  if (location.hash === '#incident-statistics') showSection('stats', document.querySelectorAll('nav a')[3]);
+  const initialSection = sectionForHash(location.hash);
+  if (initialSection && initialSection !== 'home') showSection(initialSection, true);
+  else history.replaceState({ section: 'home' }, '', initialSection ? location.pathname + location.search : location.href);
 
 </script>
 </body>
