@@ -78,7 +78,8 @@ async function pdfText(bytes) {
 }
 
 // Today's Lower Peninsula fire danger level, or null if the briefing is missing, stale, or unclear.
-// If the sentence names more than one level ("Low to Moderate", "Moderate south, High north"), use the highest.
+// The level can come before or after the words ("Fire danger is Moderate.", "High to Very High Fire Danger
+// throughout the state today."). If the sentence names more than one level, use the highest.
 async function fetchBriefingRating() {
   const resp = await fetch(BRIEFING_URL, { cf: { cacheTtl: 1800 } });
   if (!resp.ok) return null;
@@ -91,7 +92,7 @@ async function fetchBriefingRating() {
   if (`${+published[1]}/${+published[2]}/${published[3]}` !== today) return null;
 
   const section  = text.match(/FIRE DANGER AND STAFFING(.*?)(?:FIRE PLANNING|AERIAL DETECTION|BURN PERMITS|$)/i);
-  const sentence = section && section[1].match(/fire danger (?:is|will be|remains)[^.]*/i);
+  const sentence = section && section[1].match(/[^.]*\bfire danger\b[^.]*/i);
   if (!sentence) return null;
   const level = DANGER_LEVELS.find(l => new RegExp(`\\b${l}\\b`, 'i').test(sentence[0]));
   if (!level) return null;
@@ -110,7 +111,7 @@ export default {
       return new Response(null, { headers: CORS });
     }
 
-    const cacheKey = new Request('https://ocfa-fire-status-cache/otsego-v3', request);
+    const cacheKey = new Request('https://ocfa-fire-status-cache/otsego-v4', request);
     const cache    = caches.default;
     const cached   = await cache.match(cacheKey);
     if (cached) return cached;
