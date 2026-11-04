@@ -491,6 +491,11 @@
   var FB_CACHE_KEY   = 'ocfa_fire_status_v4';   // bump (with ?v= below) whenever the Worker's data changes
   var FB_HIDDEN_KEY  = 'ocfa_fire_bar_hidden';  // remembers which status the visitor closed
   var FB_TTL_MS      = 60 * 60 * 1000;
+  var FB_TTL_EARLY_MS = 10 * 60 * 1000;          // until today's briefing is posted, check again sooner
+  // Today's date in Michigan, as YYYY-MM-DD (matches the Worker's rating.date)
+  function fbToday() {
+    return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Detroit', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+  }
 
   function showFireBar(data) {
     var bar = document.getElementById('fire-bar');
@@ -533,7 +538,9 @@
       levelEl.textContent = rating.level;
       levelEl.style.color = RATING_COLOR[rating.level];
       dangerEl.append('Fire Danger: ', levelEl);
-      dangerEl.title = 'Today’s ' + rating.area + ' fire danger from the ' + rating.source;
+      var isToday = rating.date === fbToday();
+      var day = isToday ? 'Today’s' : new Date(rating.date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' }) + ':';
+      dangerEl.title = day + ' ' + rating.area + ' fire danger from the ' + rating.source + (isToday ? '' : ' (today’s is not posted yet)');
     } else {
       dangerEl.hidden = true;
     }
@@ -566,7 +573,8 @@
   (function initFireBar() {
     try {
       var cached = JSON.parse(localStorage.getItem(FB_CACHE_KEY) || 'null');
-      if (cached && (Date.now() - cached.fetchedAt) < FB_TTL_MS) { showFireBar(cached); return; }
+      var ttl = cached && cached.rating && cached.rating.date === fbToday() ? FB_TTL_MS : FB_TTL_EARLY_MS;
+      if (cached && (Date.now() - cached.fetchedAt) < ttl) { showFireBar(cached); return; }
     } catch(e) {}
     fetch(FIRE_STATUS_URL + '?v=4')  // ?v= changes whenever the Worker's data changes, so browsers don't reuse an older saved answer
       .then(function(r) { return r.json(); })
