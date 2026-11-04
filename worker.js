@@ -17,6 +17,8 @@ const NWS_ALERTS_URL =
 const BRIEFING_URL = 'https://www2.dnr.state.mi.us/weather/lpmorningbriefing.pdf';
 // Highest first, so "Very High" is matched before "High"
 const DANGER_LEVELS = ['Extreme', 'Very High', 'High', 'Moderate', 'Low'];
+// The previous briefing's level stays up until the next one is posted, but not past this many days
+const MAX_BRIEFING_AGE_DAYS = 2;
 
 const PERMIT_MAP = {
   0: { label: 'No Permit Available',  detail: 'Open burning is not permitted at this time.',                   color: 'brown'  },
@@ -77,19 +79,26 @@ async function pdfText(bytes) {
   return text.replace(/en-US/g, ' ').replace(/\s+/g, ' ');
 }
 
-// Today's Lower Peninsula fire danger level, or null if the briefing is missing, stale, or unclear.
+// Today's date in Michigan, as YYYY-MM-DD
+function detroitDate(date) {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Detroit', year: 'numeric', month: '2-digit', day: '2-digit' }).format(date);
+}
+
+// The latest Lower Peninsula fire danger level, or null if the briefing is missing, too old, or unclear.
+// Until the morning's briefing is posted, the previous one's level is kept (its date says which day it is).
 // The level can come before or after the words ("Fire danger is Moderate.", "High to Very High Fire Danger
 // throughout the state today."). If the sentence names more than one level, use the highest.
 async function fetchBriefingRating() {
-  const resp = await fetch(BRIEFING_URL, { cf: { cacheTtl: 1800 } });
+  const resp = await fetch(BRIEFING_URL, { cf: { cacheTtl: 600 } });
   if (!resp.ok) return null;
   const text = await pdfText(new Uint8Array(await resp.arrayBuffer()));
 
-  // Only trust today's briefing (it may stop being updated outside fire season)
+  // Drop briefings older than MAX_BRIEFING_AGE_DAYS (it stops being updated outside fire season)
   const published = text.match(/Published:\s*(\d{1,2})\/(\d{1,2})\/(\d{4})/);
   if (!published) return null;
-  const today = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Detroit', year: 'numeric', month: 'numeric', day: 'numeric' }).format(new Date());
-  if (`${+published[1]}/${+published[2]}/${published[3]}` !== today) return null;
+  const date = `${published[3]}-${published[1].padStart(2, '0')}-${published[2].padStart(2, '0')}`;
+  const ageDays = (Date.parse(detroitDate(new Date())) - Date.parse(date)) / 86400000;
+  if (ageDays < 0 || ageDays > MAX_BRIEFING_AGE_DAYS) return null;
 
   const section  = text.match(/FIRE DANGER AND STAFFING(.*?)(?:FIRE PLANNING|AERIAL DETECTION|BURN PERMITS|$)/i);
   const sentence = section && section[1].match(/[^.]*\bfire danger\b[^.]*/i);
@@ -99,7 +108,7 @@ async function fetchBriefingRating() {
 
   return {
     level:  level,
-    date:   `${published[3]}-${published[1].padStart(2, '0')}-${published[2].padStart(2, '0')}`,
+    date:   date,
     area:   'Lower Peninsula',
     source: 'Michigan DNR morning fire briefing',
   };
@@ -147,11 +156,13 @@ export default {
         updated: updated,
       });
 
+      // Until today's briefing is posted, check again every 10 minutes instead of every hour
+      const maxAge   = rating && rating.date === detroitDate(new Date()) ? 3600 : 600;
       const response = new Response(body, {
         headers: {
           ...CORS,
           'Content-Type':  'application/json',
-          'Cache-Control': 'public, max-age=3600, s-maxage=3600',
+          'Cache-Control': `public, max-age=${maxAge}, s-maxage=${maxAge}`,
         },
       });
 

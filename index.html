@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Otsego County Fire Authority</title>
-  <meta name="description" content="Official website of the Otsego County Fire Authority, governing fire protection for the City of Gaylord and the townships of Bagley, Dover, Hayes, Livingston, and western Chester. Board meeting schedule, minutes, agendas, and run reports." />
+  <meta name="description" content="Official website of the Otsego County Fire Authority, providing fire protection and rescue services to the City of Gaylord and the townships of Bagley, Chester, Dover, Hayes, and Livingston. Board meetings, minutes, agendas, and incident statistics." />
   <meta name="theme-color" content="#111111" />
   <link rel="icon" type="image/png" href="FireAuth.png"/>
   <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
@@ -13,7 +13,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Otsego County Fire Authority" />
   <meta property="og:title" content="Otsego County Fire Authority" />
-  <meta property="og:description" content="Fire protection governance for Gaylord and the townships of Otsego County, Michigan. Board meetings, minutes, agendas, and run reports." />
+  <meta property="og:description" content="Fire protection and rescue for Gaylord and surrounding townships. Board meetings, minutes, agendas, and incident statistics." />
   <meta property="og:url" content="https://otsegocountyfiremi.gov/" />
   <meta property="og:image" content="https://otsegocountyfiremi.gov/social-preview.jpg" />
   <meta property="og:image:width" content="1200" />
@@ -2507,13 +2507,13 @@
     <div class="hero-frame" aria-hidden="true"></div>
     <div class="hero-cross" aria-hidden="true"></div>
     <div class="hero-top-rule">
-      <div class="ornate-rule"><span>Est. 2025 · Otsego County · Michigan</span></div>
+      <div class="ornate-rule"><span>Est. 2024 · Otsego County · Michigan</span></div>
     </div>
     <h1 class="hero-title"><span>Otsego County</span> <span>Fire Authority</span></h1>
     <div class="hero-divider"></div>
     <p class="hero-body">
-      The governing body for fire protection services across the City of Gaylord
-      and the townships of Bagley, Dover, Hayes, Livingston, and western Chester —
+      Fire protection and rescue for the City of Gaylord
+      and the townships of Bagley, Dover, Hayes, Livingston, and part of Chester —
       committed to transparency, fiscal accountability, and the safety of every
       community we serve.
     </p>
@@ -2555,7 +2555,7 @@
           </svg>
         </div>
         <h3>Minutes &amp; Agendas</h3>
-        <p>Official board meeting records, approved minutes, and posted agendas for all public Authority meetings.</p>
+        <p>Official board meeting records, approved minutes, and posted agendas for all public board meetings.</p>
         <div class="card-now" id="card-now-minutes" hidden></div>
         <a class="card-link" href="#minutes">Browse Documents →</a>
       </div>
@@ -2571,7 +2571,7 @@
           </svg>
         </div>
         <h3>Events &amp; Meetings</h3>
-        <p>Scheduled board meetings, public hearings, training dates, and community events across the county.</p>
+        <p>Upcoming board meetings and other public events.</p>
         <div class="card-now" id="card-now-events" hidden></div>
         <a class="card-link" href="#events">View Calendar →</a>
       </div>
@@ -2603,8 +2603,8 @@
       <div class="about-grid">
         <div class="about-body">
           <h3>Our Mission</h3>
-          <p>The Otsego County Fire Authority provides coordinated fire protection and emergency services governance across the City of Gaylord and the five surrounding townships of Otsego County, Michigan. Through shared resources, joint planning, and fiscal oversight, the Authority ensures every community has access to professional, well-equipped fire and rescue services.</p>
-          <p>The Authority is governed by a board of directors representing each member entity. Regular public meetings are held to conduct the business of the Authority with full transparency and accountability to the citizens we serve.</p>
+          <p>The Otsego County Fire Authority is a special assessment district responsible for fire protection and rescue services in the City of Gaylord and five surrounding townships.</p>
+          <p>The Authority is led by a board of directors with one representative from each member community. Regular board meetings are held on the first Thursday of each month and are open to the public.</p>
 
           <h3 style="margin-top:28px;">Board of Directors &amp; Member Entities</h3>
           <table class="vintage-table">
@@ -2667,7 +2667,7 @@
   <div class="page-header">
     <div class="breadcrumb"><a href="#home">Home</a> · Minutes &amp; Agendas</div>
     <h2>Meeting Minutes &amp; Agendas</h2>
-    <p>Official records of all Otsego County Fire Authority board meetings, posted following approval.</p>
+    <p>Agendas are posted before each meeting. Minutes are posted once the board approves them.</p>
   </div>
   <div class="container">
     <div class="doc-controls">
@@ -2829,7 +2829,7 @@
   <div class="footer-inner">
     <div>
       <h4>Otsego County Fire Authority</h4>
-      <p>The official website of the Otsego County Fire Authority — a public authority established to coordinate and govern fire protection services across the City of Gaylord and five surrounding townships of Otsego County, Michigan.</p>
+      <p>The official website of the Otsego County Fire Authority, providing fire protection and rescue services to the City of Gaylord and five surrounding townships.</p>
     </div>
     <div>
       <h4>Quick Links</h4>
@@ -2859,7 +2859,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    &copy; 2026 <strong>Otsego County Fire Authority</strong> &nbsp;·&nbsp; All Rights Reserved &nbsp;·&nbsp; Public Authority — State of Michigan
+    &copy; 2026 <strong>Otsego County Fire Authority</strong> &nbsp;·&nbsp; Gaylord, Michigan
   </div>
 </footer>
 
@@ -3846,6 +3846,11 @@
   var FB_CACHE_KEY   = 'ocfa_fire_status_v4';   // bump (with ?v= below) whenever the Worker's data changes
   var FB_HIDDEN_KEY  = 'ocfa_fire_bar_hidden';  // remembers which status the visitor closed
   var FB_TTL_MS      = 60 * 60 * 1000;
+  var FB_TTL_EARLY_MS = 10 * 60 * 1000;          // until today's briefing is posted, check again sooner
+  // Today's date in Michigan, as YYYY-MM-DD (matches the Worker's rating.date)
+  function fbToday() {
+    return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Detroit', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+  }
 
   function showFireBar(data) {
     var bar = document.getElementById('fire-bar');
@@ -3888,7 +3893,9 @@
       levelEl.textContent = rating.level;
       levelEl.style.color = RATING_COLOR[rating.level];
       dangerEl.append('Fire Danger: ', levelEl);
-      dangerEl.title = 'Today’s ' + rating.area + ' fire danger from the ' + rating.source;
+      var isToday = rating.date === fbToday();
+      var day = isToday ? 'Today’s' : new Date(rating.date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' }) + ':';
+      dangerEl.title = day + ' ' + rating.area + ' fire danger from the ' + rating.source + (isToday ? '' : ' (today’s is not posted yet)');
     } else {
       dangerEl.hidden = true;
     }
@@ -3921,7 +3928,8 @@
   (function initFireBar() {
     try {
       var cached = JSON.parse(localStorage.getItem(FB_CACHE_KEY) || 'null');
-      if (cached && (Date.now() - cached.fetchedAt) < FB_TTL_MS) { showFireBar(cached); return; }
+      var ttl = cached && cached.rating && cached.rating.date === fbToday() ? FB_TTL_MS : FB_TTL_EARLY_MS;
+      if (cached && (Date.now() - cached.fetchedAt) < ttl) { showFireBar(cached); return; }
     } catch(e) {}
     fetch(FIRE_STATUS_URL + '?v=4')  // ?v= changes whenever the Worker's data changes, so browsers don't reuse an older saved answer
       .then(function(r) { return r.json(); })
