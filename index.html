@@ -2111,6 +2111,8 @@
     /* ── ACCESSIBILITY ── */
     .tel-link, .mail-link { color: inherit; text-decoration: none; white-space: nowrap; }
     .tel-link:hover, .mail-link:hover { color: var(--gold-2); }
+    .map-link { color: inherit; text-decoration: none; }
+    .map-link:hover { color: var(--gold-2); }
     .photo-band { overflow: hidden; }
     /* Section headings receive focus when switching sections (for screen readers) — no visible box */
     h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus { outline: none !important; }
@@ -2661,7 +2663,15 @@
               <p class="contact-intro">For emergencies, call <strong>9-1-1</strong>.</p>
               <div class="contact-row">
                 <svg viewBox="0 0 24 24" fill="#b91c1c"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                <div><strong>Board Meeting Location</strong><span>Gaylord City Hall<br/>305 East Main Street<br/>Gaylord, MI 49735</span></div>
+                <div><strong>Fire Station</strong><span><a class="map-link" href="https://maps.google.com/?q=811+South+Wisconsin+Avenue+Gaylord+MI+49735" target="_blank" rel="noopener">811 South Wisconsin Avenue<br/>Gaylord, MI 49735</a></span></div>
+              </div>
+              <div class="contact-row">
+                <svg viewBox="0 0 24 24" fill="#b91c1c"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <div><strong>Mailing Address</strong><span>305 East Main Street<br/>Gaylord, MI 49735</span></div>
+              </div>
+              <div class="contact-row">
+                <svg viewBox="0 0 24 24" fill="#b91c1c"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                <div><strong>Board Meeting Location</strong><span>Gaylord City Hall<br/>305 East Main Street</span></div>
               </div>
               <div class="contact-row">
                 <svg viewBox="0 0 24 24" fill="#b91c1c"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
@@ -2890,6 +2900,7 @@
     <div>
       <h4>Contact</h4>
       <p>
+        Mailing address:<br/>
         305 East Main Street<br/>
         Gaylord, MI 49735<br/><br/>
         <a class="tel-link" data-tel="jijhdbaejh">Phone on file</a><br/>
