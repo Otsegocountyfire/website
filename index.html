@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Otsego County Fire Authority</title>
-  <meta name="description" content="Official website of the Otsego County Fire Authority, providing fire protection and rescue services to the City of Gaylord and the townships of Bagley, Chester, Dover, Hayes, and Livingston. Board meetings, minutes, agendas, and incident statistics." />
+  <meta name="description" content="Official website of the Otsego County Fire Authority, providing fire protection and rescue services to the City of Gaylord and the townships of Bagley, Dover, Hayes, Livingston, and western Chester. Board meetings, minutes, agendas, and incident statistics." />
   <meta name="theme-color" content="#111111" />
   <link rel="icon" type="image/png" href="FireAuth.png"/>
   <link rel="apple-touch-icon" href="apple-touch-icon.png"/>
@@ -459,6 +459,7 @@
       margin: 0 auto 32px;
       line-height: 1.8;
     }
+    .hero-body--first { margin-bottom: 14px; }
 
     /* Next board meeting, between the intro and the buttons */
     .hero-next {
@@ -865,6 +866,14 @@
       font-size: .83rem;
     }
     .contact-row:last-child { border-bottom: none; }
+    .contact-intro {
+      font-family: 'Libre Baskerville', serif;
+      font-size: .83rem;
+      line-height: 1.6;
+      color: var(--text-mid);
+      margin-bottom: 8px;
+    }
+    .contact-intro strong { color: #dc2626; }
     .contact-row svg { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; }
     .contact-row strong {
       display: block;
@@ -1462,6 +1471,15 @@
       margin: 16px 0 4px;
     }
     .is-about ul { margin: 0 0 10px 18px; }
+    .is-about summary {
+      cursor: pointer;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      width: fit-content;
+    }
+    .is-about details[open] summary { margin-bottom: 12px; }
 
     @media (max-width: 680px) {
       .chart-panel { padding: 18px 14px; }
@@ -1495,6 +1513,13 @@
       #stats .is-bar, #stats .is-cat-bar { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
     }
     /* ─────────────────── SUB-HEADING ─────────────────── */
+    .sub-heading-note {
+      font-family: 'Libre Baskerville', serif;
+      font-size: .9rem;
+      line-height: 1.6;
+      color: var(--text-mid);
+      margin-bottom: 14px;
+    }
     .sub-heading {
       font-family: 'Playfair Display', serif;
       font-size: 1.1rem;
@@ -1924,6 +1949,8 @@
 
       /* Status pills — keep badges, just compact */
       .doc-pill { font-size: .58rem; padding: 1px 5px; letter-spacing: .03em; }
+      /* Two-word statuses ("Meeting canceled") wrap so the table still fits */
+      .doc-table td .doc-pill { white-space: normal; line-height: 1.3; }
 
       /* Action buttons — icon only (font-size:0 hides text, SVG width/height stays) */
       .dl-btn { font-size: 0; padding: 5px 7px; }
@@ -2511,11 +2538,13 @@
     </div>
     <h1 class="hero-title"><span>Otsego County</span> <span>Fire Authority</span></h1>
     <div class="hero-divider"></div>
+    <p class="hero-body hero-body--first">
+      The Otsego County Fire Authority provides fire protection and rescue services to
+      the City of Gaylord and the townships of Bagley, Dover, Hayes, Livingston, and western Chester.
+    </p>
     <p class="hero-body">
-      Fire protection and rescue for the City of Gaylord
-      and the townships of Bagley, Dover, Hayes, Livingston, and part of Chester —
-      committed to transparency, fiscal accountability, and the safety of every
-      community we serve.
+      Serving our communities with a commitment to public safety, responsible stewardship,
+      and transparent governance.
     </p>
     <!-- Filled in by renderHomeMeetings() -->
     <p class="hero-next" id="hero-next" hidden></p>
@@ -2530,11 +2559,11 @@
 
   <!-- Stats bar -->
   <div class="stats-bar">
-    <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Member Entities</div></div>
+    <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Member Communities</div></div>
     <!-- Filled in from data/incident-stats.json; stays hidden if it can't be loaded -->
     <div class="stat-item" id="home-incidents" hidden><div class="stat-num"></div><div class="stat-label"></div></div>
-    <div class="stat-item"><div class="stat-num">206</div><div class="stat-label">Sq. Miles Covered</div></div>
-    <div class="stat-item"><div class="stat-num">2025</div><div class="stat-label">Est. Founded</div></div>
+    <div class="stat-item"><div class="stat-num">206</div><div class="stat-label">Square Miles Served</div></div>
+    <div class="stat-item"><div class="stat-num">2024</div><div class="stat-label">Established</div></div>
   </div>
 
   <!-- Coachline divider -->
@@ -2555,9 +2584,9 @@
           </svg>
         </div>
         <h3>Minutes &amp; Agendas</h3>
-        <p>Official board meeting records, approved minutes, and posted agendas for all public board meetings.</p>
+        <p>Find board meeting agendas and approved minutes.</p>
         <div class="card-now" id="card-now-minutes" hidden></div>
-        <a class="card-link" href="#minutes">Browse Documents →</a>
+        <a class="card-link" href="#minutes">Browse Meeting Documents →</a>
       </div>
 
       <div class="vintage-card">
@@ -2571,7 +2600,7 @@
           </svg>
         </div>
         <h3>Events &amp; Meetings</h3>
-        <p>Upcoming board meetings and other public events.</p>
+        <p>View upcoming board meetings and public events, including dates, times, and locations.</p>
         <div class="card-now" id="card-now-events" hidden></div>
         <a class="card-link" href="#events">View Calendar →</a>
       </div>
@@ -2583,7 +2612,7 @@
           </svg>
         </div>
         <h3>Incident Statistics</h3>
-        <p>Monthly incident volume, incident categories, and mutual aid figures from reports published through NERIS Public.</p>
+        <p>Explore incident totals, response categories, and mutual aid activity reported by the Authority.</p>
         <div class="card-now" id="card-now-stats" hidden></div>
         <a class="card-link" href="#incident-statistics">View Statistics →</a>
       </div>
@@ -2602,14 +2631,16 @@
       </div>
       <div class="about-grid">
         <div class="about-body">
-          <h3>Our Mission</h3>
-          <p>The Otsego County Fire Authority is a special assessment district responsible for fire protection and rescue services in the City of Gaylord and five surrounding townships.</p>
-          <p>The Authority is led by a board of directors with one representative from each member community. Regular board meetings are held on the first Thursday of each month and are open to the public.</p>
+          <h3>Who We Are</h3>
+          <p>Established in 2024, the Otsego County Fire Authority is a special assessment district providing fire protection and rescue services across approximately 206 square miles of Otsego County, Michigan. Our service area includes the City of Gaylord and the townships of Bagley, Dover, Hayes, Livingston, and western Chester.</p>
+          <p>OCFA operates as a combination fire department with a full-time Fire Chief and paid-on-call firefighters. Our members respond to emergencies and participate in ongoing training to maintain the skills needed to serve our communities.</p>
 
-          <h3 style="margin-top:28px;">Board of Directors &amp; Member Entities</h3>
+          <h3 style="margin-top:28px;">Board of Directors &amp; Member Communities</h3>
+          <p>The Authority is governed by a six-member Board of Directors, with one representative from each member community. The board provides oversight of the Authority’s operations and finances.</p>
+          <p>Board meetings are open to the public. Visit the <a href="#events">Events &amp; Meetings</a> page for upcoming meeting dates, times, and locations.</p>
           <table class="vintage-table">
             <thead>
-              <tr><th>Entity</th><th>Representative</th><th>Phone</th></tr>
+              <tr><th>Member Community</th><th>Representative</th><th>Phone</th></tr>
             </thead>
             <tbody>
               <tr><td>City of Gaylord</td><td>Kim Awrey</td><td><a class="tel-link" data-tel="jijhdceaga">Phone on file</a></td></tr>
@@ -2626,9 +2657,15 @@
           <div class="sidebar-panel">
             <div class="sidebar-panel-head"><h4>Contact &amp; Location</h4></div>
             <div class="sidebar-panel-body">
+              <p class="contact-intro">For non-emergency questions about the Authority, contact us using the information below.</p>
+              <p class="contact-intro">For emergencies, call <strong>9-1-1</strong>.</p>
               <div class="contact-row">
                 <svg viewBox="0 0 24 24" fill="#b91c1c"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                <div><strong>Address</strong><span>305 East Main Street<br/>Gaylord, MI 49735</span></div>
+                <div><strong>Board Meeting Location</strong><span>Gaylord City Hall<br/>305 East Main Street<br/>Gaylord, MI 49735</span></div>
+              </div>
+              <div class="contact-row">
+                <svg viewBox="0 0 24 24" fill="#b91c1c"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <div><strong>General Inquiries</strong><span><a class="tel-link" data-tel="jijhdbaejh">Phone on file</a><br/><a class="mail-link" href="mailto:info@otsegocountyfiremi.gov">info@otsegocountyfiremi.gov</a></span></div>
               </div>
               <div class="contact-row">
                 <svg viewBox="0 0 24 24" fill="#b91c1c"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
@@ -2645,15 +2682,18 @@
 <!-- ══════════════════════ EVENTS ══════════════════════ -->
 <section id="events">
   <div class="page-header">
-    <div class="breadcrumb"><a href="#home">Home</a> · Events</div>
-    <h2>Events &amp; Meetings Calendar</h2>
-    <p>All board meetings are open to the public in accordance with Michigan's Open Meetings Act.</p>
+    <div class="breadcrumb"><a href="#home">Home</a> · Events &amp; Meetings</div>
+    <h2>Events &amp; Meetings</h2>
+    <p>Find upcoming board meetings and public events hosted by the Otsego County Fire Authority.</p>
   </div>
   <div class="container">
-    <div class="ornate-rule" style="margin-bottom:28px;"><span>Upcoming Meetings</span></div>
+    <div class="ornate-rule" style="margin-bottom:28px;"><span>Board Meetings</span></div>
 
+    <p style="font-family:'Libre Baskerville',serif;font-size:.95rem;line-height:1.7;color:var(--text-mid);margin-bottom:12px;">
+      Regular meetings are held on the <strong style="color:var(--text-mid);">first Thursday of each month at 9:30 a.m.</strong> at <a href="https://maps.google.com/?q=305+East+Main+Street+Gaylord+MI+49735" target="_blank" rel="noopener" style="color:var(--text-mid);">Gaylord City Hall, 305 East Main Street, Gaylord, Michigan</a>, unless otherwise posted.
+    </p>
     <p style="font-family:'Libre Baskerville',serif;font-size:.95rem;line-height:1.7;color:var(--text-mid);margin-bottom:22px;">
-      Regular board meetings are held the <strong style="color:var(--text-mid);">1st Thursday of each month</strong> at 9:30 AM at <a href="https://maps.google.com/?q=305+East+Main+Street+Gaylord+MI+49735" target="_blank" rel="noopener" style="color:var(--text-mid);">City Hall, Gaylord MI</a>, unless otherwise scheduled.
+      Meetings are open to the public. Check the listings below for scheduled dates and any changes to the regular meeting schedule.
     </p>
 
     <div class="events-list">
@@ -2667,7 +2707,8 @@
   <div class="page-header">
     <div class="breadcrumb"><a href="#home">Home</a> · Minutes &amp; Agendas</div>
     <h2>Meeting Minutes &amp; Agendas</h2>
-    <p>Agendas are posted before each meeting. Minutes are posted once the board approves them.</p>
+    <p>Access board meeting agendas and approved minutes. Agendas are posted before meetings, and minutes are posted following board approval.</p>
+    <p>Use the year and document-type filters or search by keyword to find a record.</p>
   </div>
   <div class="container">
     <div class="doc-controls">
@@ -2701,23 +2742,23 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td><strong>Apr</strong><br>2026</td><td>Regular Board Meeting</td><td>April 2026 — Meeting Agenda</td><td><span class="doc-pill pill-pending">Pending</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
-          <tr><td><strong>Mar</strong><br>2026</td><td>Regular Board Meeting</td><td>March 2026 — Meeting Minutes</td><td><span class="doc-pill pill-canceled">Canceled</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Apr</strong><br>2026</td><td>Regular Board Meeting</td><td>April 2026 — Meeting Agenda</td><td><span class="doc-pill pill-pending">Currently unavailable</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Mar</strong><br>2026</td><td>Regular Board Meeting</td><td>March 2026 — Meeting Minutes</td><td><span class="doc-pill pill-canceled">Meeting canceled</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
           <tr><td><strong>Feb</strong><br>2026</td><td>Regular Board Meeting</td><td>February 2026 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2026-02-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
-          <tr><td><strong>Jan</strong><br>2026</td><td>Regular Board Meeting</td><td>January 2026 — Meeting Minutes</td><td><span class="doc-pill pill-canceled">Canceled</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Jan</strong><br>2026</td><td>Regular Board Meeting</td><td>January 2026 — Meeting Minutes</td><td><span class="doc-pill pill-canceled">Meeting canceled</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
           <tr><td><strong>Dec</strong><br>2025</td><td>Regular Board Meeting</td><td>December 2025 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2025-12-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
           <tr><td><strong>Nov</strong><br>2025</td><td>Regular Board Meeting</td><td>November 2025 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2025-11-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
           <tr><td><strong>Oct</strong><br>2025</td><td>Regular Board Meeting</td><td>October 2025 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2025-10-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
           <tr><td><strong>Sep</strong><br>2025</td><td>Regular Board Meeting</td><td>September 2025 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2025-09-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
           <tr><td><strong>Aug</strong><br>2025</td><td>Regular Board Meeting</td><td>August 2025 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2025-08-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
           <tr><td><strong>Jul</strong><br>2025</td><td>Regular Board Meeting</td><td>July 2025 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2025-07-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
-          <tr><td><strong>Jun</strong><br>2025</td><td>Regular Board Meeting</td><td>June 2025 — Meeting Minutes</td><td><span class="doc-pill pill-canceled">Canceled</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
-          <tr><td><strong>May</strong><br>2025</td><td>Regular Board Meeting</td><td>May 2025 — Meeting Minutes</td><td><span class="doc-pill pill-canceled">Canceled</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
-          <tr><td><strong>Apr</strong><br>2025</td><td>Regular Board Meeting</td><td>April 2025 — Meeting Minutes</td><td><span class="doc-pill pill-canceled">Canceled</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Jun</strong><br>2025</td><td>Regular Board Meeting</td><td>June 2025 — Meeting Minutes</td><td><span class="doc-pill pill-canceled">Meeting canceled</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>May</strong><br>2025</td><td>Regular Board Meeting</td><td>May 2025 — Meeting Minutes</td><td><span class="doc-pill pill-canceled">Meeting canceled</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Apr</strong><br>2025</td><td>Regular Board Meeting</td><td>April 2025 — Meeting Minutes</td><td><span class="doc-pill pill-canceled">Meeting canceled</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
           <tr><td><strong>Mar</strong><br>2025</td><td>Regular Board Meeting</td><td>March 2025 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2025-03-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
           <tr><td><strong>Feb</strong><br>2025</td><td>Regular Board Meeting</td><td>February 2025 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2025-02-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
           <tr><td><strong>Jan</strong><br>2025</td><td>Regular Board Meeting</td><td>January 2025 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2025-01-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
-          <tr><td><strong>Dec</strong><br>2024</td><td>Regular Board Meeting</td><td>December 2024 — Meeting Minutes</td><td><span class="doc-pill pill-canceled">Canceled</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
+          <tr><td><strong>Dec</strong><br>2024</td><td>Regular Board Meeting</td><td>December 2024 — Meeting Minutes</td><td><span class="doc-pill pill-canceled">Meeting canceled</span></td><td><a class="dl-btn dl-btn--disabled" href="#"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
           <tr><td><strong>Nov</strong><br>2024</td><td>Regular Board Meeting</td><td>November 2024 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2024-11-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
           <tr><td><strong>Oct</strong><br>2024</td><td>Regular Board Meeting</td><td>October 2024 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2024-10-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
           <tr><td><strong>Sep</strong><br>2024</td><td>Regular Board Meeting</td><td>September 2024 — Meeting Minutes</td><td><span class="doc-pill pill-approved">Approved</span></td><td><a class="dl-btn" href="Minutes/2024-09-minutes.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7 7-7z"/></svg>View</a></td></tr>
@@ -2728,6 +2769,7 @@
     <!-- Financials -->
     <div style="margin-top:44px;">
       <div class="sub-heading">Financial Documents</div>
+      <p class="sub-heading-note">View available budgets, financial reports, and annual audits.</p>
       <div class="doc-table-wrap">
         <table class="doc-table" data-doc-group="financials">
           <thead>
@@ -2752,7 +2794,7 @@
   <div class="page-header">
     <div class="breadcrumb"><a href="#home">Home</a> · Incident Statistics</div>
     <h2>Incident Statistics</h2>
-    <p>Incidents reported by the Authority and published through the National Emergency Response Information System (NERIS).</p>
+    <p>Explore incidents reported by the Otsego County Fire Authority through the National Emergency Response Information System (NERIS).</p>
   </div>
   <div class="container">
     <div id="is-status" class="is-notice" role="status">Loading incident statistics…</div>
@@ -2768,7 +2810,7 @@
       <p class="is-period" id="is-period"></p>
 
       <div class="is-notice">
-        NERIS Public data is published 60 days after incidents are reported and may later be corrected. <span id="is-freshness"></span>
+        Public reporting includes a publication delay: NERIS Public data is published 60 days after incidents are reported. Totals may change as incident reports are added or corrected. <span id="is-freshness"></span>
       </div>
 
       <div class="runs-grid" id="is-cards"></div>
@@ -2785,38 +2827,42 @@
 
       <div class="chart-panel">
         <h3 class="chart-title">Incident Categories</h3>
-        <p class="chart-note">NERIS categories, as grouped by the NERIS Public Explorer. Each incident is counted in exactly one category.</p>
+        <p class="chart-note">Incidents grouped using NERIS Public Explorer categories. Each incident appears in one category.</p>
         <div id="is-categories"></div>
       </div>
 
       <div class="chart-panel">
         <h3 class="chart-title">Selected Incident Types</h3>
-        <p class="chart-note">Counted from the incident types and aid direction on each report. An incident can appear in more than one of these, so they do not add up to the total.</p>
+        <p class="chart-note">Selected incident types and mutual aid activity. An incident may appear in more than one measure, so these figures should not be added together.</p>
         <dl class="is-ind-grid" id="is-indicators"></dl>
       </div>
 
       <div class="chart-panel" id="is-history" hidden>
-        <h3 class="chart-title">Annual Totals, 2016–2025 (NFIRS)</h3>
-        <p class="chart-note">Before NERIS, incidents were reported through the older NFIRS system. These totals come from Michigan Bureau of Fire Services reports for state fire department ID <span id="is-history-fdid"></span>, and are kept separate from the NERIS figures above. A faded bar is a year without all 12 months. Hover or tap a year for details.</p>
+        <h3 class="chart-title">Historical Incident Totals, 2016–2025</h3>
+        <p class="chart-note">Annual totals from Michigan Bureau of Fire Services reports submitted through the former National Fire Incident Reporting System (NFIRS), for state fire department ID <span id="is-history-fdid"></span>.</p>
+        <p class="chart-note">Historical figures are shown separately because NFIRS and NERIS use different reporting categories. Faded bars indicate years with fewer than 12 reported months. Years without an available state report are left blank. Hover or tap a year for details.</p>
         <div id="is-history-chart"></div>
         <div class="doc-table-wrap is-history-table"><table class="doc-table" id="is-history-table" aria-label="Annual incident totals and changes from the prior year"></table></div>
-        <p class="chart-note is-history-note">Each change compares only the months both years reported, so missing months don’t count as drops. Years with no state report found are left blank. Older totals may reflect how completely incidents were reported, not just how many calls occurred. <a id="is-history-source" href="#" target="_blank" rel="noopener">Bureau of Fire Services reports</a>.</p>
+        <p class="chart-note is-history-note">Year-over-year changes compare only months reported in both years. Differences may reflect reporting completeness as well as changes in incident activity. Source: <a id="is-history-source" href="#" target="_blank" rel="noopener">Bureau of Fire Services reports</a>.</p>
       </div>
 
       <div class="chart-panel is-about">
-        <h3 class="chart-title">About This Data</h3>
-        <p><strong>Source:</strong> <a id="is-source" href="#" target="_blank" rel="noopener">NERIS Public: Incident Basics</a>. NERIS is operated by UL Research Institutes’ Fire Safety Research Institute in collaboration with the U.S. Fire Administration. NERIS and its operators have not reviewed or endorsed this page. NERIS lists this department as “<span id="is-neris-name"></span>”, ID <span id="is-neris-id"></span>.</p>
-        <p>Incident Basics is a current snapshot, not the authoritative annual record. Totals can change as reports are added or corrected, and may differ from the Authority’s own records or from the older NFIRS system, which uses different categories. NFIRS totals appear only in the Annual Totals panel and are never added to NERIS figures.</p>
-        <h4>How incidents are counted</h4>
-        <ul>
-          <li>Every figure counts unique incident reports, not unit responses.</li>
-          <li><strong>Fire incidents</strong> are incidents with any fire incident type on the report. <span id="is-fire-note"></span></li>
-          <li><strong>Non-fire responses</strong> are all other incidents, including false alarms and calls cancelled before arrival.</li>
-          <li><strong>Average per month</strong> uses only months NERIS has fully published.</li>
-          <li><strong>Year-over-year changes</strong> compare only the same months in each year, and appear once at least three months overlap.</li>
-          <li><strong>Mutual aid</strong> comes from the aid direction recorded on each report.</li>
-        </ul>
-        <p>Only totals appear on this page. Addresses, narratives, and information about the people involved are never collected or shown here.</p>
+        <details id="is-methods">
+          <summary>Data Sources &amp; Counting Methods</summary>
+          <p>Current figures come from <a id="is-source" href="#" target="_blank" rel="noopener">NERIS Public: Incident Basics</a>. They reflect the public data available when the figures were last refreshed and may differ from the Authority’s internal records or finalized annual totals.</p>
+          <p>NERIS is operated by UL Research Institutes’ Fire Safety Research Institute in collaboration with the U.S. Fire Administration. NERIS and its operators have not reviewed or endorsed this page. NERIS lists this department as “<span id="is-neris-name"></span>”, ID <span id="is-neris-id"></span>.</p>
+          <h4>How figures are calculated</h4>
+          <ul>
+            <li>Totals count unique incident reports, rather than individual apparatus or unit responses.</li>
+            <li><strong>Fire incidents</strong> include reports with at least one fire incident type. <span id="is-fire-note"></span></li>
+            <li><strong>Non-fire incidents</strong> include all other reports, including false alarms and calls canceled before arrival.</li>
+            <li><strong>Monthly averages</strong> use only fully published months.</li>
+            <li><strong>Year-over-year comparisons</strong> use matching months and appear when at least three months overlap.</li>
+            <li><strong>Mutual aid</strong> figures reflect the aid direction recorded on each report.</li>
+          </ul>
+          <p>Historical NFIRS totals are presented separately and are not added to NERIS totals.</p>
+          <p>This page displays aggregate statistics. It does not display incident addresses, narratives, or personal information about those involved.</p>
+        </details>
       </div>
     </div>
   </div>
@@ -2829,7 +2875,7 @@
   <div class="footer-inner">
     <div>
       <h4>Otsego County Fire Authority</h4>
-      <p>The official website of the Otsego County Fire Authority, providing fire protection and rescue services to the City of Gaylord and five surrounding townships.</p>
+      <p>The official website of the Otsego County Fire Authority. Serving the City of Gaylord and the townships of Bagley, Dover, Hayes, Livingston, and western Chester.</p>
     </div>
     <div>
       <h4>Quick Links</h4>
@@ -3214,7 +3260,7 @@
 
     var missing = slots.filter(function(k) { return !isData.months[k]; }).length;
     var partial = slots.filter(function(k) { return isData.months[k] && !isData.months[k].complete; }).length;
-    var notes = ['Hover or tap a month for its total.'];
+    var notes = ['Monthly incident totals for the selected reporting period. Partial months are identified.', 'Hover or tap a month for its total.'];
     if (partial) notes.push('A faded bar is a month NERIS has only partly published.');
     if (missing) notes.push('A month with no bar has no published records' + (period === 'all' ? '.' : ' yet, or falls before records begin on ' + isDayText(isData.coverage.firstIncident) + '.'));
     document.getElementById('is-monthly-note').textContent = notes.join(' ');
@@ -3460,8 +3506,10 @@
   }
 
   window.addEventListener('beforeprint', function() {
-    var details = document.getElementById('is-table-toggle');
-    if (details) details.open = true;
+    ['is-table-toggle', 'is-methods'].forEach(function(id) {
+      var details = document.getElementById(id);
+      if (details) details.open = true;
+    });
   });
 
   // ── MEETING SCHEDULE ──
@@ -3521,11 +3569,11 @@
         + '<div class="event-body">'
         + '<div class="event-badge">Board Meeting</div>'
         + (m.past ? '<span class="past-pill">Previous Meeting</span>' : '')
-        + '<h3>Regular Board of Directors Meeting' + (m.moved ? ' <em class="event-moved">(Rescheduled)</em>' : '') + '</h3>'
+        + '<h3>Regular Board Meeting' + (m.moved ? ' <em class="event-moved">(Rescheduled)</em>' : '') + '</h3>'
         + '<div class="event-meta">'
-        + (m.past ? '<span class="event-time-plain">' + clockSvg + '9:30 AM</span>'
-                  : '<span class="event-time-cal">' + clockSvg + '9:30 AM</span>')
-        + '<a class="event-location-btn" href="https://maps.google.com/?q=305+East+Main+Street+Gaylord+MI+49735" target="_blank" rel="noopener">' + pinSvg + 'City Hall, Gaylord MI</a>'
+        + (m.past ? '<span class="event-time-plain">' + clockSvg + '9:30 a.m.</span>'
+                  : '<span class="event-time-cal">' + clockSvg + '9:30 a.m.</span>')
+        + '<a class="event-location-btn" href="https://maps.google.com/?q=305+East+Main+Street+Gaylord+MI+49735" target="_blank" rel="noopener">' + pinSvg + 'Gaylord City Hall</a>'
         + '</div></div></div>';
     }).join('');
   }
@@ -3575,7 +3623,7 @@
       ? 'Today'
       : next.date.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' });
     homeNow('hero-next', 'Next Board Meeting',
-      [when, '9:30 AM', 'City Hall, Gaylord'].map(function(part) {
+      [when, '9:30 a.m.', 'Gaylord City Hall'].map(function(part) {
         return '<span class="hero-next__part">' + part + '</span>';
       }).join(' · ')
       + (next.moved ? ' <span class="hero-next__moved">(Rescheduled)</span>' : ''));
