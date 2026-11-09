@@ -8,9 +8,9 @@
     "name": "NERIS Public: Incident Basics",
     "service": "https://lPbcyJOcoLyZmvo6.svcs5.arcgis.com/lPbcyJOcoLyZmvo6/arcgis/rest/services/NERIS%20Public%20Incident%20Basics/FeatureServer/0",
     "explorer": "https://public.neris.fsri.org/explorer.html?neris_id=FD26137918",
-    "updated": "2026-11-01T13:38:15.973Z"
+    "updated": "2026-11-06T11:35:59.880Z"
   },
-  "refreshedAt": "2026-11-02T15:05:15.338Z",
+  "refreshedAt": "2026-11-09T12:11:52.494Z",
   "coverage": {
     "firstIncident": "2025-12-03",
     "latestIncident": "2026-08-31"
