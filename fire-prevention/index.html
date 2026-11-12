@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fire Prevention | Otsego County Fire Authority</title>
+  <meta name="description" content="Free smoke alarm installation, home fire safety visits, and carbon monoxide guidance from the Otsego County Fire Authority for the City of Gaylord and the townships of Bagley, Dover, Hayes, Livingston, and western Chester." />
+  <meta name="theme-color" content="#111111" />
+  <link rel="icon" type="image/png" href="../FireAuth.png"/>
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png"/>
+
+  <!-- Link previews (Facebook, texts, email). Preview sites need full web addresses here, not file names. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Otsego County Fire Authority" />
+  <meta property="og:title" content="Fire Prevention | Otsego County Fire Authority" />
+  <meta property="og:description" content="Request smoke alarm installation or a home fire safety visit, and learn how to protect your household from fire and carbon monoxide." />
+  <meta property="og:url" content="https://otsegocountyfiremi.gov/fire-prevention/" />
+  <meta property="og:image" content="https://otsegocountyfiremi.gov/social-preview.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Otsego County Fire Authority logo over firefighters training on an aircraft fire" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://otsegocountyfiremi.gov/fire-prevention/" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* Header/footer: near-black apparatus body */
+      --black:      #111111;
+      --black-mid:  #1a1a1a;
+      --charcoal:   #2a2828;
+
+      /* Fire engine red — the classic panel color */
+      --red:        #b91c1c;
+      --red-dark:   #7f1d1d;
+      --red-light:  #dc2626;
+      --red-pale:   rgba(185,28,28,.15);
+
+      /* Dark page backgrounds — charcoal grayscale */
+      --bg:         #1e1e1e;   /* main page background */
+      --bg-white:   #282828;   /* card / panel background */
+      --bg-gray:    #161616;   /* deepest sections */
+
+      /* Grays */
+      --gray-100:   rgba(255,255,255,.06);
+      --gray-200:   rgba(255,255,255,.1);
+      --gray-400:   #888480;
+      --gray-600:   #555050;
+      --gray-800:   #c8c4be;
+
+      /* Text — white and light grays */
+      --text:       #f0ede8;
+      --text-mid:   #c0bdb8;
+      --text-muted: #a8a49c;
+      --text-light: #ffffff;
+
+      /* Gold — trim/coachlines only */
+      --gold-1: #d4a017;
+      --gold-2: #f0c040;
+      --gold-3: #e8b02a;
+      --gold-4: #b8860b;
+      /* Burnished gold leaf — deep shadow zones, warm body, sharp catch highlight */
+      --gold-leaf: linear-gradient(135deg,
+        #2e1800 0%, #6b4200 7%, #b8860b 17%,
+        #e0a820 27%, #fff0a0 36%, #f5cc50 44%,
+        #c8900a 54%, #e8b02a 63%, #ffd060 73%,
+        #d4a017 82%, #6b4200 93%, #2e1800 100%);
+      --gold-leaf-h: linear-gradient(90deg,
+        #2e1800 0%, #6b4200 5%, #c8900a 15%,
+        #e8b02a 26%, #fff4a8 36%, #f5d060 45%,
+        #c8900a 55%, #e8b02a 66%, #ffd060 77%,
+        #d4a017 87%, #6b4200 95%, #2e1800 100%);
+
+      --radius: 4px;
+      --shadow-sm: 0 1px 4px rgba(0,0,0,.1);
+      --shadow:    0 2px 12px rgba(0,0,0,.12);
+      --shadow-lg: 0 6px 28px rgba(0,0,0,.16);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      /* subtle dot grid — adds spatial depth without competing with content */
+      background-image: radial-gradient(rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ─────────────────── GOLD LEAF LINE UTILS ─────────────────── */
+    .pinstripe {
+      height: 2px;
+      background: var(--gold-leaf-h);
+      position: relative;
+    }
+    .pinstripe::before, .pinstripe::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0;
+      height: 1px;
+      background: var(--gold-leaf-h);
+      opacity: .45;
+    }
+    .pinstripe::before { top: -4px; }
+    .pinstripe::after  { top:  6px; }
+
+    /* Gold text — used sparingly */
+    .gold-text {
+      background: var(--gold-leaf);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ─────────────────── DECORATIVE RULE ─────────────────── */
+    .ornate-rule {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 8px 0;
+    }
+    .ornate-rule::before,
+    .ornate-rule::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(212,160,23,.25) 20%,
+        rgba(212,160,23,.55) 50%,
+        rgba(212,160,23,.25) 80%,
+        transparent 100%);
+    }
+    .ornate-rule span {
+      font-size: .68rem;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--gold-3);
+      white-space: nowrap;
+    }
+    .ornate-rule span::before,
+    .ornate-rule span::after {
+      content: ' ✦ ';
+      font-size: .55em;
+      vertical-align: middle;
+      opacity: .75;
+    }
+
+
+    /* ─────────────────── HEADER ─────────────────── */
+    /* Lacquered black apparatus body — specular highlight at top, shadow pooling at base */
+    header {
+      background-color: #111111;
+      background-image:
+        linear-gradient(180deg,
+          rgba(255,255,255,.055) 0%,
+          rgba(255,255,255,.018) 18%,
+          rgba(255,255,255,0)    45%,
+          rgba(0,0,0,.18)       100%);
+      box-shadow: 0 2px 16px rgba(0,0,0,.6);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 10px 40px;
+    }
+
+    .logo-badge {
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .logo-badge img { width: 58px; height: 58px; object-fit: contain; }
+
+    .header-titles { flex: 1; }
+    .header-titles .authority-name {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 900;
+      letter-spacing: .05em;
+      line-height: 1.1;
+      color: #ffffff;
+      text-transform: uppercase;
+    }
+    .header-titles .tagline {
+      font-family: 'Libre Baskerville', Georgia, serif;
+      font-style: italic;
+      font-size: .78rem;
+      color: var(--gray-400);
+      letter-spacing: .05em;
+      margin-top: 2px;
+    }
+
+    .header-right {
+      text-align: right;
+      font-family: 'Libre Baskerville', serif;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .header-right .emergency-label {
+      font-size: .62rem;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--gray-400);
+      line-height: 1;
+    }
+    .header-right .number {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--red-light);
+      letter-spacing: .04em;
+      line-height: 1;
+    }
+
+    /* single gold stripe under header */
+    .header-stripe {
+      height: 3px;
+      background: var(--gold-leaf-h);
+    }
+
+    /* keep these classes defined but unused now — avoids removing harmless dead code */
+    .top-coachline, .bottom-coachlines, .coachline-thick, .coachline-thin {
+    }
+
+    /* ─────────────────── NAV ─────────────────── */
+    /* Red panel strip beneath black header */
+    nav {
+      /* Lacquered red panel — catch light on the curved top, shadow at base */
+      background-color: #7f1d1d;
+      background-image:
+        linear-gradient(180deg,
+          rgba(255,255,255,.1)  0%,
+          rgba(255,255,255,.04) 20%,
+          rgba(255,255,255,0)   50%,
+          rgba(0,0,0,.25)      100%);
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      border-top: 1px solid rgba(255,255,255,.12);
+      border-bottom: 3px solid var(--gold-3);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0,0,0,.6), 0 1px 0 rgba(255,255,255,.06) inset;
+    }
+    /* Shimmer overlay for the bottom gold border — trails the header-stripe by ~0.3s */
+    nav::before {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 3px;
+      pointer-events: none;
+      background-image:
+        linear-gradient(90deg, transparent 0%, rgba(255,210,80,.12) 25%, rgba(255,238,160,.55) 40%, rgba(255,252,215,.97) 50%, rgba(255,238,160,.55) 60%, rgba(255,210,80,.12) 75%, transparent 100%),
+        var(--gold-leaf-h);
+      background-size: 22% 100%, 100% 100%;
+      background-repeat: no-repeat;
+      animation: gold-shimmer 22s ease-in-out infinite;
+    }
+
+    /* ─────────────────── NAV LENS FLARE ─────────────────── */
+    .nav-lens-flare {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 4px;
+      margin-left: -2px;
+      margin-top: -2px;
+      z-index: 300;
+      pointer-events: none;
+      opacity: 0;
+      border-radius: 50%;
+      background: white;
+      box-shadow:
+        0 0 6px 4px rgba(255,255,255,.95),
+        0 0 18px 9px rgba(255,252,210,.65),
+        0 0 40px 14px rgba(255,248,160,.3),
+        -60px 0 22px rgba(255,250,200,.3),
+        -30px 0 13px rgba(255,255,240,.5),
+        -10px 0  7px rgba(255,255,255,.7),
+         60px 0 22px rgba(255,250,200,.3),
+         30px 0 13px rgba(255,255,240,.5),
+         10px 0  7px rgba(255,255,255,.7),
+        0 -22px 13px rgba(255,252,200,.3),
+        0 -11px  7px rgba(255,255,240,.5),
+        0  -4px  5px rgba(255,255,255,.6),
+        0  22px 13px rgba(255,252,200,.25),
+        0  11px  7px rgba(255,255,240,.4);
+    }
+    @keyframes lens-flare-pop {
+      0%   { opacity: 0; transform: scale(0.2); }
+      20%  { opacity: 1; transform: scale(1); }
+      55%  { opacity: .5; transform: scale(1); }
+      100% { opacity: 0; transform: scale(0.7); }
+    }
+    nav::after {
+      content: '';
+      position: absolute;
+      bottom: -6px; left: 0; right: 0;
+      height: 1px;
+      background: var(--gold-leaf-h);
+      opacity: .4;
+    }
+    nav a {
+      font-family: 'Playfair Display', serif;
+      font-size: .78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: rgba(255,255,255,.75);
+      padding: 8px 22px;
+      position: relative;
+      transition: color .2s, background .2s;
+      border-right: 1px solid rgba(255,255,255,.1);
+    }
+    nav a:first-child { border-left: 1px solid rgba(255,255,255,.1); }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold-leaf-h);
+      transform: scaleX(0);
+      transition: transform .22s;
+    }
+    nav a:hover { color: #fff; background: rgba(0,0,0,.15); }
+    nav a.active { color: #fff; background: rgba(0,0,0,.2); }
+    nav a:hover::after,
+    nav a.active::after { transform: scaleX(1); }
+
+    /* Buttons — red filled / white outline */
+    .btn-vintage {
+      display: inline-block;
+      font-family: 'Playfair Display', serif;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      padding: 11px 28px;
+      border: 2px solid rgba(255,255,255,.5);
+      color: #ffffff;
+      background: transparent;
+      cursor: pointer;
+      position: relative;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .btn-vintage::before {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .btn-vintage:hover { background: rgba(255,255,255,.1); border-color: #fff; }
+
+    .btn-vintage-filled {
+      background: var(--red);
+      border-color: var(--red);
+      color: #fff;
+    }
+    .btn-vintage-filled::before { border-color: rgba(255,255,255,.2); }
+    .btn-vintage-filled:hover { background: var(--red-dark); border-color: var(--red-dark); color: #fff; }
+
+    /* ─────────────────── PAGE HEADER ─────────────────── */
+    /* Black with gold coachline bottom — inner pages */
+    .page-header {
+      background-color: #0e0e0e;
+      background-image:
+        linear-gradient(180deg,
+          rgba(255,255,255,.04) 0%,
+          rgba(255,255,255,0)   35%,
+          rgba(0,0,0,.2)       100%),
+        repeating-linear-gradient(
+          45deg,
+          transparent 0px, transparent 22px,
+          rgba(255,255,255,.012) 22px, rgba(255,255,255,.012) 23px
+        );
+      padding: 36px 48px 28px;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0,0,0,.45);
+    }
+    .page-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold-leaf-h);
+    }
+    .breadcrumb {
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+      font-size: .78rem;
+      color: var(--gray-400);
+      letter-spacing: .06em;
+      margin-bottom: 8px;
+    }
+    .breadcrumb a { color: inherit; text-decoration: underline; text-decoration-color: rgba(255,255,255,.3); text-underline-offset: 3px; }
+    .breadcrumb a:hover { color: #ffffff; text-decoration-color: currentColor; }
+    .page-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: .02em;
+    }
+    .page-header p {
+      font-family: 'Libre Baskerville', serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--text-mid);
+      margin-top: 6px;
+    }
+
+    /* ─────────────────── CONTAINER ─────────────────── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 44px 48px;
+    }
+
+    /* ─────────────────── SECTION HEADING ─────────────────── */
+    .section-heading {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .section-heading h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: .06em;
+      margin-bottom: 14px;
+      text-shadow: 1px 2px 4px rgba(0,0,0,.4);
+    }
+
+
+    /* ─────────────────── CARDS ─────────────────── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 24px;
+    }
+
+    /* Dark cards, red top border, inner inset, four gold corner brackets */
+    .vintage-card {
+      background-color: var(--bg-white);
+      background-image:
+        linear-gradient(rgba(212,160,23,.38),rgba(212,160,23,.38)),
+        linear-gradient(rgba(212,160,23,.38),rgba(212,160,23,.38)),
+        linear-gradient(rgba(212,160,23,.38),rgba(212,160,23,.38)),
+        linear-gradient(rgba(212,160,23,.38),rgba(212,160,23,.38)),
+        linear-gradient(rgba(212,160,23,.38),rgba(212,160,23,.38)),
+        linear-gradient(rgba(212,160,23,.38),rgba(212,160,23,.38)),
+        linear-gradient(rgba(212,160,23,.38),rgba(212,160,23,.38)),
+        linear-gradient(rgba(212,160,23,.38),rgba(212,160,23,.38));
+      background-size:
+        14px 1px, 1px 14px,
+        14px 1px, 1px 14px,
+        14px 1px, 1px 14px,
+        14px 1px, 1px 14px;
+      background-position:
+        top 9px left 9px,    top 9px left 9px,
+        top 9px right 9px,   top 9px right 9px,
+        bottom 9px left 9px, bottom 9px left 9px,
+        bottom 9px right 9px,bottom 9px right 9px;
+      background-repeat: no-repeat;
+      position: relative;
+      padding: 28px 24px;
+      border-top: 4px solid var(--red);
+      border-left: 1px solid rgba(255,255,255,.08);
+      border-right: 1px solid rgba(255,255,255,.08);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      box-shadow:
+        0 2px 4px rgba(0,0,0,.3),
+        0 6px 20px rgba(0,0,0,.4),
+        0 18px 48px rgba(0,0,0,.2);
+      transition: transform .22s, box-shadow .22s;
+    }
+    .vintage-card::before {
+      content: '';
+      position: absolute;
+      inset: 8px 8px 8px 8px;
+      border: 1px solid rgba(255,255,255,.05);
+      pointer-events: none;
+    }
+    .vintage-card:hover {
+      transform: translateY(-5px);
+      box-shadow:
+        0 4px 8px rgba(0,0,0,.35),
+        0 14px 40px rgba(0,0,0,.55),
+        0 32px 64px rgba(0,0,0,.3);
+    }
+
+    .card-icon {
+      width: 42px; height: 42px;
+      margin-bottom: 14px;
+    }
+    .card-icon svg { width: 100%; height: 100%; }
+
+    .vintage-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 10px;
+      letter-spacing: .02em;
+    }
+    .vintage-card p {
+      font-family: 'Libre Baskerville', serif;
+      font-size: .9rem;
+      color: var(--text-mid);
+      line-height: 1.7;
+    }
+    .card-link {
+      display: inline-block;
+      margin-top: 16px;
+      font-family: 'Playfair Display', serif;
+      font-size: .75rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #f87171;
+      border-bottom: 1px solid var(--red);
+      padding-bottom: 2px;
+    }
+    .card-link:hover { color: var(--red-dark); border-color: var(--red-dark); }
+
+    /* Sidebar panels — dark charcoal with black header strip */
+    .sidebar-panel {
+      background-color: var(--bg-white);
+      background-image:
+        linear-gradient(rgba(212,160,23,.28),rgba(212,160,23,.28)),
+        linear-gradient(rgba(212,160,23,.28),rgba(212,160,23,.28)),
+        linear-gradient(rgba(212,160,23,.28),rgba(212,160,23,.28)),
+        linear-gradient(rgba(212,160,23,.28),rgba(212,160,23,.28)),
+        linear-gradient(rgba(212,160,23,.28),rgba(212,160,23,.28)),
+        linear-gradient(rgba(212,160,23,.28),rgba(212,160,23,.28)),
+        linear-gradient(rgba(212,160,23,.28),rgba(212,160,23,.28)),
+        linear-gradient(rgba(212,160,23,.28),rgba(212,160,23,.28));
+      background-size:
+        12px 1px, 1px 12px, 12px 1px, 1px 12px,
+        12px 1px, 1px 12px, 12px 1px, 1px 12px;
+      background-position:
+        top 7px left 7px,    top 7px left 7px,
+        top 7px right 7px,   top 7px right 7px,
+        bottom 7px left 7px, bottom 7px left 7px,
+        bottom 7px right 7px,bottom 7px right 7px;
+      background-repeat: no-repeat;
+      border: 1px solid rgba(255,255,255,.08);
+      margin-bottom: 20px;
+      box-shadow:
+        0 2px 6px rgba(0,0,0,.35),
+        0 8px 28px rgba(0,0,0,.45),
+        0 20px 48px rgba(0,0,0,.2);
+    }
+    .sidebar-panel::before { display: none; }
+    .sidebar-panel-head {
+      background: var(--black);
+      border-bottom: 2px solid var(--red-dark);
+      padding: 10px 16px;
+    }
+    .sidebar-panel-head h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #ffffff;
+    }
+    .sidebar-panel-body { padding: 12px 16px; }
+
+    /* ─────────────────── SUB-HEADING ─────────────────── */
+    .sub-heading-note {
+      font-family: 'Libre Baskerville', serif;
+      font-size: .9rem;
+      line-height: 1.6;
+      color: var(--text-mid);
+      margin-bottom: 14px;
+    }
+    .sub-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: .04em;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--red);
+    }
+
+    /* ─────────────────── FOOTER ─────────────────── */
+    /* Black body with gold coachlines — matches header */
+    footer {
+      background: var(--black);
+      margin-top: 60px;
+      position: relative;
+    }
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--gold-leaf-h);
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 40px;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 44px 48px 32px;
+    }
+    @media (max-width: 700px) { .footer-inner { grid-template-columns: 1fr; } }
+    footer h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+    footer p {
+      font-family: 'Libre Baskerville', serif;
+      font-size: .9rem;
+      color: var(--gray-400);
+      line-height: 1.8;
+    }
+    footer ul { list-style: none; }
+    footer ul li { padding: 4px 0; }
+    footer ul li a {
+      font-family: 'Libre Baskerville', serif;
+      font-size: .83rem;
+      color: var(--gray-400);
+      transition: color .2s;
+    }
+    footer ul li a:hover { color: var(--red-light); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.08);
+      text-align: center;
+      padding: 16px 48px;
+      font-family: 'Libre Baskerville', serif;
+      font-style: italic;
+      font-size: .8rem;
+      color: var(--gray-600);
+    }
+    .footer-bottom strong { color: var(--gray-400); }
+
+    /* ─────────────────── SOCIAL ─────────────────── */
+    .social-links {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Playfair Display', serif;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 7px 14px;
+      border: 1px solid rgba(255,255,255,.18);
+      color: var(--gray-400);
+      background: transparent;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+    .social-btn:hover { background: #1877f2; border-color: #1877f2; color: #fff; }
+    .social-btn svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+
+    /* Facebook icon in header */
+    .header-fb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Playfair Display', serif;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      border: 1px solid rgba(255,255,255,.15);
+      padding: 5px 12px;
+      transition: color .2s, border-color .2s, background .2s;
+    }
+    .header-fb:hover { color: #fff; background: #1877f2; border-color: #1877f2; }
+    .header-fb svg { width: 15px; height: 15px; fill: currentColor; }
+
+    /* ─────────────────── GOLD SHIMMER ─────────────────── */
+    @keyframes gold-shimmer {
+      0%   { background-position: -250% center, 0% center; }
+      65%  { background-position:  250% center, 0% center; }
+      100% { background-position:  250% center, 0% center; }
+    }
+    /* Top stripe travels faster: completes at 62% so it overtakes the bottom
+       shimmer at the spatial midpoint and finishes 0.3s sooner — equal to the delay */
+    @keyframes gold-shimmer-top {
+      0%   { background-position: -250% center, 0% center; }
+      62%  { background-position:  250% center, 0% center; }
+      100% { background-position:  250% center, 0% center; }
+    }
+    .header-stripe {
+      height: 3px;
+      background-image:
+        linear-gradient(90deg, transparent 0%, rgba(255,210,80,.12) 25%, rgba(255,238,160,.55) 40%, rgba(255,252,215,.97) 50%, rgba(255,238,160,.55) 60%, rgba(255,210,80,.12) 75%, transparent 100%),
+        var(--gold-leaf-h);
+      background-size: 22% 100%, 100% 100%;
+      background-repeat: no-repeat;
+      animation: gold-shimmer-top 22s ease-in-out infinite;
+      animation-delay: -21.7s;
+    }
+
+    /* ─────────────────── ENGRAVED NAV LINKS ─────────────────── */
+    nav a {
+      text-shadow:
+        0 1px 0 rgba(255,255,255,.1),
+        0 -1px 1px rgba(0,0,0,.55),
+        1px 0 2px rgba(0,0,0,.3);
+    }
+    nav a:hover, nav a.active {
+      text-shadow:
+        0 1px 0 rgba(255,255,255,.2),
+        0 -1px 1px rgba(0,0,0,.4),
+        0 0 8px rgba(255,220,100,.18);
+    }
+
+    /* ─────────────────── SIDE PANEL ACCENT STRIPE ─────────────────── */
+    .container {
+      position: relative;
+    }
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 44px; bottom: 44px;
+      left: 0;
+      width: 3px;
+      background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(185,28,28,.45) 15%,
+        rgba(185,28,28,.6) 50%,
+        rgba(185,28,28,.45) 85%,
+        transparent 100%);
+      pointer-events: none;
+    }
+
+    /* ─────────────────── SIDEBAR WOODGRAIN ─────────────────── */
+    .sidebar-panel-body {
+      background-color: #1e1710;
+      background-image:
+        repeating-linear-gradient(
+          92deg,
+          transparent 0px, transparent 3px,
+          rgba(255,255,255,.018) 3px, rgba(255,255,255,.018) 4px,
+          transparent 4px, transparent 9px,
+          rgba(0,0,0,.12) 9px, rgba(0,0,0,.12) 10px
+        ),
+        repeating-linear-gradient(
+          88deg,
+          transparent 0px, transparent 18px,
+          rgba(255,255,255,.012) 18px, rgba(255,255,255,.012) 19px
+        ),
+        linear-gradient(180deg, rgba(255,255,255,.025) 0%, transparent 40%, rgba(0,0,0,.1) 100%);
+      border-top: 1px solid rgba(255,255,255,.05);
+    }
+
+    /* ─────────────────── HAMBURGER + MOBILE NAV ─────────────────── */
+    .hamburger-btn {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      background: none;
+      border: 1px solid rgba(255,255,255,.2);
+      padding: 8px 10px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .hamburger-btn span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: #ffffff;
+      transition: transform .2s, opacity .2s;
+    }
+    .hamburger-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger-btn.open span:nth-child(2) { opacity: 0; }
+    .hamburger-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    @media (max-width: 768px) {
+      /* ── HAMBURGER ── */
+      .hamburger-btn { display: flex; }
+
+      /* ── HEADER ── */
+      .header-inner { padding: 8px 16px; gap: 10px; }
+      .logo-badge { width: 46px; height: 46px; }
+      .logo-badge img { width: 42px; height: 42px; }
+      .header-titles .authority-name { font-size: .88rem; }
+      .header-titles .tagline { display: none; }
+      .header-right .emergency-label { display: none; }
+      .header-right .number { font-size: .9rem; }
+      .header-fb { display: none; }
+
+      /* ── NAV ── */
+      nav { flex-direction: column; display: none; }
+      nav.open { display: flex; }
+      nav a {
+        border-right: none;
+        border-left: none !important;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+        padding: 14px 20px;
+        text-align: left;
+        font-size: .82rem;
+      }
+
+      .ornate-rule span { letter-spacing: .1em; font-size: .62rem; white-space: normal; }
+      .btn-vintage { padding: 11px 18px; font-size: .72rem; }
+      .container { padding: 24px 16px; }
+      .container::before { display: none; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .page-header { padding: 20px 16px 16px; }
+      .footer-inner { padding: 28px 16px; gap: 24px; grid-template-columns: 1fr; }
+      .footer-bottom { padding: 14px 16px; font-size: .75rem; }
+    }
+    @media (max-width: 480px) {
+      .page-header p { font-size: .92rem; }
+      .breadcrumb { font-size: .68rem; }
+    }
+    @media (max-width: 400px) {
+      .header-titles .authority-name { font-size: .78rem; }
+    }
+
+    /* ── ACCESSIBILITY ── */
+    .tel-link, .mail-link { color: inherit; text-decoration: none; white-space: nowrap; }
+    .tel-link:hover, .mail-link:hover { color: var(--gold-2); }
+    .map-link { color: inherit; text-decoration: none; }
+    .map-link:hover { color: var(--gold-2); }
+    .photo-band { overflow: hidden; }
+    /* Section headings receive focus when switching sections (for screen readers) — no visible box */
+    h1[tabindex="-1"]:focus, h2[tabindex="-1"]:focus { outline: none !important; }
+    /* Comfortable touch targets on phones */
+    @media (max-width: 768px) {
+      .dl-btn { min-height: 32px; padding-top: 6px; padding-bottom: 6px; }
+      .card-link { padding-top: 4px; padding-bottom: 4px; }
+      /* Let the stacked about column shrink to the screen so the board table scrolls instead of widening the page */
+      .about-grid { grid-template-columns: minmax(0, 1fr); }
+      .about-grid > * { min-width: 0; }
+    }
+    @media (max-width: 400px) {
+      .vintage-table th, .vintage-table td { padding-left: 7px; padding-right: 7px; }
+      .vintage-table th { letter-spacing: .06em; }
+      /* Very small screens: phone number may break after the area code, never inside the number */
+      .vintage-table .tel-link { white-space: normal; }
+      .tel-num { white-space: nowrap; }
+    }
+    @media (max-width: 340px) {
+      /* 320px phones: tighter cells so the board table fits without a sideways scroll */
+      .vintage-table th, .vintage-table td { padding-left: 5px; padding-right: 5px; }
+    }
+    /* Skip link: hidden until a keyboard user tabs to it */
+    .skip-link {
+      position: absolute;
+      left: 12px; top: -60px;
+      z-index: 1000;
+      background: var(--gold-2);
+      color: #1a1000;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      padding: 10px 16px;
+      text-decoration: none;
+      transition: top .15s;
+    }
+    .skip-link:focus { top: 12px; }
+    main#main:focus, main#main:focus-visible { outline: none !important; }
+    /* Visible focus ring for keyboard users (mouse clicks don't show it) */
+    a:focus-visible,
+    button:focus-visible,
+    select:focus-visible,
+    input:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 2px solid var(--gold-2) !important;
+      outline-offset: 3px;
+    }
+    .doc-controls input[type="search"] { -webkit-appearance: none; appearance: none; }
+    /* Respect the "reduce motion" system setting */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .nav-lens-flare { display: none !important; }
+    }
+
+    /* ── ORNATE RULE DRAW (inner pages) ── */
+    .ornate-rule::before {
+      transform-origin: right;
+      animation: coachlineDrawMain 0.7s 0.18s cubic-bezier(0.16,1,0.3,1) both;
+    }
+    .ornate-rule::after {
+      transform-origin: left;
+      animation: coachlineDrawMain 0.7s 0.18s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    /* ── PAGE HEADER GOLD LINE DRAW ── */
+    .page-header::after {
+      transform-origin: center;
+      animation: coachlineDrawMain 0.8s 0.12s cubic-bezier(0.16,1,0.3,1) both;
+    }
+
+    /* ── COACHLINE DRAW ANIMATION ── */
+    @keyframes coachlineDrawMain {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    @keyframes coachlineDrawFine {
+      from { transform: scaleX(0); opacity: 0; }
+      to   { transform: scaleX(1); opacity: .5; }
+    }
+
+    /* ── MOBILE NAV SLIDE-DOWN ── */
+    @media (max-width: 768px) {
+      nav {
+        display: flex !important;
+        flex-direction: column;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.38s cubic-bezier(0.16,1,0.3,1), opacity 0.22s ease;
+      }
+      nav.open {
+        max-height: 500px;
+        opacity: 1;
+      }
+    }
+
+    /* ── FOOTER CROSS WATERMARK ── */
+    footer { overflow: hidden; }
+    footer::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 360px;
+      height: 360px;
+      background: url('../Cross2.png') center / contain no-repeat;
+      opacity: 0.075;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .footer-inner,
+    .footer-bottom { position: relative; z-index: 1; }
+
+    /* ─────────── FIRE STATUS BAR ─────────── */
+    .fire-bar {
+      --fb-color: #4ade80;
+      --fb-edge:  #006633;
+      display: none;
+      align-items: center;
+      gap: 10px 14px;
+      padding: 8px 16px;
+      background: #161616;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      box-shadow: inset 4px 0 0 var(--fb-edge), 0 4px 12px rgba(0,0,0,.35);
+      font-family: 'Barlow', 'Segoe UI', Arial, sans-serif;
+      font-size: 14.5px;
+      letter-spacing: .01em;
+      line-height: 1.4;
+      color: var(--text-mid);
+      /* Stays pinned to the top while scrolling, so reopening it from the flame shows it right there */
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .fire-bar.is-shown { display: flex; }
+    .fire-bar__dot {
+      --lamp: var(--fb-color);
+      flex: none;
+      width: 9px; height: 9px; border-radius: 50%;
+      /* Lit-lamp look: bright core fading to the status color, with a soft halo */
+      background: radial-gradient(circle at 40% 35%, #ffffff 0%, color-mix(in srgb, var(--lamp) 55%, #ffffff) 30%, var(--lamp) 70%);
+      box-shadow:
+        0 0 4px 1px color-mix(in srgb, var(--lamp) 70%, transparent),
+        0 0 10px 3px color-mix(in srgb, var(--lamp) 30%, transparent);
+    }
+    /* Red flag: a true red lamp (the light red used for text reads as pink here) */
+    .fire-bar--alert .fire-bar__dot { --lamp: #ef4444; }
+    @media (prefers-reduced-motion: no-preference) {
+      .fire-bar__dot { animation: lamp-glow 2.8s ease-in-out infinite; }
+      /* Red flag: same glow, quicker beat */
+      .fire-bar--alert .fire-bar__dot { animation-duration: 1.2s; }
+      @keyframes lamp-glow {
+        0%, 100% {
+          opacity: .8;
+          box-shadow:
+            0 0 3px 1px color-mix(in srgb, var(--lamp) 55%, transparent),
+            0 0 6px 2px color-mix(in srgb, var(--lamp) 18%, transparent);
+        }
+        50% {
+          opacity: 1;
+          box-shadow:
+            0 0 6px 2px color-mix(in srgb, var(--lamp) 85%, transparent),
+            0 0 16px 6px color-mix(in srgb, var(--lamp) 40%, transparent);
+        }
+      }
+    }
+    /* The two statuses sit side by side and only wrap when there truly isn't room */
+    /* Each status carries a "|" in front of it; the strip is shifted left and clipped, so the divider
+       shows between statuses on one line but disappears at the start of any line (first status or a wrap) */
+    .fire-bar__text { flex: 1 1 auto; min-width: 0; overflow: hidden; }
+    .fire-bar__parts { display: flex; flex-wrap: wrap; row-gap: 2px; margin-left: -25px; }
+    .fire-bar__part { white-space: nowrap; position: relative; padding-left: 25px; }
+    .fire-bar__part::before { content: '|'; position: absolute; left: 10px; color: rgba(255,255,255,.3); font-weight: 400; }
+    .fire-bar__text strong { color: var(--text); font-weight: 600; white-space: nowrap; }
+    .fire-bar__link {
+      flex: none;
+      color: var(--gold-2);
+      text-decoration: none;
+      white-space: nowrap;
+      font-size: 13.5px;
+      font-weight: 600;
+      letter-spacing: .03em;
+    }
+    .fire-bar__link:hover { text-decoration: underline; }
+    .fire-bar__close {
+      flex: none;
+      background: none; border: 0; cursor: pointer;
+      color: var(--text-muted);
+      font-size: 20px; line-height: 1;
+      width: 28px; height: 28px;
+      display: grid; place-items: center;
+      border-radius: 50%;
+    }
+    .fire-bar__close:hover { color: var(--text); background: rgba(255,255,255,.08); }
+    .fire-bar__close[hidden] { display: none; }
+
+    /* Fire button: brings the status bar back after a visitor closes it */
+    .fire-reopen {
+      --lamp: #4ade80;
+      position: fixed;
+      top: 12px; right: 12px;
+      z-index: 5;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(17,17,17,.75);
+      -webkit-backdrop-filter: blur(4px);
+      backdrop-filter: blur(4px);
+      display: grid; place-items: center;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0,0,0,.5), 0 0 8px 1px color-mix(in srgb, var(--lamp) 35%, transparent);
+    }
+    .fire-reopen[hidden] { display: none; }
+    .fire-reopen:hover { border-color: var(--gold-2); }
+    .fire-reopen svg {
+      width: 20px; height: 20px;
+      fill: var(--lamp);
+      filter: drop-shadow(0 0 4px color-mix(in srgb, var(--lamp) 70%, transparent));
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .fire-reopen { animation: reopen-glow 2.8s ease-in-out infinite; }
+      @keyframes reopen-glow {
+        0%, 100% { box-shadow: 0 4px 14px rgba(0,0,0,.5), 0 0 6px 1px color-mix(in srgb, var(--lamp) 25%, transparent); }
+        50%      { box-shadow: 0 4px 14px rgba(0,0,0,.5), 0 0 14px 4px color-mix(in srgb, var(--lamp) 45%, transparent); }
+      }
+    }
+    /* The landing page's top-right spot would cover this site's header buttons */
+    .fire-reopen { top: auto; bottom: 16px; right: 16px; }
+    @media (max-width: 760px) {
+      .fire-bar { font-size: 14px; padding: 8px 12px; }
+    }
+    @media (max-width: 400px) {
+      .fire-bar__link { display: none; }
+    }
+
+    /* ═══════════════════════════════════════════════
+       FIRE PREVENTION PAGE
+       Shared styles above are copied from the main index.html; keep them in sync.
+    ═══════════════════════════════════════════════ */
+    .page-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      color: #ffffff;
+      letter-spacing: .02em;
+    }
+    .fp-body { font-family: 'Libre Baskerville', serif; font-size: .95rem; line-height: 1.75; color: var(--text-mid); }
+    .fp-body strong { color: var(--text); }
+    .fp-body a { text-decoration: underline; text-decoration-color: rgba(212,160,23,.5); text-underline-offset: 3px; }
+    .fp-body a:hover { color: var(--gold-2); }
+
+    /* Intro: text beside the house illustration */
+    .fp-intro {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 44px;
+      align-items: center;
+      margin-bottom: 56px;
+    }
+    .fp-intro h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 900;
+      line-height: 1.15;
+      color: #ffffff;
+      margin-bottom: 18px;
+    }
+    .fp-intro h2 span { display: block; color: var(--gold-2); }
+    .fp-intro .fp-body + .fp-body { margin-top: 14px; }
+    .fp-funding {
+      padding-left: 14px;
+      border-left: 3px solid var(--gold-3);
+      font-size: .85rem;
+    }
+    .fp-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 26px; }
+    .fp-art {
+      border: 1px solid rgba(212,160,23,.3);
+      box-shadow: 0 2px 4px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.4), 0 18px 48px rgba(0,0,0,.2);
+      line-height: 0;
+    }
+    .fp-art svg { width: 100%; height: auto; display: block; }
+
+    .fp-section { margin-bottom: 56px; scroll-margin-top: 70px; }
+    .fp-section-intro { text-align: center; max-width: 640px; margin: -18px auto 28px; }
+
+    /* Service cards: the request button looks like the site's card links */
+    .fp-services { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .fp-card { display: flex; flex-direction: column; align-items: flex-start; }
+    .fp-card.selected { outline: 1px solid var(--gold-3); outline-offset: 2px; }
+    .fp-card .card-icon { color: var(--gold-3); }
+    .fp-card .card-icon svg { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .fp-card p { flex: 1; }
+    .fp-request-btn {
+      background: none;
+      border: 0;
+      border-bottom: 1px solid var(--red);
+      cursor: pointer;
+      text-align: left;
+    }
+
+    /* Request form panel */
+    .fp-panel { margin-top: 28px; scroll-margin-top: 70px; }
+    .fp-panel .sidebar-panel-body { padding: 22px 24px 26px; }
+    .fp-panel h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+    .fp-fieldset { border: 0; margin: 22px 0 0; padding: 0; min-width: 0; }
+    .fp-fieldset legend {
+      font-family: 'Playfair Display', serif;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold-3);
+      margin-bottom: 12px;
+    }
+    .fp-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 18px; }
+    .fp-grid--address { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+    .fp-wide { grid-column: 1 / -1; }
+    .fp-field { display: block; min-width: 0; font-family: 'Barlow', 'Segoe UI', Arial, sans-serif; font-size: .95rem; font-weight: 600; color: var(--text); }
+    .fp-optional { color: var(--text-muted); font-weight: 400; }
+    .fp-field input, .fp-field select, .fp-field textarea {
+      display: block;
+      width: 100%;
+      min-width: 0;
+      min-height: 44px;
+      margin-top: 6px;
+      padding: 9px 11px;
+      background: #161616;
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: 'Libre Baskerville', serif;
+      font-size: 16px; /* 16px keeps phones from zooming in on the field */
+      font-weight: 400;
+    }
+    .fp-field textarea { resize: vertical; line-height: 1.6; }
+    .fp-field input:focus, .fp-field select:focus, .fp-field textarea:focus { border-color: rgba(212,160,23,.6); }
+    /* Spam trap: real visitors never see or fill this field */
+    .fp-trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .fp-privacy { margin-top: 20px; font-size: .82rem; color: var(--text-muted); }
+    .fp-form-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+    .fp-form-actions .btn-vintage:disabled { opacity: .6; cursor: wait; }
+    .fp-error { margin-top: 14px; color: #fca5a5; font-family: 'Libre Baskerville', serif; font-size: .9rem; }
+
+    /* Result panel after sending */
+    .fp-result { display: flex; gap: 16px; align-items: flex-start; }
+    .fp-result-icon {
+      flex: none;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      border: 2px solid rgba(74,222,128,.6);
+      color: #4ade80;
+    }
+    .fp-result-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .fp-ref { color: #ffffff; font-weight: 700; letter-spacing: .04em; }
+
+    /* What happens next */
+    .fp-steps { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+    .fp-steps li { display: flex; gap: 14px; align-items: flex-start; }
+    .fp-step-num {
+      flex: none;
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      background: radial-gradient(circle at 50% 50%, #1c1c1c 55%, #0a0a0a 100%);
+      border: 2px solid rgba(212,160,23,.5);
+      font-family: 'Playfair Display', serif;
+      font-weight: 900;
+      color: #ffffff;
+    }
+    .fp-steps strong { display: block; font-family: 'Playfair Display', serif; color: #ffffff; font-size: 1rem; margin-bottom: 4px; }
+    .fp-steps p { font-family: 'Libre Baskerville', serif; font-size: .88rem; line-height: 1.65; color: var(--text-mid); }
+
+    /* Resident guide cards */
+    .fp-guide { grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); }
+    .fp-guide .vintage-card:hover { transform: none; }
+    .fp-guide .vintage-card p + p { margin-top: 12px; }
+    .fp-guide .vintage-card strong { color: var(--text); }
+    .fp-list { list-style: none; display: grid; gap: 10px; }
+    .fp-list li {
+      position: relative;
+      padding-left: 18px;
+      font-family: 'Libre Baskerville', serif;
+      font-size: .9rem;
+      line-height: 1.65;
+      color: var(--text-mid);
+    }
+    .fp-list li::before { content: '✦'; position: absolute; left: 0; top: .1em; font-size: .6rem; color: var(--gold-3); }
+    .fp-list strong { color: var(--text); }
+    .fp-source { display: inline-block; margin-top: 16px; }
+
+    @media (max-width: 860px) {
+      .fp-intro { grid-template-columns: 1fr; gap: 28px; }
+      .fp-steps { grid-template-columns: 1fr; gap: 18px; }
+    }
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 1.45rem; }
+      .fp-intro h2 { font-size: 1.55rem; }
+      .fp-services, .fp-grid, .fp-grid--address { grid-template-columns: minmax(0, 1fr); }
+      .fp-panel .sidebar-panel-body { padding: 18px 16px 20px; }
+      .fp-section, .fp-intro { margin-bottom: 40px; }
+    }
+    @media (max-width: 480px) {
+      .fp-actions, .fp-form-actions { flex-direction: column; align-items: stretch; }
+      .fp-actions .btn-vintage, .fp-form-actions .btn-vintage { text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════ HEADER (same as the main page; links point back to it) ══════════════════════ -->
+<a class="skip-link" href="#main">Skip to main content</a>
+<header>
+  <div class="header-inner">
+    <div class="logo-badge" title="Otsego County Fire Authority">
+      <img src="../FireAuth.png" alt="OCFA Logo" />
+    </div>
+
+    <div class="header-titles">
+      <div class="authority-name">Otsego County Fire Authority</div>
+      <div class="tagline">Proudly Serving Otsego County, Michigan</div>
+    </div>
+
+    <div class="header-right">
+      <div>
+        <div class="emergency-label">Emergency</div>
+        <div class="number">9-1-1</div>
+      </div>
+      <a class="header-fb" href="https://www.facebook.com/profile.php?id=100064728846517" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+        Facebook
+      </a>
+    </div>
+    <button class="hamburger-btn" id="navToggle" aria-label="Menu" aria-expanded="false" aria-controls="site-nav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="header-stripe"></div>
+
+  <nav id="site-nav" aria-label="Main">
+    <a href="../">Home</a>
+    <a href="../#events">Events</a>
+    <a href="../#minutes">Minutes &amp; Agendas</a>
+    <a href="../#incident-statistics">Incident Statistics</a>
+    <a href="./" class="active" aria-current="page">Fire Prevention</a>
+  </nav>
+</header>
+
+  <!-- Filled in from the ocfa-fire-status Worker; stays hidden if the status can't be loaded -->
+  <div class="fire-bar" id="fire-bar" role="status" aria-live="polite">
+    <span class="fire-bar__dot" aria-hidden="true"></span>
+    <span class="fire-bar__text"><span class="fire-bar__parts">
+      <strong class="fire-bar__part" id="fb-permit"></strong><strong class="fire-bar__part" id="fb-danger"></strong>
+    </span></span>
+    <a class="fire-bar__link" href="https://www2.dnr.state.mi.us/burnpermits/" target="_blank" rel="noopener">Get a Permit →</a>
+    <button class="fire-bar__close" id="fb-close" type="button" aria-label="Hide fire status bar">×</button>
+  </div>
+  <button class="fire-reopen" id="fb-reopen" type="button" aria-label="Show fire status" title="Show fire status" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg>
+  </button>
+
+
+<main id="main" tabindex="-1">
+
+  <div class="page-header">
+    <div class="breadcrumb"><a href="../">Home</a> · Fire Prevention</div>
+    <h1>Fire Prevention</h1>
+    <p>Free smoke alarm installation, home fire safety visits, and guidance to help keep your household safe.</p>
+  </div>
+
+  <div class="container">
+
+    <!-- ── INTRO ── -->
+    <div class="fp-intro">
+      <div>
+        <div class="ornate-rule" style="margin-bottom:22px;"><span>Community Risk Reduction</span></div>
+        <h2>A safer home. <span>A stronger community.</span></h2>
+        <p class="fp-body">Your home should have a working smoke alarm <strong>in every bedroom, outside each sleeping area, and on every level</strong>, including the basement. Request installation if you need alarms in any of these places, or arrange a visit for help with fire hazards and escape planning.</p>
+        <p class="fp-body fp-funding">MI Prevention has supplied state-funded alarms for home installation <strong>while local supplies last</strong>. We confirm eligibility and availability before scheduling.</p>
+        <div class="fp-actions">
+          <a class="btn-vintage btn-vintage-filled" href="#services">Request a Service</a>
+          <a class="btn-vintage" href="#guide">Smoke Alarm Guidance</a>
+        </div>
+      </div>
+      <div class="fp-art">
+        <svg viewBox="0 0 490 330" fill="none" role="img" aria-label="House illustration with a smoke alarm, highlighting home fire safety">
+          <defs>
+            <pattern id="plan-grid" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M 25 0 L 0 0 0 25" stroke="#a7aaa6" stroke-opacity=".13"/></pattern>
+            <radialGradient id="art-glow"><stop stop-color="#383b3a"/><stop offset="1" stop-color="#202222"/></radialGradient>
+          </defs>
+          <rect width="490" height="330" fill="url(#art-glow)"/>
+          <rect width="490" height="330" fill="url(#plan-grid)"/>
+          <path d="M28 58V28h30m374 0h30v30M28 272v30h30m374 0h30v-30" stroke="#ab986f" stroke-opacity=".6"/>
+          <path d="M91 264h311M105 277h281" stroke="#ab986f" stroke-opacity=".35"/>
+          <path d="M140 169v95h209v-95" fill="#272a29" stroke="#d2d2c6" stroke-width="2.5"/>
+          <path d="m116 173 129-89 129 89M132 176l113-78 113 78" stroke="#ebe6d7" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M305 125v-24h22v39M146 206h196" stroke="#a5a8a0" stroke-width="1.5" stroke-opacity=".7"/>
+          <path d="M225 264v-58h40v58m-9-26h1" stroke="#c5c7bd" stroke-width="2"/>
+          <rect x="165" y="218" width="39" height="27" rx="1" stroke="#c5c7bd" stroke-width="2"/>
+          <rect x="286" y="218" width="39" height="27" rx="1" stroke="#c5c7bd" stroke-width="2"/>
+          <path d="M184.5 219v26m121-26v26m-140-13h39m82 0h39" stroke="#c5c7bd" stroke-width="1.5"/>
+          <circle cx="245" cy="164" r="22" fill="#443a27" stroke="#dfc18a" stroke-width="2"/>
+          <path d="M237 164h16m-8-8v16M228 136a32 32 0 0 1 34 0m-41-8a45 45 0 0 1 48 0" stroke="#edd5a6" stroke-width="1.8" stroke-linecap="round"/>
+          <path d="M273 163h53l27-24h66" stroke="#b49d72" stroke-dasharray="4 4"/>
+          <circle cx="419" cy="139" r="3.5" fill="#dfc18a"/>
+          <path d="M124 205H90l-19-21H48" stroke="#b49d72" stroke-dasharray="4 4"/>
+          <circle cx="48" cy="184" r="3.5" fill="#dfc18a"/>
+          <text x="47" y="56" fill="#d8c9ad" font-family="Barlow, 'Segoe UI', sans-serif" font-size="10" font-weight="600" letter-spacing="2.4">HOME FIRE SAFETY</text>
+          <text x="447" y="281" fill="#d8c9ad" opacity=".85" font-family="Barlow, 'Segoe UI', sans-serif" font-size="10" font-weight="600" letter-spacing="2" text-anchor="end">OCFA / CRR</text>
+        </svg>
+      </div>
+    </div>
+
+    <!-- ── RESIDENT SERVICES ── -->
+    <section class="fp-section" id="services" aria-labelledby="services-title">
+      <div class="section-heading">
+        <div class="ornate-rule"><span>Resident Services</span></div>
+        <h3 id="services-title" tabindex="-1" style="margin-top:14px;">How Can We Help?</h3>
+      </div>
+      <p class="fp-body fp-section-intro">Choose the service that fits your household. Requests are reviewed before a visit is arranged.</p>
+
+      <div class="cards-grid fp-services">
+        <article class="vintage-card fp-card">
+          <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="13" r="7"/><path d="M9 13h6m-3-3v6M5 4 3 6m16-2 2 2"/></svg></div>
+          <h3>Smoke Alarm Installation</h3>
+          <p>Get help installing alarms where you need them, or replacing alarms that are old or no longer work.</p>
+          <button class="card-link fp-request-btn" type="button" data-service="alarms" aria-expanded="false" aria-controls="request-panel">Request Smoke Alarms →</button>
+        </article>
+        <article class="vintage-card fp-card">
+          <div class="card-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7M5 9v11h14V9"/><path d="m9 14 2 2 4-4"/></svg></div>
+          <h3>Home Fire Safety Visit</h3>
+          <p>Walk through home fire safety with us, including smoke and carbon monoxide alarms, escape planning, and everyday fire hazards.</p>
+          <button class="card-link fp-request-btn" type="button" data-service="visit" aria-expanded="false" aria-controls="request-panel">Request a Home Visit →</button>
+        </article>
+      </div>
+
+      <!-- Request form. Sends to the OCFA Google Apps Script (see CRR_INTAKE_URL in the script below). -->
+      <div class="sidebar-panel fp-panel" id="request-panel" hidden>
+        <div class="sidebar-panel-head"><h4>Resident Request Form</h4></div>
+        <div class="sidebar-panel-body">
+          <h3 id="request-title" tabindex="-1">Smoke Alarm Installation</h3>
+
+          <!-- Shown until online requests are switched on -->
+          <div id="request-closed" hidden>
+            <p class="fp-body">Online requests are not open yet. To request this service, call the OCFA office at <a class="tel-link" data-tel="jijhdbaejh">our office number</a>.</p>
+            <div class="fp-form-actions"><button class="btn-vintage" type="button" data-cancel>Close</button></div>
+          </div>
+
+          <form id="request-form" novalidate hidden>
+            <p class="fp-body">All fields are required unless marked optional.</p>
+            <input type="hidden" name="service" value="alarms">
+            <div class="fp-trap" aria-hidden="true"><label>Leave this field empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+
+            <fieldset class="fp-fieldset">
+              <legend>Contact Information</legend>
+              <div class="fp-grid">
+                <label class="fp-field">Full name<input name="name" required maxlength="80" autocomplete="name"></label>
+                <label class="fp-field">Preferred contact method
+                  <select name="contactMethod"><option value="phone">Phone</option><option value="email">Email</option></select>
+                </label>
+                <label class="fp-field fp-wide"><span id="contact-label">Phone number</span><input name="contact" type="tel" inputmode="tel" required maxlength="120" autocomplete="tel"></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="fp-fieldset">
+              <legend>Service Address</legend>
+              <div class="fp-grid fp-grid--address">
+                <label class="fp-field">Street address<input name="address" required maxlength="100" autocomplete="address-line1"></label>
+                <label class="fp-field">Unit <span class="fp-optional">(optional)</span><input name="unit" maxlength="24" autocomplete="address-line2"></label>
+                <label class="fp-field">City or township
+                  <select name="community" required>
+                    <option value="">Choose one</option>
+                    <option>City of Gaylord</option>
+                    <option>Bagley Township</option>
+                    <option>Dover Township</option>
+                    <option>Hayes Township</option>
+                    <option>Livingston Township</option>
+                    <option>Chester Township (western half)</option>
+                    <option>Not sure</option>
+                  </select>
+                </label>
+                <label class="fp-field">ZIP code<input name="zip" required inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code"></label>
+                <label class="fp-field fp-wide"><span id="notes-label">What help do you need with smoke alarms?</span> <span class="fp-optional">(optional)</span>
+                  <textarea name="notes" rows="3" maxlength="600"></textarea>
+                </label>
+              </div>
+            </fieldset>
+
+            <p class="fp-body fp-privacy">We use this information only to arrange your service. Like other Authority records, requests may be subject to the Michigan Freedom of Information Act.</p>
+            <p class="fp-error" id="request-error" role="alert" hidden></p>
+            <div class="fp-form-actions">
+              <button class="btn-vintage btn-vintage-filled" type="submit">Send Request</button>
+              <button class="btn-vintage" type="button" data-cancel>Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="sidebar-panel fp-panel" id="request-done" hidden>
+        <div class="sidebar-panel-body fp-result">
+          <div class="fp-result-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></div>
+          <div>
+            <h3 id="done-title" tabindex="-1">Request Received</h3>
+            <p class="fp-body">Thank you. Your reference number is <span class="fp-ref" id="done-ref"></span>. We will contact you to arrange a time. Questions? Call the OCFA office at <a class="tel-link" data-tel="jijhdbaejh">our office number</a>.</p>
+            <div class="fp-form-actions"><button class="btn-vintage" type="button" id="request-again">Make Another Request</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── WHAT HAPPENS NEXT ── -->
+    <section class="fp-section" aria-labelledby="steps-title">
+      <h3 class="sub-heading" id="steps-title">What Happens Next</h3>
+      <ol class="fp-steps">
+        <li><span class="fp-step-num">1</span><div><strong>Keep your reference</strong><p>Online requests get a reference number. You can also call the office to make a request.</p></div></li>
+        <li><span class="fp-step-num">2</span><div><strong>We review your request</strong><p>We confirm your address is in our service area and check alarm supply.</p></div></li>
+        <li><span class="fp-step-num">3</span><div><strong>We arrange a visit</strong><p>We contact you to find a time that works for your household.</p></div></li>
+      </ol>
+    </section>
+
+    <!-- ── RESIDENT GUIDE ── -->
+    <section class="fp-section" id="guide" aria-labelledby="guide-title">
+      <div class="section-heading">
+        <div class="ornate-rule"><span>Resident Guide</span></div>
+        <h3 id="guide-title" style="margin-top:14px;">Know Your Protection</h3>
+      </div>
+
+      <div class="cards-grid fp-guide">
+        <article class="vintage-card">
+          <h3>MI Prevention</h3>
+          <p>Michigan’s Bureau of Fire Services partners with local fire departments to provide fire safety education, and has supplied state-funded smoke alarms for installation in eligible owner-occupied homes.</p>
+          <p><strong>Check local availability.</strong> New state alarm distribution is paused for fiscal year 2027 because no funds were appropriated. Alarms already supplied to OCFA may be available while local supplies last. A request does not guarantee equipment or an appointment.</p>
+          <p>Alarms from the program are installed during a home visit; they are not handed out. Renters may ask for guidance about their household’s needs.</p>
+          <a class="card-link fp-source" href="https://www.michigan.gov/lara/bureau-list/bfs/miprevention" target="_blank" rel="noopener">MI Prevention Information ↗</a>
+        </article>
+
+        <article class="vintage-card">
+          <h3>Install, Test, and Plan</h3>
+          <ul class="fp-list">
+            <li><strong>Cover every sleeping area.</strong> Install smoke alarms inside each bedroom, outside each separate sleeping area, and on every level, including the basement.</li>
+            <li><strong>Test monthly.</strong> Follow the manufacturer’s instructions and replace smoke alarms 10 years after they were made.</li>
+            <li><strong>Practice your escape.</strong> Know two ways out of every room, pick an outdoor meeting place, and practice with everyone at home.</li>
+          </ul>
+          <a class="card-link fp-source" href="https://www.michigan.gov/lara/bureau-list/bfs/miprevention/fire-dept-org/mi-prevention-alarm-installation-parameters" target="_blank" rel="noopener">Installation Guidance ↗</a>
+        </article>
+
+        <article class="vintage-card">
+          <h3>Carbon Monoxide</h3>
+          <ul class="fp-list">
+            <li><strong>Install CO alarms</strong> outside each sleeping area and on every level of your home.</li>
+            <li><strong>If a CO alarm sounds,</strong> get everyone outside to fresh air right away, then call 9-1-1.</li>
+            <li><strong>Know the signs.</strong> Headache, dizziness, weakness, upset stomach, vomiting, chest pain, and confusion can all be CO poisoning.</li>
+            <li><strong>Run generators outdoors only,</strong> more than 20 feet from windows, doors, and vents. Never use one in a home or garage, even with the doors open.</li>
+            <li><strong>Keep heat safe.</strong> Have your furnace, water heater, wood stove, and chimney checked every year, keep outside vents clear of snow, and never heat your home with an oven or grill.</li>
+          </ul>
+          <a class="card-link fp-source" href="https://www.cdc.gov/carbon-monoxide/" target="_blank" rel="noopener">CDC Carbon Monoxide Guidance ↗</a>
+        </article>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- ══════════════════════ FOOTER ══════════════════════ -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <h4>Otsego County Fire Authority</h4>
+      <p>Fire protection and rescue for the City of Gaylord and the townships of Bagley, Dover, Hayes, Livingston, and western Chester.</p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="../">Home</a></li>
+        <li><a href="../#events">Events &amp; Meetings</a></li>
+        <li><a href="../#minutes">Meeting Minutes</a></li>
+        <li><a href="../#minutes">Financial Documents</a></li>
+        <li><a href="../#incident-statistics">Incident Statistics</a></li>
+        <li><a href="./">Fire Prevention</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <p>
+        Mailing address:<br/>
+        305 East Main Street<br/>
+        Gaylord, MI 49735<br/><br/>
+        <a class="tel-link" data-tel="jijhdbaejh">Phone on file</a><br/>
+        <a class="mail-link" href="mailto:info@otsegocountyfiremi.gov">info@otsegocountyfiremi.gov</a>
+      </p>
+      <p style="margin-top:16px;">In an emergency, always dial <strong style="color:#dc2626;">9-1-1</strong></p>
+      <div class="social-links">
+        <a class="social-btn" href="https://www.facebook.com/profile.php?id=100064728846517" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.267h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+          Follow us on Facebook
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 <strong>Otsego County Fire Authority</strong> &nbsp;·&nbsp; Gaylord, Michigan
+  </div>
+</footer>
+
+<script>
+  // ── PHONE NUMBERS ──
+  // Stored as letters (a=0 … j=9) so the digits never appear in the page source for scrapers.
+  function decodeTel(root) {
+    root.querySelectorAll("a[data-tel]").forEach(function(a) {
+      var d = a.getAttribute("data-tel").replace(/[a-j]/g, function(c) { return c.charCodeAt(0) - 97; });
+      a.href = "tel:+1" + d;
+      a.innerHTML = "(" + d.slice(0, 3) + ") <span class=\"tel-num\">" + d.slice(3, 6) + "-" + d.slice(6) + "</span>";
+    });
+  }
+  decodeTel(document);
+
+  const REDUCED_MOTION = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  // ── NAV LENS FLARE ──
+  // Tracks the bottom border shimmer position and fires a sparkle when it crosses the active badge.
+  (function() {
+    const nav   = document.querySelector('nav');
+    const flare = document.createElement('div');
+    flare.className = 'nav-lens-flare';
+    flare.setAttribute('aria-hidden', 'true');
+    nav.appendChild(flare);
+
+    const CYCLE        = 22000;  // ms — must match CSS animation duration
+    const TRAVEL_END   = 0.65;   // fraction of cycle where shimmer stops moving
+    let   lastCycleFired = -1;
+    let   animStart      = null;
+
+    function shimmerCenter(elapsed) {
+      // Returns shimmer center as a fraction of nav width (can be < 0 or > 1 when off-screen)
+      const t = (elapsed % CYCLE) / CYCLE;
+      if (t > TRAVEL_END) return 9; // hold phase — off-screen right
+      const n     = t / TRAVEL_END;
+      const eased = n < 0.5 ? 2*n*n : 1 - Math.pow(-2*n + 2, 2) / 2;
+      // bgPos goes -250% → 250%; effective center accounting for 22% spot width:
+      //   center = bgPos/100 * (1 - 0.22) + 0.11  →  range: -1.84 to 2.06
+      return -1.84 + eased * 3.9;
+    }
+
+    function triggerFlare(cx, cy) {
+      flare.style.left      = cx + 'px';
+      flare.style.top       = cy + 'px';
+      flare.style.animation = 'none';
+      flare.offsetWidth;   // force reflow so animation restarts
+      flare.style.animation = 'lens-flare-pop 0.9s ease-out forwards';
+    }
+
+    function tick(ts) {
+      if (!animStart) animStart = ts;
+      const elapsed  = ts - animStart;
+      const cycleNum = Math.floor(elapsed / CYCLE);
+
+      if (cycleNum !== lastCycleFired) {
+        const active = nav.querySelector('a.active');
+        if (active) {
+          const navRect  = nav.getBoundingClientRect();
+          const linkRect = active.getBoundingClientRect();
+          const badgeL   = (linkRect.left  - navRect.left) / navRect.width;
+          const badgeR   = (linkRect.right - navRect.left) / navRect.width;
+          const sc       = shimmerCenter(elapsed);
+
+          if (sc >= badgeL - 0.01 && sc <= badgeR + 0.01) {
+            lastCycleFired = cycleNum;
+            // x = 25% mark of the badge; y = bottom edge of badge (on the gold underline)
+            const cx = linkRect.left - navRect.left + linkRect.width * 0.25;
+            const cy = linkRect.bottom - navRect.top;
+            triggerFlare(cx, cy);
+          }
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+
+    requestAnimationFrame(tick);
+  })();
+
+  document.getElementById('navToggle').addEventListener('click', function() {
+    const open = this.classList.toggle('open');
+    this.setAttribute('aria-expanded', String(open));
+    document.querySelector('nav').classList.toggle('open', open);
+  });
+
+  // ── FIRE STATUS BAR ──
+  // Cloudflare Worker (ocfa-fire-status, in the OCFA Cloudflare account); source is worker.js on main.
+  var FIRE_STATUS_URL = 'https://ocfa-fire-status.otsego-county-fire-authority.workers.dev/';
+  var FB_COLORS = {
+    green:  { edge: '#006633', text: '#4ade80' },
+    yellow: { edge: '#d97706', text: '#fbbf24' },
+    orange: { edge: '#ff9a00', text: '#fb923c' },
+    red:    { edge: '#dc2626', text: '#fca5a5' },
+    brown:  { edge: '#b58b7c', text: '#d4a890' },
+    gray:   { edge: '#888480', text: '#c0bdb8' },
+  };
+  var FB_CACHE_KEY   = 'ocfa_fire_status_v4';   // bump (with ?v= below) whenever the Worker's data changes
+  var FB_HIDDEN_KEY  = 'ocfa_fire_bar_hidden';  // remembers which status the visitor closed
+  var FB_TTL_MS      = 60 * 60 * 1000;
+  var FB_TTL_EARLY_MS = 10 * 60 * 1000;          // until today's briefing is posted, check again sooner
+  // Today's date in Michigan, as YYYY-MM-DD (matches the Worker's rating.date)
+  function fbToday() {
+    return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Detroit', year: 'numeric', month: '2-digit', day: '2-digit' }).format(new Date());
+  }
+
+  function showFireBar(data) {
+    var bar = document.getElementById('fire-bar');
+    var permit = data.permit || {};
+    var danger = data.danger || { label: 'No Active Alerts', color: 'green' };
+    // A visitor who closed the bar sees it again only when the status changes
+    var rating = data.rating || null;
+    var statusKey = permit.label + '|' + danger.label + '|' + (rating ? rating.level : '');
+
+    // Lamp and edge follow the burning status; only a Red Flag Warning overrides it
+    var BURN_COLOR = { 0: 'red', 1: 'green', 2: 'orange', 3: 'gray' };
+    var burnColor = BURN_COLOR[permit.status] || 'gray';
+    permit.color = burnColor;
+    var lampColor = danger.color === 'red' ? 'red' : burnColor;
+    var c = FB_COLORS[lampColor];
+    // Lamp needs saturated colors (the light text shades read as pink/pale when glowing)
+    var LAMP = { green: '#4ade80', orange: '#fb923c', red: '#ef4444', gray: '#a8a49c' };
+    bar.querySelector('.fire-bar__dot').style.setProperty('--lamp', LAMP[lampColor]);
+    bar.style.setProperty('--fb-color', c.text);
+    bar.style.setProperty('--fb-edge',  c.edge);
+    // Short, self-explanatory phrases (no "Burn permit:" / "Fire danger:" prefixes)
+    var PERMIT_TEXT = { 0: 'No Burning', 1: 'Burning Permitted', 2: 'Restricted Burning', 3: 'Contact DNR' };
+    document.getElementById('fb-permit').textContent = PERMIT_TEXT[permit.status] || permit.label || 'Burn permit status unknown';
+    // Normal-day text stays neutral; only a non-green status gets its warning color
+    function phraseColor(color) { return color && color !== 'green' ? (FB_COLORS[color] || FB_COLORS.gray).text : ''; }
+    document.getElementById('fb-permit').style.color = phraseColor(permit.color);
+    // Second slot: an NWS fire weather alert if there is one; otherwise the DNR's daily fire danger level
+    // (colored like the roadside fire danger signs); otherwise nothing
+    var RATING_COLOR = { 'Low': '#4ade80', 'Moderate': '#60a5fa', 'High': '#facc15', 'Very High': '#fb923c', 'Extreme': '#ef4444' };
+    var dangerEl = document.getElementById('fb-danger');
+    dangerEl.textContent = '';
+    dangerEl.style.color = '';
+    dangerEl.removeAttribute('title');
+    dangerEl.hidden = false;
+    if (danger.color !== 'green') {
+      dangerEl.textContent = danger.label;
+      dangerEl.style.color = phraseColor(danger.color);
+    } else if (rating && RATING_COLOR[rating.level]) {
+      var levelEl = document.createElement('span');
+      levelEl.textContent = rating.level;
+      levelEl.style.color = RATING_COLOR[rating.level];
+      dangerEl.append('Fire Danger: ', levelEl);
+      var isToday = rating.date === fbToday();
+      var day = isToday ? 'Today’s' : new Date(rating.date + 'T12:00:00').toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' }) + ':';
+      dangerEl.title = day + ' ' + rating.area + ' fire danger from the ' + rating.source + (isToday ? '' : ' (today’s is not posted yet)');
+    } else {
+      dangerEl.hidden = true;
+    }
+    // During a Red Flag Warning the bar can't be closed
+    document.getElementById('fb-close').hidden = (danger.color === 'red');
+    bar.classList.toggle('fire-bar--alert', danger.color === 'red');
+    // Closed bars stay closed until the status changes; the fire button brings one back any time
+    var closeBtn  = document.getElementById('fb-close');
+    var reopenBtn = document.getElementById('fb-reopen');
+    reopenBtn.style.setProperty('--lamp', LAMP[lampColor]);
+    function setClosed(closed) {
+      bar.classList.toggle('is-shown', !closed);
+      reopenBtn.hidden = !closed;
+    }
+    var dismissed = false;
+    try { dismissed = localStorage.getItem(FB_HIDDEN_KEY) === statusKey; } catch(e) {}
+    setClosed(dismissed && danger.color !== 'red');
+    closeBtn.onclick = function() {
+      try { localStorage.setItem(FB_HIDDEN_KEY, statusKey); } catch(e) {}
+      setClosed(true);
+      reopenBtn.focus();
+    };
+    reopenBtn.onclick = function() {
+      try { localStorage.removeItem(FB_HIDDEN_KEY); } catch(e) {}
+      setClosed(false);
+      (closeBtn.hidden ? bar.querySelector('.fire-bar__link') : closeBtn).focus();
+    };
+  }
+
+  (function initFireBar() {
+    try {
+      var cached = JSON.parse(localStorage.getItem(FB_CACHE_KEY) || 'null');
+      var ttl = cached && cached.rating && cached.rating.date === fbToday() ? FB_TTL_MS : FB_TTL_EARLY_MS;
+      if (cached && (Date.now() - cached.fetchedAt) < ttl) { showFireBar(cached); return; }
+    } catch(e) {}
+    fetch(FIRE_STATUS_URL + '?v=4')  // ?v= changes whenever the Worker's data changes, so browsers don't reuse an older saved answer
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.error) throw new Error(data.message);
+        data.fetchedAt = Date.now();
+        try { localStorage.setItem(FB_CACHE_KEY, JSON.stringify(data)); } catch(e) {}
+        showFireBar(data);
+      })
+      .catch(function() { /* leave the bar hidden; the page works without it */ });
+  })();
+
+  // ── REQUEST FORM ──
+  // Requests go to a Google Apps Script web app in the OCFA Workspace, which adds a row to the
+  // requests Sheet and emails info@. Leave this empty to keep online requests closed (residents are
+  // asked to call instead). Paste the web app's /exec address here once it is deployed.
+  var CRR_INTAKE_URL = '';
+
+  (function() {
+    var panel   = document.getElementById('request-panel');
+    var form    = document.getElementById('request-form');
+    var closed  = document.getElementById('request-closed');
+    var done    = document.getElementById('request-done');
+    var errorEl = document.getElementById('request-error');
+    var fields  = form.elements;
+    var buttons = Array.prototype.slice.call(document.querySelectorAll('[data-service]'));
+    var openedAt = 0;
+    var LABELS = {
+      alarms: { title: 'Smoke Alarm Installation', notes: 'What help do you need with smoke alarms?' },
+      visit:  { title: 'Home Fire Safety Visit',   notes: 'What would you like us to cover during the visit?' }
+    };
+
+    function updateContactField(clearValue) {
+      var email = fields.contactMethod.value === 'email';
+      fields.contact.type = email ? 'email' : 'tel';
+      fields.contact.inputMode = email ? 'email' : 'tel';
+      fields.contact.autocomplete = email ? 'email' : 'tel';
+      fields.contact.setCustomValidity('');
+      if (clearValue) fields.contact.value = '';
+      document.getElementById('contact-label').textContent = email ? 'Email address' : 'Phone number';
+    }
+
+    function setSelected(service) {
+      buttons.forEach(function(b) {
+        var on = b.dataset.service === service;
+        b.setAttribute('aria-expanded', String(on));
+        b.closest('.fp-card').classList.toggle('selected', on);
+      });
+    }
+
+    function open(service) {
+      fields.service.value = service;
+      document.getElementById('request-title').textContent = LABELS[service].title;
+      document.getElementById('notes-label').textContent = LABELS[service].notes;
+      closed.hidden = !!CRR_INTAKE_URL;
+      form.hidden = !CRR_INTAKE_URL;
+      errorEl.hidden = true;
+      done.hidden = true;
+      panel.hidden = false;
+      setSelected(service);
+      openedAt = Date.now();
+      var title = document.getElementById('request-title');
+      title.focus({ preventScroll: true });
+      panel.scrollIntoView({ behavior: REDUCED_MOTION ? 'auto' : 'smooth', block: 'start' });
+    }
+
+    function reset() {
+      form.reset();
+      updateContactField(true);
+      panel.hidden = true;
+      done.hidden = true;
+      setSelected(null);
+      document.getElementById('services-title').focus();
+    }
+
+    buttons.forEach(function(b) { b.addEventListener('click', function() { open(b.dataset.service); }); });
+    document.querySelectorAll('[data-cancel]').forEach(function(b) { b.addEventListener('click', reset); });
+    document.getElementById('request-again').addEventListener('click', reset);
+    fields.contactMethod.addEventListener('change', function() { updateContactField(true); });
+    fields.contact.addEventListener('input', function() { fields.contact.setCustomValidity(''); });
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      errorEl.hidden = true;
+      var phone = fields.contactMethod.value === 'phone';
+      if (phone && !/^1?[0-9]{10}$/.test(fields.contact.value.replace(/[^0-9]/g, ''))) {
+        fields.contact.setCustomValidity('Enter a 10-digit phone number.');
+      }
+      if (!form.reportValidity()) return;
+
+      var data = {};
+      ['service', 'name', 'contactMethod', 'contact', 'address', 'unit', 'community', 'zip', 'notes', 'website']
+        .forEach(function(k) { data[k] = fields[k].value.trim(); });
+      data.elapsedMs = Date.now() - openedAt;
+
+      var submit = form.querySelector('[type="submit"]');
+      submit.disabled = true;
+      submit.textContent = 'Sending…';
+      // Plain-text body keeps this a "simple" request, which Apps Script accepts from another site
+      fetch(CRR_INTAKE_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(data) })
+        .then(function(r) { return r.json(); })
+        .then(function(res) {
+          if (!res.ok) throw new Error(res.message || 'Request not accepted');
+          document.getElementById('done-ref').textContent = res.reference;
+          form.reset();
+          updateContactField(true);
+          panel.hidden = true;
+          setSelected(null);
+          done.hidden = false;
+          document.getElementById('done-title').focus({ preventScroll: true });
+          done.scrollIntoView({ behavior: REDUCED_MOTION ? 'auto' : 'smooth', block: 'start' });
+        })
+        .catch(function() {
+          errorEl.innerHTML = 'Your request could not be sent. Please try again, or call the OCFA office at <a class="tel-link" data-tel="jijhdbaejh"></a>.';
+          decodeTel(errorEl);
+          errorEl.hidden = false;
+        })
+        .then(function() {
+          submit.disabled = false;
+          submit.textContent = 'Send Request';
+        });
+    });
+  })();
+</script>
+</body>
+</html>
