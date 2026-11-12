@@ -1198,6 +1198,9 @@
       font-weight: 400;
     }
     .fp-field textarea { resize: vertical; line-height: 1.6; }
+    .fp-panel [hidden] { display: none !important; }
+    .fp-check { display: flex; gap: 10px; align-items: flex-start; font-family: 'Barlow', 'Segoe UI', Arial, sans-serif; font-size: .95rem; color: var(--text); cursor: pointer; }
+    .fp-check input { width: 20px; height: 20px; margin-top: 2px; flex: none; accent-color: var(--gold-3); }
     .fp-field input:focus, .fp-field select:focus, .fp-field textarea:focus { border-color: rgba(212,160,23,.6); }
     /* Spam trap: real visitors never see or fill this field */
     .fp-trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
@@ -1417,18 +1420,38 @@
             <div class="fp-trap" aria-hidden="true"><label>Leave this field empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
 
             <fieldset class="fp-fieldset">
-              <legend>Contact Information</legend>
+              <legend>Who Is This Request For?</legend>
+              <label class="fp-field">This request is for
+                <select name="forWhom">
+                  <option value="self">Me (I live at the address)</option>
+                  <option value="other">Someone else, such as a parent, neighbor, or client</option>
+                </select>
+              </label>
+            </fieldset>
+
+            <fieldset class="fp-fieldset">
+              <legend id="contact-legend">Contact Information</legend>
               <div class="fp-grid">
-                <label class="fp-field">Full name<input name="name" required maxlength="80" autocomplete="name"></label>
+                <label class="fp-field"><span id="name-label">Full name</span><input name="name" required maxlength="80" autocomplete="name"></label>
                 <label class="fp-field">Preferred contact method
                   <select name="contactMethod"><option value="phone">Phone</option><option value="email">Email</option></select>
                 </label>
                 <label class="fp-field fp-wide"><span id="contact-label">Phone number</span><input name="contact" type="tel" inputmode="tel" required maxlength="120" autocomplete="tel"></label>
+                <label class="fp-field fp-wide" data-other hidden>Your relationship to the resident <span class="fp-optional">(optional)</span><input name="relationship" maxlength="60" autocomplete="off" placeholder="For example: daughter, neighbor, caseworker"></label>
+              </div>
+            </fieldset>
+
+            <fieldset class="fp-fieldset" data-other hidden>
+              <legend>About the Resident</legend>
+              <div class="fp-grid">
+                <label class="fp-field">Resident's name<input name="residentName" maxlength="80" autocomplete="off"></label>
+                <label class="fp-field">Resident's phone <span class="fp-optional">(optional)</span><input name="residentPhone" type="tel" inputmode="tel" maxlength="20" autocomplete="off"></label>
+                <label class="fp-check fp-wide"><input type="checkbox" name="residentAware" value="yes"><span>The resident knows about this request and is expecting us to contact them.</span></label>
               </div>
             </fieldset>
 
             <fieldset class="fp-fieldset">
-              <legend>Service Address</legend>
+              <legend id="address-legend">Service Address</legend>
               <div class="fp-grid fp-grid--address">
                 <label class="fp-field">Street address<input name="address" required maxlength="100" autocomplete="address-line1"></label>
                 <label class="fp-field">Unit <span class="fp-optional">(optional)</span><input name="unit" maxlength="24" autocomplete="address-line2"></label>
@@ -1789,6 +1812,17 @@
       document.getElementById('contact-label').textContent = email ? 'Email address' : 'Phone number';
     }
 
+    // "Someone else" turns the contact section into the requester's and asks about the resident
+    function updateForWhom() {
+      var other = fields.forWhom.value === 'other';
+      form.querySelectorAll('[data-other]').forEach(function(el) { el.hidden = !other; });
+      fields.residentName.required = other;
+      fields.residentAware.required = other;
+      document.getElementById('contact-legend').textContent = other ? 'Your Contact Information' : 'Contact Information';
+      document.getElementById('name-label').textContent = other ? 'Your name' : 'Full name';
+      document.getElementById('address-legend').textContent = other ? "Resident's Address" : 'Service Address';
+    }
+
     function setSelected(service) {
       buttons.forEach(function(b) {
         var on = b.dataset.service === service;
@@ -1816,6 +1850,7 @@
     function reset() {
       form.reset();
       updateContactField(true);
+      updateForWhom();
       panel.hidden = true;
       done.hidden = true;
       setSelected(null);
@@ -1827,6 +1862,8 @@
     document.getElementById('request-again').addEventListener('click', reset);
     fields.contactMethod.addEventListener('change', function() { updateContactField(true); });
     fields.contact.addEventListener('input', function() { fields.contact.setCustomValidity(''); });
+    fields.forWhom.addEventListener('change', updateForWhom);
+    fields.residentPhone.addEventListener('input', function() { fields.residentPhone.setCustomValidity(''); });
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
@@ -1835,11 +1872,22 @@
       if (phone && !/^1?[0-9]{10}$/.test(fields.contact.value.replace(/[^0-9]/g, ''))) {
         fields.contact.setCustomValidity('Enter a 10-digit phone number.');
       }
+      var other = fields.forWhom.value === 'other';
+      var rPhone = fields.residentPhone.value.replace(/[^0-9]/g, '');
+      if (other && rPhone && !/^1?[0-9]{10}$/.test(rPhone)) {
+        fields.residentPhone.setCustomValidity('Enter a 10-digit phone number, or leave it blank.');
+      }
       if (!form.reportValidity()) return;
 
       var data = {};
-      ['service', 'name', 'contactMethod', 'contact', 'address', 'unit', 'community', 'zip', 'notes', 'website']
+      ['service', 'forWhom', 'name', 'contactMethod', 'contact', 'address', 'unit', 'community', 'zip', 'notes', 'website']
         .forEach(function(k) { data[k] = fields[k].value.trim(); });
+      if (other) {
+        data.relationship  = fields.relationship.value.trim();
+        data.residentName  = fields.residentName.value.trim();
+        data.residentPhone = fields.residentPhone.value.trim();
+        data.residentAware = fields.residentAware.checked;
+      }
       data.elapsedMs = Date.now() - openedAt;
 
       var submit = form.querySelector('[type="submit"]');
@@ -1853,6 +1901,7 @@
           document.getElementById('done-ref').textContent = res.reference;
           form.reset();
           updateContactField(true);
+          updateForWhom();
           panel.hidden = true;
           setSelected(null);
           done.hidden = false;
