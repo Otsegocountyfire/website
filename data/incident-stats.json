@@ -8,12 +8,12 @@
     "name": "NERIS Public: Incident Basics",
     "service": "https://lPbcyJOcoLyZmvo6.svcs5.arcgis.com/lPbcyJOcoLyZmvo6/arcgis/rest/services/NERIS%20Public%20Incident%20Basics/FeatureServer/0",
     "explorer": "https://public.neris.fsri.org/explorer.html?neris_id=FD26137918",
-    "updated": "2026-11-06T11:35:59.880Z"
+    "updated": "2026-11-15T15:36:07.083Z"
   },
-  "refreshedAt": "2026-11-09T12:11:52.494Z",
+  "refreshedAt": "2026-11-16T12:34:16.518Z",
   "coverage": {
     "firstIncident": "2025-12-03",
-    "latestIncident": "2026-08-31"
+    "latestIncident": "2026-09-16"
   },
   "months": {
     "2025-12": {
@@ -258,6 +258,33 @@
         "hazmat": 0
       },
       "complete": true
+    },
+    "2026-09": {
+      "total": 17,
+      "fire": 1,
+      "aidGiven": 1,
+      "aidReceived": 1,
+      "categories": {
+        "fire": 1,
+        "ems": 0,
+        "rescue": 0,
+        "hazsit": 7,
+        "pubserv": 0,
+        "alarm": 7,
+        "noemerg": 2,
+        "lawenforce": 0,
+        "other": 0,
+        "multi_discipline": 0
+      },
+      "indicators": {
+        "structureFire": 1,
+        "vehicleFire": 1,
+        "outdoorFire": 0,
+        "vehicleCrash": 4,
+        "electrical": 0,
+        "hazmat": 0
+      },
+      "complete": false
     }
   }
 }
