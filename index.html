@@ -2289,21 +2289,26 @@
     }
 
     /* ─────────── FIRE STATUS BAR ─────────── */
+    /* Weather-update style: a white strip across the top, black text, and a lamp that glows the status color */
     .fire-bar {
-      --fb-color: #4ade80;
-      --fb-edge:  #006633;
       display: none;
       align-items: center;
       gap: 10px 14px;
-      padding: 8px 16px;
-      background: #161616;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      box-shadow: inset 4px 0 0 var(--fb-edge), 0 4px 12px rgba(0,0,0,.35);
+      padding: 6px 16px;
+      /* Depth: bright top edge, soft curve down to a light gray base, then a shadow cast onto the page */
+      background: linear-gradient(180deg, #ffffff 0%, #f7f6f3 45%, #e4e1db 100%);
+      border-top: 1px solid #ffffff;
+      border-bottom: 1px solid #a9a49b;
+      box-shadow:
+        inset 0 -2px 3px rgba(0,0,0,.06),
+        0 1px 0 rgba(0,0,0,.35),
+        0 4px 8px rgba(0,0,0,.45),
+        0 12px 28px rgba(0,0,0,.5);
       font-family: 'Barlow', 'Segoe UI', Arial, sans-serif;
-      font-size: 14.5px;
-      letter-spacing: .01em;
+      font-size: 15px;
+      letter-spacing: .02em;
       line-height: 1.4;
-      color: var(--text-mid);
+      color: #111;
       /* Stays pinned to the top while scrolling, so reopening it from the flame shows it right there */
       position: sticky;
       top: 0;
@@ -2311,33 +2316,30 @@
     }
     .fire-bar.is-shown { display: flex; }
     .fire-bar__dot {
-      --lamp: var(--fb-color);
+      --lamp: #78716c;
       flex: none;
-      width: 9px; height: 9px; border-radius: 50%;
+      width: 12px; height: 12px; border-radius: 50%;
       /* Lit-lamp look: bright core fading to the status color, with a soft halo */
-      background: radial-gradient(circle at 40% 35%, #ffffff 0%, color-mix(in srgb, var(--lamp) 55%, #ffffff) 30%, var(--lamp) 70%);
+      background: radial-gradient(circle at 40% 35%, #ffffff 0%, color-mix(in srgb, var(--lamp) 55%, #ffffff) 28%, var(--lamp) 68%);
       box-shadow:
-        0 0 4px 1px color-mix(in srgb, var(--lamp) 70%, transparent),
-        0 0 10px 3px color-mix(in srgb, var(--lamp) 30%, transparent);
+        0 0 0 1px color-mix(in srgb, var(--lamp) 60%, #000),
+        0 0 6px 2px color-mix(in srgb, var(--lamp) 60%, transparent);
     }
-    /* Red flag: a true red lamp (the light red used for text reads as pink here) */
-    .fire-bar--alert .fire-bar__dot { --lamp: #ef4444; }
     @media (prefers-reduced-motion: no-preference) {
       .fire-bar__dot { animation: lamp-glow 2.8s ease-in-out infinite; }
       /* Red flag: same glow, quicker beat */
       .fire-bar--alert .fire-bar__dot { animation-duration: 1.2s; }
       @keyframes lamp-glow {
         0%, 100% {
-          opacity: .8;
           box-shadow:
-            0 0 3px 1px color-mix(in srgb, var(--lamp) 55%, transparent),
-            0 0 6px 2px color-mix(in srgb, var(--lamp) 18%, transparent);
+            0 0 0 1px color-mix(in srgb, var(--lamp) 60%, #000),
+            0 0 3px 1px color-mix(in srgb, var(--lamp) 45%, transparent);
         }
         50% {
-          opacity: 1;
           box-shadow:
-            0 0 6px 2px color-mix(in srgb, var(--lamp) 85%, transparent),
-            0 0 16px 6px color-mix(in srgb, var(--lamp) 40%, transparent);
+            0 0 0 1px color-mix(in srgb, var(--lamp) 60%, #000),
+            0 0 8px 3px color-mix(in srgb, var(--lamp) 85%, transparent),
+            0 0 18px 7px color-mix(in srgb, var(--lamp) 40%, transparent);
         }
       }
     }
@@ -2347,28 +2349,32 @@
     .fire-bar__text { flex: 1 1 auto; min-width: 0; overflow: hidden; }
     .fire-bar__parts { display: flex; flex-wrap: wrap; row-gap: 2px; margin-left: -25px; }
     .fire-bar__part { white-space: nowrap; position: relative; padding-left: 25px; }
-    .fire-bar__part::before { content: '|'; position: absolute; left: 10px; color: rgba(255,255,255,.3); font-weight: 400; }
-    .fire-bar__text strong { color: var(--text); font-weight: 600; white-space: nowrap; }
+    .fire-bar__part::before { content: '|'; position: absolute; left: 10px; color: rgba(0,0,0,.3); font-weight: 400; }
+    .fire-bar__text strong { color: #111; font-weight: 600; white-space: nowrap; }
+    /* The burning status is the headline */
+    #fb-permit { font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
     .fire-bar__link {
       flex: none;
-      color: var(--gold-2);
-      text-decoration: none;
+      color: #111;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(0,0,0,.4);
       white-space: nowrap;
-      font-size: 13.5px;
+      font-size: 14px;
       font-weight: 600;
       letter-spacing: .03em;
     }
-    .fire-bar__link:hover { text-decoration: underline; }
+    .fire-bar__link:hover { text-decoration-color: #111; }
     .fire-bar__close {
       flex: none;
       background: none; border: 0; cursor: pointer;
-      color: var(--text-muted);
+      color: #555;
       font-size: 20px; line-height: 1;
       width: 28px; height: 28px;
       display: grid; place-items: center;
       border-radius: 50%;
     }
-    .fire-bar__close:hover { color: var(--text); background: rgba(255,255,255,.08); }
+    .fire-bar__close:hover { color: #111; background: rgba(0,0,0,.08); }
     .fire-bar__close[hidden] { display: none; }
 
     /* Fire button: brings the status bar back after a visitor closes it */
@@ -2404,7 +2410,7 @@
     /* The landing page's top-right spot would cover this site's header buttons */
     .fire-reopen { top: auto; bottom: 16px; right: 16px; }
     @media (max-width: 760px) {
-      .fire-bar { font-size: 14px; padding: 8px 12px; }
+      .fire-bar { font-size: 14px; padding: 5px 12px; }
     }
     @media (max-width: 400px) {
       .fire-bar__link { display: none; }
@@ -2478,6 +2484,19 @@
 
 <!-- ══════════════════════ HEADER ══════════════════════ -->
 <a class="skip-link" href="#main">Skip to main content</a>
+  <!-- Filled in from the ocfa-fire-status Worker; stays hidden if the status can't be loaded -->
+  <div class="fire-bar" id="fire-bar" role="status" aria-live="polite">
+    <span class="fire-bar__dot" aria-hidden="true"></span>
+    <span class="fire-bar__text"><span class="fire-bar__parts">
+      <strong class="fire-bar__part" id="fb-permit"></strong><strong class="fire-bar__part" id="fb-danger"></strong>
+    </span></span>
+    <a class="fire-bar__link" href="https://www2.dnr.state.mi.us/burnpermits/" target="_blank" rel="noopener">Get a Permit →</a>
+    <button class="fire-bar__close" id="fb-close" type="button" aria-label="Hide fire status bar">×</button>
+  </div>
+  <button class="fire-reopen" id="fb-reopen" type="button" aria-label="Show fire status" title="Show fire status" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg>
+  </button>
+
 <header>
   <div class="header-inner">
     <div class="logo-badge" title="Otsego County Fire Authority">
@@ -2512,20 +2531,6 @@
     <a href="#incident-statistics">Incident Statistics</a>
   </nav>
 </header>
-
-  <!-- Filled in from the ocfa-fire-status Worker; stays hidden if the status can't be loaded -->
-  <div class="fire-bar" id="fire-bar" role="status" aria-live="polite">
-    <span class="fire-bar__dot" aria-hidden="true"></span>
-    <span class="fire-bar__text"><span class="fire-bar__parts">
-      <strong class="fire-bar__part" id="fb-permit"></strong><strong class="fire-bar__part" id="fb-danger"></strong>
-    </span></span>
-    <a class="fire-bar__link" href="https://www2.dnr.state.mi.us/burnpermits/" target="_blank" rel="noopener">Get a Permit →</a>
-    <button class="fire-bar__close" id="fb-close" type="button" aria-label="Hide fire status bar">×</button>
-  </div>
-  <button class="fire-reopen" id="fb-reopen" type="button" aria-label="Show fire status" title="Show fire status" hidden>
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/></svg>
-  </button>
-
 
 <main id="main" tabindex="-1">
 
@@ -3895,14 +3900,6 @@
   // ── FIRE STATUS BAR ──
   // Cloudflare Worker (ocfa-fire-status, in the OCFA Cloudflare account); source is worker.js on main.
   var FIRE_STATUS_URL = 'https://ocfa-fire-status.otsego-county-fire-authority.workers.dev/';
-  var FB_COLORS = {
-    green:  { edge: '#006633', text: '#4ade80' },
-    yellow: { edge: '#d97706', text: '#fbbf24' },
-    orange: { edge: '#ff9a00', text: '#fb923c' },
-    red:    { edge: '#dc2626', text: '#fca5a5' },
-    brown:  { edge: '#b58b7c', text: '#d4a890' },
-    gray:   { edge: '#888480', text: '#c0bdb8' },
-  };
   var FB_CACHE_KEY   = 'ocfa_fire_status_v4';   // bump (with ?v= below) whenever the Worker's data changes
   var FB_HIDDEN_KEY  = 'ocfa_fire_bar_hidden';  // remembers which status the visitor closed
   var FB_TTL_MS      = 60 * 60 * 1000;
@@ -3925,21 +3922,20 @@
     var burnColor = BURN_COLOR[permit.status] || 'gray';
     permit.color = burnColor;
     var lampColor = danger.color === 'red' ? 'red' : burnColor;
-    var c = FB_COLORS[lampColor];
     // Lamp needs saturated colors (the light text shades read as pink/pale when glowing)
     var LAMP = { green: '#4ade80', orange: '#fb923c', red: '#ef4444', gray: '#a8a49c' };
-    bar.querySelector('.fire-bar__dot').style.setProperty('--lamp', LAMP[lampColor]);
-    bar.style.setProperty('--fb-color', c.text);
-    bar.style.setProperty('--fb-edge',  c.edge);
+    // Lamp on the white bar: deeper shades than LAMP so the color holds up against white
+    var BAR_LAMP = { green: '#16a34a', orange: '#f97316', red: '#dc2626', gray: '#78716c' };
+    bar.querySelector('.fire-bar__dot').style.setProperty('--lamp', BAR_LAMP[lampColor]);
     // Short, self-explanatory phrases (no "Burn permit:" / "Fire danger:" prefixes)
     var PERMIT_TEXT = { 0: 'No Burning', 1: 'Burning Permitted', 2: 'Restricted Burning', 3: 'Contact DNR' };
     document.getElementById('fb-permit').textContent = PERMIT_TEXT[permit.status] || permit.label || 'Burn permit status unknown';
-    // Normal-day text stays neutral; only a non-green status gets its warning color
-    function phraseColor(color) { return color && color !== 'green' ? (FB_COLORS[color] || FB_COLORS.gray).text : ''; }
-    document.getElementById('fb-permit').style.color = phraseColor(permit.color);
     // Second slot: an NWS fire weather alert if there is one; otherwise the DNR's daily fire danger level
-    // (colored like the roadside fire danger signs); otherwise nothing
-    var RATING_COLOR = { 'Low': '#4ade80', 'Moderate': '#60a5fa', 'High': '#facc15', 'Very High': '#fb923c', 'Extreme': '#ef4444' };
+    // otherwise nothing
+    // Fire danger levels colored like the roadside signs, in shades dark enough to read on the white bar
+    var RATING_COLOR = { 'Low': '#15803d', 'Moderate': '#1d4ed8', 'High': '#a16207', 'Very High': '#c2410c', 'Extreme': '#b91c1c' };
+    // NWS fire weather alerts take their alert color the same way
+    var ALERT_COLOR = { yellow: '#a16207', orange: '#c2410c', red: '#b91c1c' };
     var dangerEl = document.getElementById('fb-danger');
     dangerEl.textContent = '';
     dangerEl.style.color = '';
@@ -3947,7 +3943,7 @@
     dangerEl.hidden = false;
     if (danger.color !== 'green') {
       dangerEl.textContent = danger.label;
-      dangerEl.style.color = phraseColor(danger.color);
+      dangerEl.style.color = ALERT_COLOR[danger.color] || '';
     } else if (rating && RATING_COLOR[rating.level]) {
       var levelEl = document.createElement('span');
       levelEl.textContent = rating.level;
